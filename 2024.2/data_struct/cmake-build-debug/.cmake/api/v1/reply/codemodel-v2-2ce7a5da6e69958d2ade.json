@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.28"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "_",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "_::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-_-Debug-3530e317b7f45aa59b1e.json",
+					"name" : "_",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/hyeonu/Library/Mobile Documents/com~apple~CloudDocs/\uacfc\uc81c/2024.2\ud559\uae30/\uace0\uae09 \uc790\ub8cc\uad6c\uc870/cmake-build-debug",
+		"source" : "/Users/hyeonu/Library/Mobile Documents/com~apple~CloudDocs/\uacfc\uc81c/2024.2\ud559\uae30/\uace0\uae09 \uc790\ub8cc\uad6c\uc870"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
