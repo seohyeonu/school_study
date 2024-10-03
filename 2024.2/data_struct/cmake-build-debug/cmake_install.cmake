@@ -1,4 +1,4 @@
-# Install script for directory: /Users/hyeonu/Library/Mobile Documents/com~apple~CloudDocs/과제/2024.2학기/고급 자료구조
+# Install script for directory: /Users/hyeonu/school_study/2024.2/data_struct
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/hyeonu/Library/Mobile Documents/com~apple~CloudDocs/과제/2024.2학기/고급 자료구조/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/hyeonu/school_study/2024.2/data_struct/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

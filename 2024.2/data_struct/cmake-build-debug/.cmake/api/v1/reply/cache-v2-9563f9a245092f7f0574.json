@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/hyeonu/Library/Mobile Documents/com~apple~CloudDocs/\uacfc\uc81c/2024.2\ud559\uae30/\uace0\uae09 \uc790\ub8cc\uad6c\uc870/cmake-build-debug"
+			"value" : "/Users/hyeonu/school_study/2024.2/data_struct/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -383,7 +383,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/hyeonu/Library/Mobile Documents/com~apple~CloudDocs/\uacfc\uc81c/2024.2\ud559\uae30/\uace0\uae09 \uc790\ub8cc\uad6c\uc870/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/Users/hyeonu/school_study/2024.2/data_struct/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -443,7 +443,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/hyeonu/Library/Mobile Documents/com~apple~CloudDocs/\uacfc\uc81c/2024.2\ud559\uae30/\uace0\uae09 \uc790\ub8cc\uad6c\uc870"
+			"value" : "/Users/hyeonu/school_study/2024.2/data_struct"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -1031,7 +1031,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/hyeonu/Library/Mobile Documents/com~apple~CloudDocs/\uacfc\uc81c/2024.2\ud559\uae30/\uace0\uae09 \uc790\ub8cc\uad6c\uc870/cmake-build-debug"
+			"value" : "/Users/hyeonu/school_study/2024.2/data_struct/cmake-build-debug"
 		},
 		{
 			"name" : "__IS_TOP_LEVEL",
@@ -1055,7 +1055,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/hyeonu/Library/Mobile Documents/com~apple~CloudDocs/\uacfc\uc81c/2024.2\ud559\uae30/\uace0\uae09 \uc790\ub8cc\uad6c\uc870"
+			"value" : "/Users/hyeonu/school_study/2024.2/data_struct"
 		}
 	],
 	"kind" : "cache",

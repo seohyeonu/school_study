@@ -75,22 +75,23 @@ Row* get_new_char(Row* head, int row, int cols, char x){
     }
 }
 
-void del_char(Row* head, int row_position, int cols_position){
-    Row* cur = head;
+void del_char(Row* head, int row_position, int cols_position) {
+    Row *cur = head;
     // 오류 발생할 가능성 매우 높을 것 같음
     // mian에서 현재 커서 위치를 받아와서 포인터를 옮긴 후 새로운 행을 추가하는 방식임
-    for(int i=0; i<row_position; i++){
+    for (int i = 0; i < row_position; i++) {
         cur = cur->next;
-    // 행에 문자가 하나 밖에 없는 경우
-    if(pre->count_for_cols_len ==1){
-        cur->pre->next = cur->next;
-        cur->next->pre = cur->pre;
-        free(cur);
-    }
-    // 행에 문자가 하나 초과인 경우
-    else{
-        cur->arr[cols_position] = '0';
-        cur->count_for_cols_len--;
+        // 행에 문자가 하나 밖에 없는 경우
+        if (cur->count_for_cols_len == 1) {
+            cur->pre->next = cur->next;
+            cur->next->pre = cur->pre;
+            free(cur);
+        }
+            // 행에 문자가 하나 초과인 경우
+        else {
+            cur->arr[cols_position] = '0';
+            cur->count_for_cols_len--;
+        }
     }
 }
 
@@ -177,11 +178,14 @@ int main(int argc, char* argv[]) {
         }
 
         else if(c == KEY_BACKSPACE){
+            is_changed = 1;
             getsyx(row_location, cols_location);
             del_char(head, row_location, cols_location);
+
         }
 
         else if(c == KEY_ENTER){
+            is_changed = 1;
             getsyx(row_location, cols_location);
             get_new_row(head, row_location);
         }
@@ -207,6 +211,7 @@ int main(int argc, char* argv[]) {
                 || c == ')' || c == '-' || c == '_' || c == '+' || c == '=' || c == '<' || c == '>' || c == '/' || c == '|' || c == '\\'
                 || c == '[' || c == ']' || c == '{' || c == '}' || c == ':' || c == ';' || c == '"' || c == '\''){
             //문자 입력 일 때
+            is_changed = 1;
             addch(c);
             getsyx(row_location, cols_location);
             get_new_char(head, row_location, cols_location, c);
