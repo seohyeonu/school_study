@@ -80,18 +80,19 @@ void del_char(Row* head, int row_position, int cols_position) {
     // 오류 발생할 가능성 매우 높을 것 같음
     // mian에서 현재 커서 위치를 받아와서 포인터를 옮긴 후 새로운 행을 추가하는 방식임
     for (int i = 0; i < row_position; i++) {
-        cur = cur->next;
-        // 행에 문자가 하나 밖에 없는 경우
-        if (cur->count_for_cols_len == 1) {
-            cur->pre->next = cur->next;
-            cur->next->pre = cur->pre;
-            free(cur);
-        }
-            // 행에 문자가 하나 초과인 경우
-        else {
-            cur->arr[cols_position] = '0';
-            cur->count_for_cols_len--;
-        }
+        if (cur->next != NULL)
+            cur = cur->next;
+    }
+    // 행에 문자가 하나 밖에 없는 경우
+    if (cur->count_for_cols_len == 1) {
+        cur->pre->next = cur->next;
+        cur->next->pre = cur->pre;
+        free(cur);
+    }
+        // 행에 문자가 하나 초과인 경우
+    else {
+        cur->arr[cols_position] = '0';
+        cur->count_for_cols_len--;
     }
 }
 
@@ -99,9 +100,12 @@ void search(Row* head, char* find){
     pass;
 }
 int main(int argc, char* argv[]) {
+    // 변수 테이블
     Row* head = (Row*)malloc(sizeof(Row)); //모든 row의 최상의 row
+    Row* cur_row = NULL; //현재 커서가 위치한 row의 포인터
     int row_location, cols_location; //현재 커서의 row, cols 위치를 확인하는 변수
     int is_changed = 0; //문서의 내용이 바뀌었는지 안 바뀌었는지 확인하는 변수
+
 
     initscr();
 
@@ -180,14 +184,14 @@ int main(int argc, char* argv[]) {
         else if(c == KEY_BACKSPACE){
             is_changed = 1;
             getsyx(row_location, cols_location);
-            del_char(head, row_location, cols_location);
+            cur_row = del_char(head, row_location, cols_location);
 
         }
 
         else if(c == KEY_ENTER){
             is_changed = 1;
             getsyx(row_location, cols_location);
-            get_new_row(head, row_location);
+            cur_row = get_new_row(head, row_location);
         }
 
         else if(c == KEY_HOME){
@@ -214,7 +218,7 @@ int main(int argc, char* argv[]) {
             is_changed = 1;
             addch(c);
             getsyx(row_location, cols_location);
-            get_new_char(head, row_location, cols_location, c);
+            cur_row = get_new_char(head, row_location, cols_location, c);
         }
     }
 
