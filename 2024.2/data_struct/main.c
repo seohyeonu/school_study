@@ -1,6 +1,7 @@
 /* TODO
  * 현재 각 행의 열의 배열을 초기화 할 때 '0'으로 초기화 하고 있는데 이걸 고쳐야 할 것 같음
  * 그리고 더블 링크드 리스트까지 필요 없을 것 같음, 어차피 파라미터로 head와 현재 커서 위치를 넘겨주기 때문에 리니어 search를 통해 해당 row 노드를 찾아야함
+ *
  */
 
 
@@ -21,15 +22,10 @@ struct row{
 };
 typedef struct row Row;
 
-Row* get_new_row(Row* head, int row_position) {
+Row* get_new_row(Row* cur_row) {
     // 변수 디스크립션 : row_position -> main에서 받아온 새로운 행을 추가할 이전 행
-    Row* pre = head;
+    Row* pre = cur_row;
 
-    // 오류 발생할 가능성 매우 높을 것 같음
-    // mian에서 현재 커서 위치를 받아와서 포인터를 옮긴 후 새로운 행을 추가하는 방식임
-    for(int i=0; i<row_position; i++){
-        pre = pre->next;
-    }
     // 마지막 행에 새로운 행을 추가하는 경우
     if (pre->next == NULL) {
         Row *temp = (Row *) malloc(sizeof(Row));
@@ -57,11 +53,8 @@ Row* get_new_row(Row* head, int row_position) {
     }
 }
 
-Row* get_new_char(Row* head, int row, int cols, char x){
-    Row* cur = head;
-    for(int i =0; i<row; i++){
-        cur = head->next;
-    }
+Row* get_new_char(Row* cur_row, int cols, char x){
+    Row* cur = cur_row;
     
     if(cur->count_for_cols_len+1 == max_len){
         Row *temp = get_new_row(cur);
@@ -97,14 +90,45 @@ void del_char(Row* head, int row_position, int cols_position) {
 }
 
 void search(Row* head, char* find){
-    pass;
+   int a = 0;
 }
+
+void print_win(WINDOW* win, Row* head, int start, int end){
+        for(int i=0; i<start; i++){
+            if(head->next != NULL)
+                head = head->next;
+        }
+
+        for(int i=0; i<end-start; i++){
+            if(head ->next != NULL){
+                mvwprintw(win, i, 0, "%s", head->arr);
+                head= head->next;
+            }else {
+                mvwprintw(win, i, 0, "~");
+            }
+        }
+}
+
+Row* cur_row_update(Row* cur_row, int update_size){
+    if(update_size > 0){
+        for(int i=0; i<update_size; i++){
+            cur_row = cur_row->next;
+        }
+    } else{
+        for(int i=0; i<-update_size; i++){
+            cur_row = cur_row->pre;
+        }
+    }
+    return cur_row;
+}
+
 int main(int argc, char* argv[]) {
     // 변수 테이블
     Row* head = (Row*)malloc(sizeof(Row)); //모든 row의 최상의 row
     Row* cur_row = NULL; //현재 커서가 위치한 row의 포인터
     int row_location, cols_location; //현재 커서의 row, cols 위치를 확인하는 변수
     int is_changed = 0; //문서의 내용이 바뀌었는지 안 바뀌었는지 확인하는 변수
+    int start=0, end=0; // win에 뿌릴 시작과 끝점
 
 
     initscr();
@@ -114,11 +138,6 @@ int main(int argc, char* argv[]) {
 
     // 윈도우에 텍스트 출력
     mvwprintw(main_win, 10, 35, "Visual Text editor -- version 0.0.1");
-
-    // 윈도우에 "~" 출력
-    for(int i = 0; i < size_of_row; i++) {
-        mvwprintw(main_win, i, 0, "~");
-    }
 
     // 반전 색상 켜기
     wattron(main_win, A_REVERSE);
@@ -132,9 +151,12 @@ int main(int argc, char* argv[]) {
     // 윈도우의 내용을 실제 화면에 갱신
     wrefresh(main_win);
 
+
     while (True)
     {
+        end = size_of_row;
         int c = getch();
+        print_win(main_win, head, start, end);
 
         if(c == 17){
             // ctrl+Q : 나가기 ctrl+Q를 두번 누르면 저장되지 않은 상태로 나가기
@@ -156,58 +178,58 @@ int main(int argc, char* argv[]) {
         }
         else if(c == 19){
             // ctrl+S 새로운 파일을 저장하려고 하는 경우에는 파일 이름을 입력해야한다.
-            pass:
+            continue;
         }
 
         else if(c == 6){
             //ctrl+F
 
-            search(head, );
+            continue;
         }
 
         else if(c == KEY_UP){
-            pass:
+           cur_row =  cur_row_update(cur_row, -1);
         }
 
         else if(c == KEY_DOWN){
-            pass:
+            cur_row =  cur_row_update(cur_row, 1);
         }
 
         else if(c == KEY_RIGHT){
-            pass:
+            continue;
         }
 
         else if(c == KEY_LEFT){
-            pass:
+            continue;
         }
 
         else if(c == KEY_BACKSPACE){
             is_changed = 1;
             getsyx(row_location, cols_location);
-            cur_row = del_char(head, row_location, cols_location);
+            //cur_row = del_char(head, row_location, cols_location);
 
         }
 
         else if(c == KEY_ENTER){
             is_changed = 1;
             getsyx(row_location, cols_location);
-            cur_row = get_new_row(head, row_location);
+            cur_row = get_new_row(cur_row);
         }
 
         else if(c == KEY_HOME){
-            pass:
+            continue;
         }
 
         else if(c == KEY_END){
-            pass:
+            continue;
         }
 
         else if(c == KEY_NPAGE){
-            pass:
+            continue;
         }
 
         else if(c == KEY_PPAGE){
-            pass:
+            continue;
         }
 
         else if((c >= 'a' && c <= 'z') || (c <= 'Z' && c >= 'A') || (c >= '0' && c <= '9') || c == ' ' || c == '.' || c == ',' ||
@@ -218,7 +240,7 @@ int main(int argc, char* argv[]) {
             is_changed = 1;
             addch(c);
             getsyx(row_location, cols_location);
-            cur_row = get_new_char(head, row_location, cols_location, c);
+            cur_row = get_new_char(cur_row, cols_location, c);
         }
     }
 
