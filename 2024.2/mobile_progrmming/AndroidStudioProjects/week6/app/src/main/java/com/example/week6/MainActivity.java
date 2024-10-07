@@ -26,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
         add =(Button) findViewById(R.id.add);
         miu =(Button) findViewById(R.id.miu);
         mul =(Button) findViewById(R.id.mul);
@@ -36,18 +41,60 @@ public class MainActivity extends AppCompatActivity {
         send = (EditText) findViewById(R.id.send);
         cal = (TextView) findViewById(R.id.cal);
 
-
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-
         add.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-//                String getFrist=first.getText().toString();
-//                String getSend=send.getText().toString();
-//                int result = Integer.valueOf(getFrist) + Integer.valueOf(getSend);
-//                cal.setText("계산 결과 : " + result);
+                String getFrist=first.getText().toString();
+                String getSend=send.getText().toString();
+                int result = Integer.valueOf(getFrist) + Integer.valueOf(getSend);
+                cal.setText("계산 결과 : " + result);
+            }
+        });
+
+        miu.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                String getFrist=first.getText().toString();
+                String getSend=send.getText().toString();
+                int result = Integer.valueOf(getFrist) - Integer.valueOf(getSend);
+                cal.setText("계산 결과 : " + result);
+            }
+        });
+
+        mul.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                String getFrist=first.getText().toString();
+                String getSend=send.getText().toString();
+                int result = Integer.valueOf(getFrist) * Integer.valueOf(getSend);
+                cal.setText("계산 결과 : " + result);
+            }
+        });
+
+        div.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                String getFrist=first.getText().toString();
+                String getSend=send.getText().toString();
+                int result = Integer.valueOf(getFrist)/ Integer.valueOf(getSend);
+                cal.setText("계산 결과 : " + result);
+            }
+        });
+
+        divResult.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                String getFrist=first.getText().toString();
+                String getSend=send.getText().toString();
+                int result = Integer.valueOf(getFrist)% Integer.valueOf(getSend);
+                cal.setText("계산 결과 : " + result);
+            }
+        });
+
+        kill.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                finish();
             }
         });
     }
