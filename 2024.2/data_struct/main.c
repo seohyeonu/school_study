@@ -107,6 +107,8 @@ void print_win(WINDOW* win, Row* head, int start, int end){
                 mvwprintw(win, i, 0, "~");
             }
         }
+
+    wrefresh(win);
 }
 
 Row* cur_row_update(Row* cur_row, int update_size){
@@ -132,6 +134,7 @@ int main(int argc, char* argv[]) {
 
 
     initscr();
+    refresh();
 
     // 새 윈도우 작성
     WINDOW *main_win = newwin(size_of_row, size_of_cols, 0, 0);
@@ -151,12 +154,12 @@ int main(int argc, char* argv[]) {
     // 윈도우의 내용을 실제 화면에 갱신
     wrefresh(main_win);
 
-
     while (True)
     {
         end = size_of_row;
-        int c = getch();
         print_win(main_win, head, start, end);
+        wrefresh(main_win);
+        int c = getch();
 
         if(c == 17){
             // ctrl+Q : 나가기 ctrl+Q를 두번 누르면 저장되지 않은 상태로 나가기
@@ -240,7 +243,7 @@ int main(int argc, char* argv[]) {
             is_changed = 1;
             addch(c);
             getsyx(row_location, cols_location);
-            cur_row = get_new_char(cur_row, cols_location, c);
+            //cur_row = get_new_char(cur_row, cols_location, c);
         }
     }
 
