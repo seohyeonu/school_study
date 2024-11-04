@@ -9,7 +9,7 @@ cube from Chapter 4 */
 are the same as the vertex values */
 
 #include <stdlib.h>
-#include <GL/glut.h>
+#include <GLUT/glut.h>
 
 
 	GLfloat vertices[][3] = {{-1.0,-1.0,-1.0},{1.0,-1.0,-1.0},
@@ -20,9 +20,16 @@ are the same as the vertex values */
 	{1.0,1.0,-1.0}, {-1.0,1.0,-1.0}, {-1.0,-1.0,1.0}, 
 	{1.0,-1.0,1.0}, {1.0,1.0,1.0}, {-1.0,1.0,1.0}};
 
-	GLfloat colors[][3] = {{0.0,0.0,0.0},{1.0,0.0,0.0},
-	{1.0,1.0,0.0}, {0.0,1.0,0.0}, {0.0,0.0,1.0}, 
-	{1.0,0.0,1.0}, {1.0,1.0,1.0}, {0.0,1.0,1.0}};
+	GLfloat colors[][3] = {
+    {0.53, 0.81, 0.92}, // Sky Blue for all vertices
+    {0.53, 0.81, 0.92},
+    {0.53, 0.81, 0.92},
+    {0.53, 0.81, 0.92},
+    {0.53, 0.81, 0.92},
+    {0.53, 0.81, 0.92},
+    {0.53, 0.81, 0.92},
+    {0.53, 0.81, 0.92}
+};
 
 void polygon(int a, int b, int c , int d)
 {
@@ -59,7 +66,7 @@ void colorcube(void)
 }
 
 static GLfloat theta[] = {0.0,0.0,0.0};
-static GLint axis = 2;
+static GLint axis = 1;
 
 void display(void)
 {
@@ -83,7 +90,7 @@ void spinCube()
 
 /* Idle callback, spin cube 2 degrees about selected axis */
 
-	theta[axis] += 1.0;
+	theta[axis] += 10.0;
 	if( theta[axis] > 360.0 ) theta[axis] -= 360.0;
 	/* display(); */
 	glutPostRedisplay();

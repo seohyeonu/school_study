@@ -3,7 +3,7 @@
 /* Generated Using Randomly Selected Vertices */
 /* And Bisection                              */
 
-#include <GL/glut.h>
+#include <GLUT/glut.h>
 
 void myinit(void)
 {
@@ -11,7 +11,7 @@ void myinit(void)
 /* attributes */
 
       glClearColor(1.0, 1.0, 1.0, 1.0); /* white background */
-      glColor3f(1.0, 0.0, 0.0); /* draw in red */
+      glColor3f(0.0, 0.0, 1.0); /* draw in red */
 
 /* set up viewing */
 /* 500 x 500 window with origin lower left */
@@ -33,14 +33,14 @@ void display( void )
 
     int i, j, k;
     int rand();       /* standard random number generator */
-    point2 p ={75.0,50.0};  /* An arbitrary initial point inside traingle */
+    point2 p ={1000.0,500000000000.0};  /* An arbitrary initial point inside traingle */
 
     glClear(GL_COLOR_BUFFER_BIT);  /*clear the window */
 
 
 /* compute and plots 5000 new points */
 
-    for( k=0; k<5000; k++)
+    for( k=0; k<100000; k++)
     {
          j=rand()%3; /* pick a vertex at random */
 

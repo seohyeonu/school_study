@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src = "@drawable/물범"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:id = "@+id/best">
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            android:text="명화이름"
+            android:layout_above="@+id/best">
+        </TextView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow>
+                <TextView
+                    android:text="물범"
+                    android:layout_column="0"
+                    android:textSize="20sp"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:scrollbarSize="20sp" />
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="북극곰"
+                    android:textSize="20sp"/>
+                
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="북극여우"
+                    android:textSize="20sp"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="앵무새"
+                    android:textSize="20sp"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="호랑이"
+                    android:textSize="20sp"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="래서판다"
+                    android:textSize="20sp"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="낙타"
+                    android:textSize="20sp"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="사막여우"
+                    android:textSize="20sp"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"/>
+
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="미어캣"
+                    android:textSize="20sp"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"/>
+
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
