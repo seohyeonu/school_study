@@ -57,14 +57,24 @@ Row* get_new_row(Row* cur_row) {
     }
 }
 
-//Row* get_new_char(Row* cur_row, int cols, char x){
-//    Row* cur = cur_row;
-//
-//    // buffer가 다 채워진 경우
-//    if(cur->count_for_cols == buffer_size * cur->buffer_up+1){
-//        cur->arr = realloc(cur->arr, sizeof(char) * cur->buffer_up+2);
-//    }
-//}
+Row* get_new_char(Row* cur_row, int cols, char x){
+    Row* cur = cur_row;
+
+    // buffer가 다 채워진 경우
+    if(cur->count_for_cols == buffer_size * cur->buffer_up+1){
+        if(cols == cur->count_for_cols){ //문자를 뒤에 삽입하는 경우
+            cur->arr = realloc(cur->arr, sizeof(char) * cur->buffer_up+1);
+            cur->arr[cols] = x;
+            cur->count_for_cols;
+            return cur;
+        } else{ //문자를 중간에 삽입하는 경우
+            cur->arr = realloc(cur->arr, sizeof(char) * cur->buffer_up+1);
+            memmove(&cur->arr[cols + 1], &cur->arr[cols], (cur->count_for_cols - cols) * sizeof(char));
+        }
+
+    }
+    else if()
+}
 
 /*
 void del_char(Row* head, int row_position, int cols_position) {
@@ -87,9 +97,7 @@ void del_char(Row* head, int row_position, int cols_position) {
     }
 }
 */
-void search(Row* head, char* find){
-   int a = 0;
-}
+
 
 void print_win(WINDOW* win, Row* head, int start, int end){
         for(int i=0; i<start; i++){
@@ -245,7 +253,7 @@ int main(int argc, char* argv[]) {
             is_changed = 1;
             addch(c);
             getsyx(row_location, cols_location);
-//            cur_row = get_new_char(cur_row, cols_location, (char)c);
+            cur_row = get_new_char(cur_row, cols_location, (char)c);
         }
     }
 
