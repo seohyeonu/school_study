@@ -3,4 +3,5 @@ project(viva_ver2 C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(viva_ver2 main.c)
+add_executable(viva_ver2 main.c
+        ../viva_test/main.c)

@@ -9,139 +9,119 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#define buffer_size 1000
+//#define 1000 1000
 #define True 1
 #define False 0
+
 
 struct row{
     int buffer_up;
     int count_for_cols;
-    struct row *next;
-    struct row *pre;
     char* arr;
 };
-typedef struct row Row;
+typedef struct row Pad;
 
-Row* get_new_row(Row* cur_row) {
-    // 변수 디스크립션 : row_position -> main에서 받아온 새로운 행을 추가할 이전 행
-    Row* pre = cur_row;
-
-    // 마지막 행에 새로운 행을 추가하는 경우
-    if (pre->next == NULL) {
-        Row *temp = (Row *) malloc(sizeof(Row));
-        pre->next = temp;
-        temp->buffer_up = 0;
-        temp->count_for_cols = 0;
-        temp->next = NULL;
-        temp->pre = pre;
-        temp -> arr = (char*)malloc(sizeof(char) * buffer_size);
-        for (int i = 0; i < buffer_size; i++) {
-            temp->arr[i] = '\0';
-        }
-        return temp;
-    }
-    // 행 중간에 새로운 행을 추가하는 경우
-    else {
-        Row *temp = (Row *) malloc(sizeof(Row));
-        temp->buffer_up = 0;
-        temp->next = pre->next;
-        temp->pre = pre;
-        pre->next->pre = temp;
-        pre->next = temp;
-        temp->count_for_cols = 0;
-        temp -> arr = (char*)malloc(sizeof(char) * buffer_size);
-        for (int i = 0; i < buffer_size; i++) {
-            temp->arr[i] = '\0';
-        }
-        return temp;
-    }
+Pad* get_new_buffer(Pad* cur_row) {
+    Pad* cur = cur_row;
+    cur->arr = realloc(cur->arr, sizeof(char) * cur->buffer_up+1);
+    return cur;
 }
 
-Row* get_new_char(Row* cur_row, int cols, char x){
-    Row* cur = cur_row;
+int find_idx(Pad* cur_row, int row_position, int cols_position){
+    Pad* cur = cur_row;
+    int new_line_count =0, idx =0;
 
-    // buffer가 다 채워진 경우
-    if(cur->count_for_cols == buffer_size * cur->buffer_up+1){
-        if(cols == cur->count_for_cols){ //문자를 뒤에 삽입하는 경우
-            cur->arr = realloc(cur->arr, sizeof(char) * cur->buffer_up+1);
-            cur->arr[cols] = x;
-            cur->count_for_cols;
-            return cur;
-        } else{ //문자를 중간에 삽입하는 경우
-            cur->arr = realloc(cur->arr, sizeof(char) * cur->buffer_up+1);
-            memmove(&cur->arr[cols + 1], &cur->arr[cols], (cur->count_for_cols - cols) * sizeof(char));
+    for(int i=0; i<cur->count_for_cols; i++){
+        if(cur->arr[i] == '\n'){
+            new_line_count++;
+        } else if(cur->arr[i+1] == '\0'){
+            idx = i;
+            break;
         }
-
+        if(new_line_count == row_position){
+            idx = i+cols_position;
+        }
     }
-    else if()
+    return idx;
 }
 
-/*
-void del_char(Row* head, int row_position, int cols_position) {
-    Row *cur = head;
-    // 오류 발생할 가능성 매우 높을 것 같음
-    // mian에서 현재 커서 위치를 받아와서 포인터를 옮긴 후 새로운 행을 추가하는 방식임
-    for (int i = 0; i < row_position; i++) {
-        if (cur->next != NULL)
-            cur = cur->next;
-    }
-    // 행에 문자가 하나 밖에 없는 경우
-    if (cols_position == 1) {
-        cur->pre->next = cur->next;
-        cur->next->pre = cur->pre;
-        free(cur);
-    }
-        // 행에 문자가 하나 초과인 경우
-    else {
-        cur->arr[cols_position] = '\0';
-    }
-}
-*/
+Pad* get_new_char(Pad* cur_row, int row_position, int cols_position, char x){
+    Pad* cur = cur_row;
+    int idx = find_idx(cur_row, row_position, cols_position);
 
-
-void print_win(WINDOW* win, Row* head, int start, int end){
-        for(int i=0; i<start; i++){
-            if(head->next != NULL)
-                head = head->next;
+    if(cur->count_for_cols == 1000 * (cur->buffer_up+1)){
+        cur->arr = (char *) realloc(cur->arr, sizeof(char) * 1000 * (cur->buffer_up+2));
+        if(idx == cur->count_for_cols+1){
+            cur->arr[idx] = x;
+            cur->count_for_cols++;
+        } else if(idx < cur->count_for_cols){
+            memmove(cur->arr + idx + 1, cur->arr + idx, sizeof(char) * (cur->count_for_cols - idx + 1));
+            cur->arr[idx] = x;
+            cur->count_for_cols++;
         }
 
-        for(int i=0; i<end-start-2; i++){
-            if(head ->next != NULL){
-                mvwprintw(win, i, 0, "%s", head->arr);
-                head= head->next;
-            }else {
-                mvwprintw(win, i, 0, "~");
-            }
+    } else if(cur->count_for_cols < 1000 * (cur->buffer_up+1)){
+        if(idx == cur->count_for_cols){
+            cur->arr[idx] = x;
+            cur->count_for_cols++;
+        } else if(idx < cur->count_for_cols){
+            memmove(cur->arr + idx + 1, cur->arr + idx, sizeof(char) * (cur->count_for_cols - idx + 1));
+            cur->arr[idx] = x;
+            cur->count_for_cols++;
         }
-
-    wrefresh(win);
+    }
+    return cur;
 }
 
-Row* cur_row_update(Row* cur_row, int update_size){
-    if(update_size > 0){
-        for(int i=0; i<update_size; i++){
-            cur_row = cur_row->next;
-        }
-    } else{
-        for(int i=0; i<-update_size; i++){
-            cur_row = cur_row->pre;
-        }
-    }
-    return cur_row;
+
+void del_char(Pad* cur_row,  int row_position, int cols_position) {
+    Pad *cur = cur_row;
+    int idx = find_idx(cur, row_position, cols_position);
+
+    memmove(cur->arr + idx, cur->arr + idx+1, sizeof(char) * (cur->count_for_cols - idx+1));
+    cur->count_for_cols--;
 }
+
+
+void print_win(WINDOW* win, Pad* head, int start, int end) {
+    //int start_line_idx = find_idx(head, start, 0);
+
+    mvwprintw(win, 0,0,"%s", head->arr);
+    wrefresh(win);  // 반복문 밖에서 한 번만 호출
+}
+
+
+
+//Pad* cur_row_update(Pad* cur_row, int update_size){
+//    if(update_size > 0){
+//        for(int i=0; i<update_size; i++){
+//            cur_row = cur_row->next;
+//        }
+//    } else{
+//        for(int i=0; i<-update_size; i++){
+//            cur_row = cur_row->pre;
+//        }
+//    }
+//    return cur_row;
+//}
 
 int main(int argc, char* argv[]) {
     // 변수 테이블
-    Row* head = (Row*)malloc(sizeof(Row)); //모든 row의 최상의 row
-    Row* cur_row = NULL; //현재 커서가 위치한 row의 포인터
-    head = get_new_row(head);
-    cur_row = head;
+    Pad* head = (Pad*)malloc(sizeof(Pad)); //모든 row의 최상의 row
+    head->arr = (char*)malloc(sizeof(char)*1000);
+    //for (int i =0; i<1000; i++){
+    //    head->arr[i] = (char)i;
+    //}
+    //head->arr = "hello world";
     int row_location, cols_location; //현재 커서의 row, cols 위치를 확인하는 변수
     int is_changed = 0; //문서의 내용이 바뀌었는지 안 바뀌었는지 확인하는 변수
     int start=0, end=0; // win에 뿌릴 시작과 끝점
     int size_of_row, size_of_cols; // window 사이즈 받아오기
 
     initscr();
+    noecho();
+    raw();
+    keypad(stdscr, TRUE);
     getmaxyx(stdscr, size_of_row, size_of_cols);
     refresh();
 
@@ -167,9 +147,10 @@ int main(int argc, char* argv[]) {
     {
         end = size_of_row;
         print_win(main_win, head, start, end);
+
         wrefresh(main_win);
         int c = getch();
-
+        //int c = 'h';
         if(c == 17){
             // ctrl+Q : 나가기 ctrl+Q를 두번 누르면 저장되지 않은 상태로 나가기
             // 2024.11.2 맥에서 동작하지 않은 윈도우는 확인 못함
@@ -201,32 +182,30 @@ int main(int argc, char* argv[]) {
         }
 
         else if(c == KEY_UP){
-           cur_row =  cur_row_update(cur_row, -1);
+            getsyx(row_location, cols_location);
+            move(row_location-1, cols_location);
         }
 
         else if(c == KEY_DOWN){
-            cur_row =  cur_row_update(cur_row, 1);
+            getsyx(row_location, cols_location);
+            move(row_location+1, cols_location);
         }
 
         else if(c == KEY_RIGHT){
-            continue;
+            getsyx(row_location, cols_location);
+            move(row_location, cols_location+1);
         }
 
         else if(c == KEY_LEFT){
-            continue;
+            getsyx(row_location, cols_location);
+            move(row_location, cols_location-1);
         }
 
-        else if(c == KEY_BACKSPACE){
+        else if(c == KEY_BACKSPACE || c == 127 || c == '\b'){
             is_changed = 1;
             getsyx(row_location, cols_location);
-            //cur_row = del_char(head, row_location, cols_location);
+            del_char(head, row_location, cols_location);
 
-        }
-
-        else if(c == KEY_ENTER){
-            is_changed = 1;
-            getsyx(row_location, cols_location);
-            cur_row = get_new_row(cur_row);
         }
 
         else if(c == KEY_HOME){
@@ -248,12 +227,11 @@ int main(int argc, char* argv[]) {
         else if((c >= 'a' && c <= 'z') || (c <= 'Z' && c >= 'A') || (c >= '0' && c <= '9') || c == ' ' || c == '.' || c == ',' ||
                 c == '?' || c == '!' || c == '@' || c == '#' || c == '$' || c == '%' || c == '^' || c == '&' || c == '*' || c == '('
                 || c == ')' || c == '-' || c == '_' || c == '+' || c == '=' || c == '<' || c == '>' || c == '/' || c == '|' || c == '\\'
-                || c == '[' || c == ']' || c == '{' || c == '}' || c == ':' || c == ';' || c == '"' || c == '\''){
+                || c == '[' || c == ']' || c == '{' || c == '}' || c == ':' || c == ';' || c == '"' || c == '\'' || c == '\n'){
             //문자 입력 일 때
             is_changed = 1;
-            addch(c);
             getsyx(row_location, cols_location);
-            cur_row = get_new_char(cur_row, cols_location, (char)c);
+            head = get_new_char(head, row_location, cols_location, c);
         }
     }
 
