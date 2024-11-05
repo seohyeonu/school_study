@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "viva_ver2"
+			"path" : "viva_test"
 		}
 	],
 	"backtrace" : 1,
@@ -53,7 +53,7 @@
 			]
 		}
 	],
-	"id" : "viva_ver2::@6890427a1f51a3e7e1df",
+	"id" : "viva_test::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -69,8 +69,8 @@
 		],
 		"language" : "C"
 	},
-	"name" : "viva_ver2",
-	"nameOnDisk" : "viva_ver2",
+	"name" : "viva_test",
+	"nameOnDisk" : "viva_test",
 	"paths" : 
 	{
 		"build" : ".",

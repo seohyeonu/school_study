@@ -7,9 +7,8 @@
 #include <curses.h>
 #include <stdio.h>
 #include <string.h>
-#include <stdio.h>
 #include <stdlib.h>
-//#define 1000 1000
+#define BUFFER_SIZE 1000
 #define True 1
 #define False 0
 
@@ -49,8 +48,8 @@ Pad* get_new_char(Pad* cur_row, int row_position, int cols_position, char x){
     Pad* cur = cur_row;
     int idx = find_idx(cur_row, row_position, cols_position);
 
-    if(cur->count_for_cols == 1000 * (cur->buffer_up+1)){
-        cur->arr = (char *) realloc(cur->arr, sizeof(char) * 1000 * (cur->buffer_up+2));
+    if(cur->count_for_cols == BUFFER_SIZE * (cur->buffer_up+1)){
+        cur->arr = (char *) realloc(cur->arr, sizeof(char) * BUFFER_SIZE * (cur->buffer_up+2));
         if(idx == cur->count_for_cols+1){
             cur->arr[idx] = x;
             cur->count_for_cols++;
@@ -60,7 +59,7 @@ Pad* get_new_char(Pad* cur_row, int row_position, int cols_position, char x){
             cur->count_for_cols++;
         }
 
-    } else if(cur->count_for_cols < 1000 * (cur->buffer_up+1)){
+    } else if(cur->count_for_cols < BUFFER_SIZE * (cur->buffer_up+1)){
         if(idx == cur->count_for_cols){
             cur->arr[idx] = x;
             cur->count_for_cols++;
@@ -108,8 +107,10 @@ void print_win(WINDOW* win, Pad* head, int start, int end) {
 int main(int argc, char* argv[]) {
     // 변수 테이블
     Pad* head = (Pad*)malloc(sizeof(Pad)); //모든 row의 최상의 row
-    head->arr = (char*)malloc(sizeof(char)*1000);
-    //for (int i =0; i<1000; i++){
+    head->arr = (char*)malloc(sizeof(char)*BUFFER_SIZE);
+    head->arr[0] = 'h';
+    head->count_for_cols++;
+    //for (int i =0; i<BUFFER_SIZE; i++){
     //    head->arr[i] = (char)i;
     //}
     //head->arr = "hello world";
@@ -127,21 +128,25 @@ int main(int argc, char* argv[]) {
 
     // 새 윈도우 작성
     WINDOW *main_win = newwin(size_of_row, size_of_cols, 0, 0);
+    WINDOW *messenger_bar = newwin(1, size_of_cols, size_of_row-1,0);
+    WINDOW *status_bar = newwin(1, size_of_cols, size_of_row-2,0);
 
     // 윈도우에 텍스트 출력
     mvwprintw(main_win, size_of_row/2, size_of_cols/2-22, "Visual Text editor -- version 0.0.1");
 
     // 반전 색상 켜기
-    wattron(main_win, A_REVERSE);
-    mvwprintw(main_win, size_of_row - 2, 0, "[No Name] - 0 lines");
-    mvwprintw(main_win, size_of_row - 2, size_of_cols - 11, "no ft | 1/0"); // size_of_cols에 맞게 수정
-    wattroff(main_win, A_REVERSE); // A_REVERSE 속성 끄기
+    wattron(status_bar, A_REVERSE);
+    mvwprintw(status_bar, 0, 0, "[No Name] - 0 lines");
+    mvwprintw(status_bar, 0, size_of_cols - 11, "no ft | 1/0"); // size_of_cols에 맞게 수정
+    wattroff(status_bar, A_REVERSE); // A_REVERSE 속성 끄기
 
     // 윈도우에 도움말 출력
-    mvwprintw(main_win, size_of_row-1, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
+    mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
 
     // 윈도우의 내용을 실제 화면에 갱신
     wrefresh(main_win);
+    wrefresh(messenger_bar);
+    wrefresh(status_bar);
 
     while (True)
     {
@@ -155,20 +160,21 @@ int main(int argc, char* argv[]) {
             // ctrl+Q : 나가기 ctrl+Q를 두번 누르면 저장되지 않은 상태로 나가기
             // 2024.11.2 맥에서 동작하지 않은 윈도우는 확인 못함
             if(is_changed) {
-                mvprintw(size_of_row -10, 0, "Press Ctrl+q without saving changes                                                            ");
+                mvprintw(size_of_row -3, 0, "Press Ctrl+q without saving changes                                                            ");
                 refresh();
                 int temp_c = getch();
                 if(temp_c == 17) {
                     break;
                 }
                 else {
-                    mvprintw(size_of_row -10 , 0, "HELP : Press 'CTRL+Q' to exit | Press 'CTRL+S' to save | Press 'CTRL+F' to find");
+                    mvprintw(size_of_row-3, 0, "HELP : Press 'CTRL+Q' to exit | Press 'CTRL+S' to save | Press 'CTRL+F' to find");
                     continue;
                 }
             }
             else {
                 break;
             }
+
         }
         else if(c == 19){
             // ctrl+S 새로운 파일을 저장하려고 하는 경우에는 파일 이름을 입력해야한다.
