@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #define BUFFER_SIZE 1000
 #define True 1
 #define False 0
@@ -19,6 +20,19 @@ struct row{
     char* arr;
 };
 typedef struct row Pad;
+
+
+
+
+
+void log_message(FILE *log_file, const char* level, const int message) {
+    time_t now;
+    time(&now);
+    fprintf(log_file, "[%s] %s: %d\n", ctime(&now), level, message);
+}
+
+
+
 
 Pad* get_new_buffer(Pad* cur_row) {
     Pad* cur = cur_row;
@@ -44,9 +58,10 @@ int find_idx(Pad* cur_row, int row_position, int cols_position){
     return idx;
 }
 
-Pad* get_new_char(Pad* cur_row, int row_position, int cols_position, char x){
+Pad* get_new_char(Pad* cur_row, int row_position, int cols_position, char x, FILE *log_file){
     Pad* cur = cur_row;
     int idx = find_idx(cur_row, row_position, cols_position);
+    log_message(log_file, "get_new_char idx 위치임", idx);
 
     if(cur->count_for_cols == BUFFER_SIZE * (cur->buffer_up+1)){
         cur->arr = (char *) realloc(cur->arr, sizeof(char) * BUFFER_SIZE * (cur->buffer_up+2));
@@ -90,44 +105,28 @@ void print_win(WINDOW* win, Pad* head, int start, int end) {
 }
 
 
-
-//Pad* cur_row_update(Pad* cur_row, int update_size){
-//    if(update_size > 0){
-//        for(int i=0; i<update_size; i++){
-//            cur_row = cur_row->next;
-//        }
-//    } else{
-//        for(int i=0; i<-update_size; i++){
-//            cur_row = cur_row->pre;
-//        }
-//    }
-//    return cur_row;
-//}
-
 int main(int argc, char* argv[]) {
+    FILE *log_file = fopen("log.txt", "a");
     // 변수 테이블
     Pad* head = (Pad*)malloc(sizeof(Pad)); //모든 row의 최상의 row
     head->arr = (char*)malloc(sizeof(char)*BUFFER_SIZE);
-    head->arr[0] = 'h';
     head->count_for_cols++;
-    //for (int i =0; i<BUFFER_SIZE; i++){
-    //    head->arr[i] = (char)i;
-    //}
-    //head->arr = "hello world";
     int row_location, cols_location; //현재 커서의 row, cols 위치를 확인하는 변수
     int is_changed = 0; //문서의 내용이 바뀌었는지 안 바뀌었는지 확인하는 변수
     int start=0, end=0; // win에 뿌릴 시작과 끝점
     int size_of_row, size_of_cols; // window 사이즈 받아오기
 
+    // curses 색상 및 기타 설정
     initscr();
     noecho();
     raw();
     keypad(stdscr, TRUE);
+    init_pair(1, COLOR_BLACK, COLOR_WHITE);
     getmaxyx(stdscr, size_of_row, size_of_cols);
     refresh();
 
     // 새 윈도우 작성
-    WINDOW *main_win = newwin(size_of_row, size_of_cols, 0, 0);
+    WINDOW *main_win = newwin(size_of_row-2, size_of_cols, 0, 0);
     WINDOW *messenger_bar = newwin(1, size_of_cols, size_of_row-1,0);
     WINDOW *status_bar = newwin(1, size_of_cols, size_of_row-2,0);
 
@@ -135,10 +134,12 @@ int main(int argc, char* argv[]) {
     mvwprintw(main_win, size_of_row/2, size_of_cols/2-22, "Visual Text editor -- version 0.0.1");
 
     // 반전 색상 켜기
-    wattron(status_bar, A_REVERSE);
+    wbkgd(status_bar, COLOR_PAIR(1) | A_REVERSE);
     mvwprintw(status_bar, 0, 0, "[No Name] - 0 lines");
     mvwprintw(status_bar, 0, size_of_cols - 11, "no ft | 1/0"); // size_of_cols에 맞게 수정
-    wattroff(status_bar, A_REVERSE); // A_REVERSE 속성 끄기
+
+    // 스크롤 기능 활성화
+    scrollok(main_win, TRUE);
 
     // 윈도우에 도움말 출력
     mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
@@ -148,26 +149,28 @@ int main(int argc, char* argv[]) {
     wrefresh(messenger_bar);
     wrefresh(status_bar);
 
+
+
     while (True)
     {
         end = size_of_row;
         print_win(main_win, head, start, end);
 
-        wrefresh(main_win);
         int c = getch();
-        //int c = 'h';
+        werase(main_win);
         if(c == 17){
             // ctrl+Q : 나가기 ctrl+Q를 두번 누르면 저장되지 않은 상태로 나가기
-            // 2024.11.2 맥에서 동작하지 않은 윈도우는 확인 못함
+            // 2024.11.2 맥에서 동작하지 않은 윈도우는 확인 못함   ->  raw(); keypad(stdscr, TRUE); 이 두 친구들을 추가해줬어야 함.
             if(is_changed) {
-                mvprintw(size_of_row -3, 0, "Press Ctrl+q without saving changes                                                            ");
+                mvprintw(size_of_row -1, 0, "Press Ctrl+q without saving changes                                                            ");
                 refresh();
                 int temp_c = getch();
                 if(temp_c == 17) {
                     break;
                 }
                 else {
-                    mvprintw(size_of_row-3, 0, "HELP : Press 'CTRL+Q' to exit | Press 'CTRL+S' to save | Press 'CTRL+F' to find");
+                    mvprintw(size_of_row-1, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
+                    refresh();
                     continue;
                 }
             }
@@ -237,7 +240,8 @@ int main(int argc, char* argv[]) {
             //문자 입력 일 때
             is_changed = 1;
             getsyx(row_location, cols_location);
-            head = get_new_char(head, row_location, cols_location, c);
+            log_message(log_file, "row location", row_location);
+            head = get_new_char(head, row_location, cols_location, c, log_file);
         }
     }
 

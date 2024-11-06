@@ -1,0 +1,400 @@
+[Wed Nov  6 19:14:36 2024
+] row location: 0
+[Wed Nov  6 19:14:36 2024
+] get_new_char idx 위치임: 0
+[Wed Nov  6 19:14:36 2024
+] row location: 0
+[Wed Nov  6 19:14:36 2024
+] get_new_char idx 위치임: 0
+[Wed Nov  6 19:14:37 2024
+] row location: 0
+[Wed Nov  6 19:14:37 2024
+] get_new_char idx 위치임: 1
+[Wed Nov  6 19:14:37 2024
+] row location: 0
+[Wed Nov  6 19:14:37 2024
+] get_new_char idx 위치임: 2
+[Wed Nov  6 19:14:37 2024
+] row location: 0
+[Wed Nov  6 19:14:37 2024
+] get_new_char idx 위치임: 3
+[Wed Nov  6 19:14:37 2024
+] row location: 1
+[Wed Nov  6 19:14:37 2024
+] get_new_char idx 위치임: 4
+[Wed Nov  6 19:14:37 2024
+] row location: 2
+[Wed Nov  6 19:14:37 2024
+] get_new_char idx 위치임: 5
+[Wed Nov  6 19:14:38 2024
+] row location: 3
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 6
+[Wed Nov  6 19:14:38 2024
+] row location: 4
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 7
+[Wed Nov  6 19:14:38 2024
+] row location: 5
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 8
+[Wed Nov  6 19:14:38 2024
+] row location: 6
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 9
+[Wed Nov  6 19:14:38 2024
+] row location: 7
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 10
+[Wed Nov  6 19:14:38 2024
+] row location: 8
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 11
+[Wed Nov  6 19:14:38 2024
+] row location: 9
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 12
+[Wed Nov  6 19:14:38 2024
+] row location: 10
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 13
+[Wed Nov  6 19:14:38 2024
+] row location: 11
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 14
+[Wed Nov  6 19:14:38 2024
+] row location: 12
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 15
+[Wed Nov  6 19:14:38 2024
+] row location: 13
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 16
+[Wed Nov  6 19:14:38 2024
+] row location: 14
+[Wed Nov  6 19:14:38 2024
+] get_new_char idx 위치임: 17
+[Wed Nov  6 19:14:39 2024
+] row location: 15
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 18
+[Wed Nov  6 19:14:39 2024
+] row location: 16
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 19
+[Wed Nov  6 19:14:39 2024
+] row location: 17
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 20
+[Wed Nov  6 19:14:39 2024
+] row location: 18
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 21
+[Wed Nov  6 19:14:39 2024
+] row location: 19
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 22
+[Wed Nov  6 19:14:39 2024
+] row location: 20
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 23
+[Wed Nov  6 19:14:39 2024
+] row location: 21
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 24
+[Wed Nov  6 19:14:39 2024
+] row location: 22
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 25
+[Wed Nov  6 19:14:39 2024
+] row location: 23
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 26
+[Wed Nov  6 19:14:39 2024
+] row location: 24
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 27
+[Wed Nov  6 19:14:39 2024
+] row location: 25
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 28
+[Wed Nov  6 19:14:39 2024
+] row location: 26
+[Wed Nov  6 19:14:39 2024
+] get_new_char idx 위치임: 29
+[Wed Nov  6 19:14:40 2024
+] row location: 27
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 30
+[Wed Nov  6 19:14:40 2024
+] row location: 28
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 31
+[Wed Nov  6 19:14:40 2024
+] row location: 29
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 32
+[Wed Nov  6 19:14:40 2024
+] row location: 30
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 33
+[Wed Nov  6 19:14:40 2024
+] row location: 31
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 34
+[Wed Nov  6 19:14:40 2024
+] row location: 32
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 35
+[Wed Nov  6 19:14:40 2024
+] row location: 33
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 36
+[Wed Nov  6 19:14:40 2024
+] row location: 34
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 37
+[Wed Nov  6 19:14:40 2024
+] row location: 35
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 38
+[Wed Nov  6 19:14:40 2024
+] row location: 36
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 39
+[Wed Nov  6 19:14:40 2024
+] row location: 37
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 40
+[Wed Nov  6 19:14:40 2024
+] row location: 38
+[Wed Nov  6 19:14:40 2024
+] get_new_char idx 위치임: 41
+[Wed Nov  6 19:14:41 2024
+] row location: 39
+[Wed Nov  6 19:14:41 2024
+] get_new_char idx 위치임: 42
+[Wed Nov  6 19:14:41 2024
+] row location: 40
+[Wed Nov  6 19:14:41 2024
+] get_new_char idx 위치임: 43
+[Wed Nov  6 19:14:41 2024
+] row location: 41
+[Wed Nov  6 19:14:41 2024
+] get_new_char idx 위치임: 44
+[Wed Nov  6 19:14:41 2024
+] row location: 42
+[Wed Nov  6 19:14:41 2024
+] get_new_char idx 위치임: 45
+[Wed Nov  6 19:14:41 2024
+] row location: 43
+[Wed Nov  6 19:14:41 2024
+] get_new_char idx 위치임: 46
+[Wed Nov  6 19:14:41 2024
+] row location: 44
+[Wed Nov  6 19:14:41 2024
+] get_new_char idx 위치임: 47
+[Wed Nov  6 19:14:41 2024
+] row location: 45
+[Wed Nov  6 19:14:41 2024
+] get_new_char idx 위치임: 48
+[Wed Nov  6 19:14:41 2024
+] row location: 46
+[Wed Nov  6 19:14:41 2024
+] get_new_char idx 위치임: 49
+[Wed Nov  6 19:14:41 2024
+] row location: 47
+[Wed Nov  6 19:14:41 2024
+] get_new_char idx 위치임: 50
+[Wed Nov  6 19:14:41 2024
+] row location: 48
+[Wed Nov  6 19:14:41 2024
+] get_new_char idx 위치임: 51
+[Wed Nov  6 19:14:41 2024
+] row location: 49
+[Wed Nov  6 19:14:41 2024
+] get_new_char idx 위치임: 52
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 53
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 54
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 55
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 56
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 57
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 58
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 59
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 60
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 61
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 62
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 63
+[Wed Nov  6 19:14:42 2024
+] row location: 50
+[Wed Nov  6 19:14:42 2024
+] get_new_char idx 위치임: 64
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 65
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 66
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 67
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 68
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 69
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 70
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 71
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 72
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 73
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 74
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 75
+[Wed Nov  6 19:14:43 2024
+] row location: 50
+[Wed Nov  6 19:14:43 2024
+] get_new_char idx 위치임: 76
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 77
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 78
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 79
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 80
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 81
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 82
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 83
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 84
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 85
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 86
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 87
+[Wed Nov  6 19:14:44 2024
+] row location: 50
+[Wed Nov  6 19:14:44 2024
+] get_new_char idx 위치임: 88
+[Wed Nov  6 19:14:45 2024
+] row location: 50
+[Wed Nov  6 19:14:45 2024
+] get_new_char idx 위치임: 89
+[Wed Nov  6 19:14:45 2024
+] row location: 50
+[Wed Nov  6 19:14:45 2024
+] get_new_char idx 위치임: 90
+[Wed Nov  6 19:14:45 2024
+] row location: 50
+[Wed Nov  6 19:14:45 2024
+] get_new_char idx 위치임: 91
+[Wed Nov  6 19:14:45 2024
+] row location: 50
+[Wed Nov  6 19:14:45 2024
+] get_new_char idx 위치임: 92
+[Wed Nov  6 19:14:45 2024
+] row location: 50
+[Wed Nov  6 19:14:45 2024
+] get_new_char idx 위치임: 93
+[Wed Nov  6 19:14:45 2024
+] row location: 50
+[Wed Nov  6 19:14:45 2024
+] get_new_char idx 위치임: 94
+[Wed Nov  6 19:14:45 2024
+] row location: 50
+[Wed Nov  6 19:14:45 2024
+] get_new_char idx 위치임: 95
+[Wed Nov  6 19:14:45 2024
+] row location: 50
+[Wed Nov  6 19:14:45 2024
+] get_new_char idx 위치임: 96
+[Wed Nov  6 19:14:56 2024
+] row location: 0
+[Wed Nov  6 19:14:56 2024
+] get_new_char idx 위치임: 0
+[Wed Nov  6 19:14:56 2024
+] row location: 0
+[Wed Nov  6 19:14:56 2024
+] get_new_char idx 위치임: 0
