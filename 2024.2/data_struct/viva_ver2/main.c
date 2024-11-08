@@ -31,6 +31,12 @@ void log_message(FILE *log_file, const char* level, const int message) {
     fprintf(log_file, "[%s] %s: %d\n", ctime(&now), level, message);
 }
 
+void log_row_cols_message(FILE *log_file, const char* level, const int row, const int cols) {
+    time_t now;
+    time(&now);
+    fprintf(log_file, "[%s] %s:  row : %d ,  cols : %d\n", ctime(&now), level, row, cols);
+}
+
 
 
 
@@ -43,6 +49,14 @@ Pad* get_new_buffer(Pad* cur_row) {
 int find_idx(Pad* cur_row, int row_position, int cols_position){
     Pad* cur = cur_row;
     int new_line_count =0, idx =0;
+
+//    if(row_position == 0){
+//        return cols_position-1;
+//    } else{
+//        for(int i=0; i<cur->count_for_cols;i++){
+//
+//        }
+//    }
 
     for(int i=0; i<cur->count_for_cols; i++){
         if(cur->arr[i] == '\n'){
@@ -104,9 +118,15 @@ void print_win(WINDOW* win, Pad* head, int start, int end) {
     wrefresh(win);  // 반복문 밖에서 한 번만 호출
 }
 
+void save_file(FILE *log_file, Pad* head){
+    fprintf(log_file, "%s\n", head->arr);
+}
+
+Pad* open_file()
 
 int main(int argc, char* argv[]) {
     FILE *log_file = fopen("log.txt", "a");
+    FILE *save_file_path = fopen("save.txt", "a");
     // 변수 테이블
     Pad* head = (Pad*)malloc(sizeof(Pad)); //모든 row의 최상의 row
     head->arr = (char*)malloc(sizeof(char)*BUFFER_SIZE);
@@ -149,8 +169,6 @@ int main(int argc, char* argv[]) {
     wrefresh(messenger_bar);
     wrefresh(status_bar);
 
-
-
     while (True)
     {
         end = size_of_row;
@@ -181,7 +199,8 @@ int main(int argc, char* argv[]) {
         }
         else if(c == 19){
             // ctrl+S 새로운 파일을 저장하려고 하는 경우에는 파일 이름을 입력해야한다.
-            continue;
+            save_file(save_file_path, head);
+            break;
         }
 
         else if(c == 6){
@@ -240,7 +259,8 @@ int main(int argc, char* argv[]) {
             //문자 입력 일 때
             is_changed = 1;
             getsyx(row_location, cols_location);
-            log_message(log_file, "row location", row_location);
+            log_row_cols_message(log_file, "main", row_location, cols_location);
+            log_message(log_file, "배열의 어디까지 채워졌니??", head->count_for_cols);
             head = get_new_char(head, row_location, cols_location, c, log_file);
         }
     }
