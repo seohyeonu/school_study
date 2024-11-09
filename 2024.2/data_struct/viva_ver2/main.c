@@ -37,69 +37,67 @@ void log_row_cols_message(FILE *log_file, const char* level, const int row, cons
     fprintf(log_file, "[%s] %s:  row : %d ,  cols : %d\n", ctime(&now), level, row, cols);
 }
 
-
-
-
-Pad* get_new_buffer(Pad* cur_row) {
+int find_idx(Pad* cur_row, int row_position, int cols_position) {
     Pad* cur = cur_row;
-    cur->arr = realloc(cur->arr, sizeof(char) * cur->buffer_up+1);
-    return cur;
-}
+    int new_line_count = 0;
+    int idx = 0;
 
-int find_idx(Pad* cur_row, int row_position, int cols_position){
-    Pad* cur = cur_row;
-    int new_line_count =0, idx =0;
-
-//    if(row_position == 0){
-//        return cols_position-1;
-//    } else{
-//        for(int i=0; i<cur->count_for_cols;i++){
-//
-//        }
-//    }
-
-    for(int i=0; i<cur->count_for_cols; i++){
-        if(cur->arr[i] == '\n'){
-            new_line_count++;
-        } else if(cur->arr[i+1] == '\0'){
-            idx = i;
-            break;
+    for (int i = 0; i < cur->count_for_cols; i++) {
+        // 현재 위치가 목표하는 행(row_position)에 도달하면
+        if (new_line_count == row_position) {
+            // 현재 위치에서 cols_position만큼 이동한 인덱스를 반환
+            if (i + cols_position < cur->count_for_cols) {
+                idx = i + cols_position;
+            } else {
+                // 열이 범위를 벗어나면 가능한 최대 인덱스로 설정
+                idx = cur->count_for_cols - 1;
+            }
+            return idx;
         }
-        if(new_line_count == row_position){
-            idx = i+cols_position;
+
+        // '\n'을 만나면 새로운 행 시작을 의미하므로 new_line_count 증가
+        if (cur->arr[i] == '\n') {
+            new_line_count++;
         }
     }
-    return idx;
+
+    // 만약 row_position에 해당하는 행이 존재하지 않는다면
+    // 배열의 끝을 반환 (이후 처리가 가능하도록 -1을 반환할 수도 있음)
+    return cur->count_for_cols;
 }
+
 
 Pad* get_new_char(Pad* cur_row, int row_position, int cols_position, char x, FILE *log_file){
     Pad* cur = cur_row;
     int idx = find_idx(cur_row, row_position, cols_position);
     log_message(log_file, "get_new_char idx 위치임", idx);
 
-    if(cur->count_for_cols == BUFFER_SIZE * (cur->buffer_up+1)){
-        cur->arr = (char *) realloc(cur->arr, sizeof(char) * BUFFER_SIZE * (cur->buffer_up+2));
-        if(idx == cur->count_for_cols+1){
-            cur->arr[idx] = x;
-            cur->count_for_cols++;
-        } else if(idx < cur->count_for_cols){
-            memmove(cur->arr + idx + 1, cur->arr + idx, sizeof(char) * (cur->count_for_cols - idx + 1));
-            cur->arr[idx] = x;
-            cur->count_for_cols++;
-        }
+    // 배열이 다 찼을 경우 배열의 크기를 2배로 증가
+    if (cur->count_for_cols == BUFFER_SIZE * (cur->buffer_up + 1)) {
+        cur->buffer_up++; // 2배 확장을 기록
+        cur->arr = (char *) realloc(cur->arr, sizeof(char) * BUFFER_SIZE * (1 << cur->buffer_up));
 
-    } else if(cur->count_for_cols < BUFFER_SIZE * (cur->buffer_up+1)){
-        if(idx == cur->count_for_cols){
-            cur->arr[idx] = x;
-            cur->count_for_cols++;
-        } else if(idx < cur->count_for_cols){
-            memmove(cur->arr + idx + 1, cur->arr + idx, sizeof(char) * (cur->count_for_cols - idx + 1));
-            cur->arr[idx] = x;
-            cur->count_for_cols++;
+        // realloc 실패 체크
+        if (!cur->arr) {
+            fprintf(stderr, "메모리 할당 오류!\n");
+            exit(1); // 프로그램 종료
         }
     }
+
+    // `idx` 위치에 `x` 문자 삽입
+    if (idx == cur->count_for_cols) {
+        cur->arr[idx] = x;
+        cur->count_for_cols++;
+    } else if (idx < cur->count_for_cols) {
+        // `idx` 위치에 문자 삽입을 위해 뒤로 밀기
+        memmove(cur->arr + idx + 1, cur->arr + idx, sizeof(char) * (cur->count_for_cols - idx));
+        cur->arr[idx] = x;
+        cur->count_for_cols++;
+    }
+
     return cur;
 }
+
 
 
 void del_char(Pad* cur_row,  int row_position, int cols_position) {
@@ -122,19 +120,51 @@ void save_file(FILE *log_file, Pad* head){
     fprintf(log_file, "%s\n", head->arr);
 }
 
-Pad* open_file()
+void load_file(Pad* head, const char* filename, FILE *log_file) {
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        return;
+    }
+
+    char line[BUFFER_SIZE];
+    int row = 0;
+    int idx = 0;
+
+    while (fgets(line, sizeof(line), file)) {
+        for (int i = 0; line[i] != '\0'; i++) {
+            if (line[i] == '\n') {
+                row++;
+                idx = 0;
+                head = get_new_char(head, row, idx, '\n', log_file);
+            } else {
+                head = get_new_char(head, row, idx, line[i], log_file);
+                idx++;
+            }
+        }
+    }
+
+    fclose(file);
+}
 
 int main(int argc, char* argv[]) {
     FILE *log_file = fopen("log.txt", "a");
     FILE *save_file_path = fopen("save.txt", "a");
+
     // 변수 테이블
     Pad* head = (Pad*)malloc(sizeof(Pad)); //모든 row의 최상의 row
     head->arr = (char*)malloc(sizeof(char)*BUFFER_SIZE);
     head->count_for_cols++;
+    int* new_line_idx;
+    new_line_idx = (int*) malloc(sizeof (int)*50000);
+    for (int i = 0; i < 50000; i++) {
+        new_line_idx[i] = -1;
+    }
+
     int row_location, cols_location; //현재 커서의 row, cols 위치를 확인하는 변수
     int is_changed = 0; //문서의 내용이 바뀌었는지 안 바뀌었는지 확인하는 변수
     int start=0, end=0; // win에 뿌릴 시작과 끝점
     int size_of_row, size_of_cols; // window 사이즈 받아오기
+    int
 
     // curses 색상 및 기타 설정
     initscr();
@@ -168,6 +198,11 @@ int main(int argc, char* argv[]) {
     wrefresh(main_win);
     wrefresh(messenger_bar);
     wrefresh(status_bar);
+
+    // 파일 로드
+    if (argc > 1) {
+        load_file(head, argv[1], log_file);
+    }
 
     while (True)
     {
@@ -233,6 +268,7 @@ int main(int argc, char* argv[]) {
             is_changed = 1;
             getsyx(row_location, cols_location);
             del_char(head, row_location, cols_location);
+            log_row_cols_message(log_file,"Key back row 와 cols 위치", row_location, cols_location);
 
         }
 
@@ -252,17 +288,35 @@ int main(int argc, char* argv[]) {
             continue;
         }
 
-        else if((c >= 'a' && c <= 'z') || (c <= 'Z' && c >= 'A') || (c >= '0' && c <= '9') || c == ' ' || c == '.' || c == ',' ||
-                c == '?' || c == '!' || c == '@' || c == '#' || c == '$' || c == '%' || c == '^' || c == '&' || c == '*' || c == '('
-                || c == ')' || c == '-' || c == '_' || c == '+' || c == '=' || c == '<' || c == '>' || c == '/' || c == '|' || c == '\\'
-                || c == '[' || c == ']' || c == '{' || c == '}' || c == ':' || c == ';' || c == '"' || c == '\'' || c == '\n'){
-            //문자 입력 일 때
-            is_changed = 1;
+        else if ((c >= 'a' && c <= 'z') || (c <= 'Z' && c >= 'A') || (c >= '0' && c <= '9') || c == ' ' || c == '.' || c == ',' ||
+                 c == '?' || c == '!' || c == '@' || c == '#' || c == '$' || c == '%' || c == '^' || c == '&' || c == '*' || c == '('
+                 || c == ')' || c == '-' || c == '_' || c == '+' || c == '=' || c == '<' || c == '>' || c == '/' || c == '|' || c == '\\'
+                 || c == '[' || c == ']' || c == '{' || c == '}' || c == ':' || c == ';' || c == '"' || c == '\'' ) {
+            // 문자 입력 일 때
             getsyx(row_location, cols_location);
-            log_row_cols_message(log_file, "main", row_location, cols_location);
-            log_message(log_file, "배열의 어디까지 채워졌니??", head->count_for_cols);
-            head = get_new_char(head, row_location, cols_location, c, log_file);
+            if (cols_location == size_of_cols - 1) { // 커서가 오른쪽 끝에 있는 경우
+                head = get_new_char(head, row_location, cols_location, '\n', log_file);
+                row_location++; // 줄을 한 줄 내림
+                cols_location = 0; // 커서를 맨 앞 열로 설정
+                move(row_location, cols_location);
+            } else {
+                head = get_new_char(head, row_location, cols_location, c, log_file);
+                move(row_location, cols_location + 1); // 오른쪽으로 한 칸 이동
+            }
+            is_changed = 1;
+            log_row_cols_message(log_file,"row 와 cols 위치", row_location, cols_location);
         }
+
+        else if (c == '\n') {
+            // 엔터 키를 입력할 때
+            getsyx(row_location, cols_location);
+            head = get_new_char(head, row_location, cols_location, '\n', log_file);
+            row_location++; // 줄을 한 줄 내림
+            cols_location = 0; // 커서를 맨 앞 열로 설정
+            move(row_location, cols_location); // 새로운 줄로 커서 이동
+            is_changed = 1;
+        }
+
     }
 
     endwin();
