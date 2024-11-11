@@ -161,7 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="투표 종료"
-            android:id="@+id/vote"
+            android:id="@+id/vote"/>
     </LinearLayout>
 
 </LinearLayout>

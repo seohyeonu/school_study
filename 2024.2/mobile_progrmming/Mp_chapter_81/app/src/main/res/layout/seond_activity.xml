@@ -19,7 +19,7 @@
             android:src = "@drawable/물범"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
-            android:id = "@+id/best">
+            android:id = "@+id/best_image">
         </ImageView>
 
         <TextView
@@ -28,7 +28,8 @@
             android:textSize="20sp"
             android:layout_centerInParent="true"
             android:text="명화이름"
-            android:layout_above="@+id/best">
+            android:id="@+id/best_name"
+            android:layout_above="@+id/best_image">
         </TextView>
 
     </RelativeLayout>
@@ -39,8 +40,9 @@
         android:layout_weight="1">
 
         <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="0">
 
             <TableRow>
                 <TextView
@@ -49,10 +51,10 @@
                     android:textSize="20sp"/>
 
                 <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right"
-                    android:scrollbarSize="20sp" />
+                    android:numStars="5"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:id="@+id/a"
+                    android:layout_gravity="right"/>
 
             </TableRow>
 
@@ -62,9 +64,11 @@
                     android:textSize="20sp"/>
 
                 <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"/>
+                    android:numStars="5"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:id="@+id/b"
+                    android:layout_gravity="right"/>
+
 
             </TableRow>
 
@@ -74,9 +78,11 @@
                     android:textSize="20sp"/>
 
                 <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"/>
+                    android:numStars="5"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:id="@+id/c"
+                    android:layout_gravity="right"/>
+
 
             </TableRow>
 
@@ -86,9 +92,11 @@
                     android:textSize="20sp"/>
 
                 <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"/>
+                    android:numStars="5"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:id="@+id/d"
+                    android:layout_gravity="right"/>
+
 
             </TableRow>
 
@@ -98,9 +106,11 @@
                     android:textSize="20sp"/>
 
                 <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"/>
+                    android:numStars="5"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:id="@+id/e"
+                    android:layout_gravity="right"/>
+
 
             </TableRow>
 
@@ -110,9 +120,11 @@
                     android:textSize="20sp"/>
 
                 <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"/>
+                    android:numStars="5"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:id="@+id/f"
+                    android:layout_gravity="right"/>
+
 
             </TableRow>
 
@@ -122,9 +134,11 @@
                     android:textSize="20sp"/>
 
                 <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"/>
+                    android:numStars="5"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:id="@+id/g"
+                    android:layout_gravity="right"/>
+
 
             </TableRow>
 
@@ -134,9 +148,11 @@
                     android:textSize="20sp"/>
 
                 <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"/>
+                    android:numStars="5"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:id="@+id/h"
+                    android:layout_gravity="right"/>
+
 
             </TableRow>
 
@@ -146,14 +162,22 @@
                     android:textSize="20sp"/>
 
                 <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left"/>
+                    android:numStars="5"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:id="@+id/i"
+                    android:layout_gravity="right"/>
+
 
             </TableRow>
         </TableLayout>
 
+
     </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="돌아가기"
+        android:id="@+id/butReturn"/>
 
 
 </LinearLayout>
