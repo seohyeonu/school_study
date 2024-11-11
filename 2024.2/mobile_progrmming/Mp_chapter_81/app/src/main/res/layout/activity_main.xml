@@ -24,7 +24,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/a"
                 android:scaleType="centerCrop"
-                android:src = "@drawable/Seal">
+                android:src = "@drawable/seal">
             </ImageView>
         </LinearLayout>
 
@@ -38,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/b"
                 android:scaleType="centerCrop"
-                android:src = "@drawable/Polar_Bear">
+                android:src = "@drawable/polar_bear">
             </ImageView>
         </LinearLayout>
 
@@ -52,7 +52,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/c"
                 android:scaleType="centerCrop"
-                android:src = "@drawable/Arctic_Fox">
+                android:src = "@drawable/arctic_fox">
             </ImageView>
         </LinearLayout>
 
@@ -74,7 +74,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/d"
                 android:scaleType="centerCrop"
-                android:src = "@drawable/Parrot">
+                android:src = "@drawable/parrot">
             </ImageView>
         </LinearLayout>
 
@@ -88,7 +88,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:id="@+id/e"
-                android:src = "@drawable/Tiger">
+                android:src = "@drawable/tiger">
             </ImageView>
         </LinearLayout>
 
@@ -121,7 +121,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/g"
                 android:scaleType="fitXY"
-                android:src = "@drawable/Camel">
+                android:src = "@drawable/camel">
             </ImageView>
         </LinearLayout>
 
@@ -134,7 +134,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:id="@+id/h"
-                android:src = "@drawable/Fennec_Fox">
+                android:src = "@drawable/fennec_fox">
             </ImageView>
         </LinearLayout>
 
@@ -147,7 +147,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:id="@+id/i"
-                android:src = "@drawable/Meerkat">
+                android:src = "@drawable/meerkat">
             </ImageView>
         </LinearLayout>
     </LinearLayout>

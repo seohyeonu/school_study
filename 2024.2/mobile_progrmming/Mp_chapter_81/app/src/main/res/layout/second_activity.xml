@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src = "@drawable/Seal"
+            android:src = "@drawable/seal"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
             android:id = "@+id/best_image">
@@ -47,6 +47,7 @@
             <TableRow>
                 <TextView
                     android:text="물범"
+                    android:id="@+id/tv1"
                     android:layout_column="0"
                     android:textSize="20sp"/>
 
@@ -61,6 +62,7 @@
             <TableRow>
                 <TextView
                     android:text="북극곰"
+                    android:id="@+id/tv2"
                     android:textSize="20sp"/>
 
                 <RatingBar
@@ -75,6 +77,7 @@
             <TableRow>
                 <TextView
                     android:text="북극여우"
+                    android:id="@+id/tv3"
                     android:textSize="20sp"/>
 
                 <RatingBar
@@ -89,6 +92,7 @@
             <TableRow>
                 <TextView
                     android:text="앵무새"
+                    android:id="@+id/tv4"
                     android:textSize="20sp"/>
 
                 <RatingBar
@@ -103,6 +107,7 @@
             <TableRow>
                 <TextView
                     android:text="호랑이"
+                    android:id="@+id/tv5"
                     android:textSize="20sp"/>
 
                 <RatingBar
@@ -117,6 +122,7 @@
             <TableRow>
                 <TextView
                     android:text="래서판다"
+                    android:id="@+id/tv6"
                     android:textSize="20sp"/>
 
                 <RatingBar
@@ -131,6 +137,7 @@
             <TableRow>
                 <TextView
                     android:text="낙타"
+                    android:id="@+id/tv7"
                     android:textSize="20sp"/>
 
                 <RatingBar
@@ -145,6 +152,7 @@
             <TableRow>
                 <TextView
                     android:text="사막여우"
+                    android:id="@+id/tv8"
                     android:textSize="20sp"/>
 
                 <RatingBar
@@ -159,6 +167,7 @@
             <TableRow>
                 <TextView
                     android:text="미어캣"
+                    android:id="@+id/tv9"
                     android:textSize="20sp"/>
 
                 <RatingBar
