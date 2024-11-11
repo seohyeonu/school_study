@@ -154,24 +154,18 @@ int main(int argc, char* argv[]) {
     Pad* head = (Pad*)malloc(sizeof(Pad)); //모든 row의 최상의 row
     head->arr = (char*)malloc(sizeof(char)*BUFFER_SIZE);
     head->count_for_cols++;
-    int* new_line_idx;
-    new_line_idx = (int*) malloc(sizeof (int)*50000);
-    for (int i = 0; i < 50000; i++) {
-        new_line_idx[i] = -1;
-    }
 
     int row_location, cols_location; //현재 커서의 row, cols 위치를 확인하는 변수
     int is_changed = 0; //문서의 내용이 바뀌었는지 안 바뀌었는지 확인하는 변수
     int start=0, end=0; // win에 뿌릴 시작과 끝점
     int size_of_row, size_of_cols; // window 사이즈 받아오기
-    int
 
     // curses 색상 및 기타 설정
-    initscr();
-    noecho();
-    raw();
-    keypad(stdscr, TRUE);
     init_pair(1, COLOR_BLACK, COLOR_WHITE);
+
+    initscr();
+
+
     getmaxyx(stdscr, size_of_row, size_of_cols);
     refresh();
 
@@ -179,6 +173,13 @@ int main(int argc, char* argv[]) {
     WINDOW *main_win = newwin(size_of_row-2, size_of_cols, 0, 0);
     WINDOW *messenger_bar = newwin(1, size_of_cols, size_of_row-1,0);
     WINDOW *status_bar = newwin(1, size_of_cols, size_of_row-2,0);
+
+    noecho();
+    raw();
+    keypad(main_win, TRUE);
+
+
+
 
     // 윈도우에 텍스트 출력
     mvwprintw(main_win, size_of_row/2, size_of_cols/2-22, "Visual Text editor -- version 0.0.1");
@@ -204,12 +205,16 @@ int main(int argc, char* argv[]) {
         load_file(head, argv[1], log_file);
     }
 
+    row_location = 0;
+    cols_location = 0;
+
     while (True)
     {
         end = size_of_row;
         print_win(main_win, head, start, end);
 
-        int c = getch();
+        int c = wgetch(main_win);
+
         werase(main_win);
         if(c == 17){
             // ctrl+Q : 나가기 ctrl+Q를 두번 누르면 저장되지 않은 상태로 나가기
@@ -245,30 +250,39 @@ int main(int argc, char* argv[]) {
         }
 
         else if(c == KEY_UP){
-            getsyx(row_location, cols_location);
-            move(row_location-1, cols_location);
+            //getsyx(row_location, cols_location);
+            row_location--;
+            wmove(main_win, row_location, cols_location);
+            log_message(log_file, "KEY_up", cols_location);
+            wrefresh(main_win);
         }
 
         else if(c == KEY_DOWN){
-            getsyx(row_location, cols_location);
-            move(row_location+1, cols_location);
+            //getsyx(row_location, cols_location);
+            row_location++;
+            wmove(main_win, row_location, cols_location);
+            wrefresh(main_win);
         }
 
         else if(c == KEY_RIGHT){
-            getsyx(row_location, cols_location);
-            move(row_location, cols_location+1);
+            //getsyx(row_location, cols_location);
+            cols_location++;
+            wmove(main_win, row_location, cols_location);
+            log_message(log_file, "KEY_RIGHT", cols_location);
+            wrefresh(main_win);
         }
 
         else if(c == KEY_LEFT){
-            getsyx(row_location, cols_location);
-            move(row_location, cols_location-1);
+            cols_location--;
+            wmove(main_win, row_location, cols_location);
+            log_message(log_file, "KEY_LEFT", cols_location);
+            wrefresh(main_win);
         }
 
         else if(c == KEY_BACKSPACE || c == 127 || c == '\b'){
             is_changed = 1;
-            getsyx(row_location, cols_location);
+            //getsyx(row_location, cols_location);
             del_char(head, row_location, cols_location);
-            log_row_cols_message(log_file,"Key back row 와 cols 위치", row_location, cols_location);
 
         }
 
@@ -293,15 +307,16 @@ int main(int argc, char* argv[]) {
                  || c == ')' || c == '-' || c == '_' || c == '+' || c == '=' || c == '<' || c == '>' || c == '/' || c == '|' || c == '\\'
                  || c == '[' || c == ']' || c == '{' || c == '}' || c == ':' || c == ';' || c == '"' || c == '\'' ) {
             // 문자 입력 일 때
-            getsyx(row_location, cols_location);
+            //getsyx(row_location, cols_location);
             if (cols_location == size_of_cols - 1) { // 커서가 오른쪽 끝에 있는 경우
                 head = get_new_char(head, row_location, cols_location, '\n', log_file);
                 row_location++; // 줄을 한 줄 내림
                 cols_location = 0; // 커서를 맨 앞 열로 설정
-                move(row_location, cols_location);
+                wmove(main_win,row_location, cols_location);
             } else {
+                cols_location++;
                 head = get_new_char(head, row_location, cols_location, c, log_file);
-                move(row_location, cols_location + 1); // 오른쪽으로 한 칸 이동
+                wmove(main_win,row_location, cols_location); // 오른쪽으로 한 칸 이동
             }
             is_changed = 1;
             log_row_cols_message(log_file,"row 와 cols 위치", row_location, cols_location);
@@ -309,14 +324,15 @@ int main(int argc, char* argv[]) {
 
         else if (c == '\n') {
             // 엔터 키를 입력할 때
-            getsyx(row_location, cols_location);
+            //getsyx(row_location, cols_location);
             head = get_new_char(head, row_location, cols_location, '\n', log_file);
             row_location++; // 줄을 한 줄 내림
             cols_location = 0; // 커서를 맨 앞 열로 설정
-            move(row_location, cols_location); // 새로운 줄로 커서 이동
+            wmove(main_win,row_location, cols_location); // 새로운 줄로 커서 이동
             is_changed = 1;
         }
-
+        wmove(main_win, row_location, cols_location);
+        wrefresh(main_win);
     }
 
     endwin();
