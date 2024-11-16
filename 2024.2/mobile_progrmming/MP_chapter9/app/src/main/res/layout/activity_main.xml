@@ -13,7 +13,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:hint="항목추가"
-      android:id="@+id/detItem"/>
+      android:id="@+id/edtItem"/>
 
   <Button
       android:layout_width="match_parent"

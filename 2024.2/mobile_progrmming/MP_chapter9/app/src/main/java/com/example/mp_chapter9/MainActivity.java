@@ -31,18 +31,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String[] strArray = {"리스트 1", "리스트 2", "리스트3", "리스트4", "리시트5", "리스트6", "리스트7", "리스트8", "리스트9", "리스트10"};
-        ListView ltv = (ListView) findViewById(R.id.listView);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strArray);
+        final ArrayList<String> midList = new ArrayList<String>();
+        ListView list = (ListView) findViewById(R.id.listView);
 
-        ltv.setAdapter(adapter);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strArray);
 
-        ltv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, midList);
+
+        list.setAdapter(adapter);
+
+        final EditText edtItem = (EditText) findViewById(R.id.edtItem);
+        Button btnAdd = (Button) findViewById(R.id.btuAdd);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> patent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), strArray[position], Toast.LENGTH_SHORT).show();
+            public void onClick(View view) {
+                midList.add(edtItem.getText().toString());
+                adapter.notifyDataSetChanged();
             }
         });
+
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                midList.remove(position);
+                adapter.notifyDataSetChanged();
+                return false;
+            }
+        });
+
 
 
     }
