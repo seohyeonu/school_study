@@ -77,12 +77,12 @@ Pad* get_new_char(Pad* cur_row, int row_position, int cols_position, char x, FIL
 
     // `idx` 위치에 `x` 문자 삽입
     if (idx == cur->count_for_cols) {
-        cur->arr[idx] = x;
+        cur->arr[idx-1] = x;
         cur->count_for_cols++;
     } else if (idx < cur->count_for_cols) {
         // `idx` 위치에 문자 삽입을 위해 뒤로 밀기
-        memmove(cur->arr + idx + 1, cur->arr + idx, sizeof(char) * (cur->count_for_cols - idx));
-        cur->arr[idx] = x;
+        memmove(cur->arr + idx , cur->arr + idx-1, sizeof(char) * (cur->count_for_cols - idx+1));
+        cur->arr[idx-1] = x;
         cur->count_for_cols++;
     }
 
@@ -296,7 +296,6 @@ int main(int argc, char* argv[]) {
         }
 
         else if(c == KEY_UP){
-
 //            getsyx(row_location, cols_location);
             if(row_location>0) {
                 if(cols_location > row_array[row_location - 1] ) {
@@ -305,7 +304,6 @@ int main(int argc, char* argv[]) {
                 }
                 row_location--;
                 wmove(main_win, row_location, cols_location);
-                log_message(log_file, "KEY_up", cols_location);
                 wrefresh(main_win);
             } else {
                 start--;
@@ -319,7 +317,7 @@ int main(int argc, char* argv[]) {
 
         else if(c == KEY_DOWN){
 //            getsyx(row_location, cols_location);
-            if(row_location<size_of_row) {
+            if(row_location<size_of_row-2) {
 
                 if(cols_location > row_array[row_location + 1]) {
                     cols_location = row_array[row_location + 1];
@@ -373,11 +371,12 @@ int main(int argc, char* argv[]) {
         }
 
         else if(c == KEY_HOME){
-            continue;
+            cols_location = 0;
         }
 
         else if(c == KEY_END){
-            continue;
+            row_array = get_row_array(head, start_idx, end_idx, size_of_cols);
+            cols_location = row_array[row_location];
         }
 
         else if(c == KEY_NPAGE){
