@@ -128,9 +128,10 @@ int* get_row_array(Pad* head, int start_idx, int end_idx, int max_col) {
     int row_idx = 0;
     int* result = (int*)malloc(sizeof(int) * 200); // 충분한 크기 확보
 
-    for (int i = start_idx; i < end_idx; i++) {
+    for (int i = start_idx; i < end_idx + max_col; i++) {
         one_row_len++;
         if (head->arr[i] == '\n' || one_row_len == max_col) {
+            one_row_len--;
             result[row_idx++] = one_row_len;
             one_row_len = 0;
         }
@@ -140,21 +141,19 @@ int* get_row_array(Pad* head, int start_idx, int end_idx, int max_col) {
 
 
 void print_win(WINDOW* win, Pad* head, int start, int end) {
-    //int start_line_idx = find_idx(head, start, 0);
     int start_idx = find_idx(head, start,0);
     char str1[10000] = {'\0', };
     int idx = 0;
     for(int i=0; i<end-start; i++){
         int str_idx = 0;
-        while(head->arr[start_idx + idx] != '\n') {
-
+        while(head->arr[start_idx + idx] != '\n' && head->arr[start_idx + idx] != '\0') {
             str1[str_idx++] = head->arr[start_idx + idx++];
             str1[str_idx] = '\0';
 
         }
         str1[str_idx] ='\n';
 //        fprintf(stderr,"%d\n", i);
-        mvwprintw(win, start + i, 0, "%s", str1);
+        mvwprintw(win, i, 0, "%s", str1);
         idx ++;
         str1[0] = '\0';
     }
@@ -194,11 +193,13 @@ int main(int argc, char* argv[]) {
     FILE *log_file = fopen("log.txt", "a");
     FILE *save_file_path = fopen("save.txt", "a");
 
+
     // 변수 테이블
     Pad* head = (Pad*)malloc(sizeof(Pad)); //모든 row의 최상의 row
     head->arr = (char*)malloc(sizeof(char)*BUFFER_SIZE);
     head->buffer_up = 1;
     head->count_for_cols = 0;
+
 
     int row_location, cols_location; //현재 커서의 row, cols 위치를 확인하는 변수
     int is_changed = 0; //문서의 내용이 바뀌었는지 안 바뀌었는지 확인하는 변수
@@ -209,15 +210,16 @@ int main(int argc, char* argv[]) {
 
     // curses 색상 및 기타 설정
     init_pair(1, COLOR_BLACK, COLOR_WHITE);
-
     initscr();
 
 
     getmaxyx(stdscr, size_of_row, size_of_cols);
-    refresh();
     if (argc >= 2) {
         head = load_file(head, argv[1], size_of_cols);
     }
+    refresh();
+
+
 
     // 새 윈도우 작성
     WINDOW *main_win = newwin(size_of_row-2, size_of_cols, 0, 0);
@@ -237,9 +239,6 @@ int main(int argc, char* argv[]) {
     mvwprintw(status_bar, 0, 0, "[No Name] - 0 lines");
     mvwprintw(status_bar, 0, size_of_cols - 11, "no ft | 1/0"); // size_of_cols에 맞게 수정
 
-    // 스크롤 기능 활성화
-    //scrollok(main_win, TRUE);
-
     // 윈도우에 도움말 출력
     mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
 
@@ -253,21 +252,14 @@ int main(int argc, char* argv[]) {
 
     while (True)
     {
-        end = 2;
-        if(head->new_line - start > size_of_row){
-            end = start + size_of_row;
-        } else{
-            end = head->new_line;
-        }
-        if(end<=2) end = 2;
 
         wclear(main_win);
 
-        print_win(main_win, head, start, end-2);
+        print_win(main_win, head, start, start + size_of_row - 2);
         wmove(main_win, row_location, cols_location);
         wrefresh(main_win);
         int start_idx = find_idx(head,start,0);
-        int end_idx = find_idx(head, start+size_of_row, 0);
+        int end_idx = find_idx(head, start+size_of_row-2, 0);
         int c = wgetch(main_win);
         int* row_array = get_row_array(head, start_idx, end_idx, size_of_cols);
 
@@ -409,7 +401,7 @@ int main(int argc, char* argv[]) {
 //                wmove(main_win,row_location, cols_location);
 //            } else {
             cols_location++;
-            head = get_new_char(head, row_location, cols_location, c, log_file);
+            head = get_new_char(head, row_location + start, cols_location, c, log_file);
             wmove(main_win,row_location, cols_location); // 오른쪽으로 한 칸 이동
 //            }
             is_changed = 1;
@@ -419,8 +411,13 @@ int main(int argc, char* argv[]) {
         else if (c == '\n') {
             // 엔터 키를 입력할 때
             //getsyx(row_location, cols_location);
-            head = get_new_char(head, row_location, cols_location, '\n', log_file);
-            row_location++; // 줄을 한 줄 내림
+            if(row_location == size_of_row-2){
+                start++;
+                head = get_new_char(head, row_location + start, cols_location, '\n', log_file);
+            } else{
+                head = get_new_char(head, row_location + start, cols_location, '\n', log_file);
+                row_location++;
+            }
             cols_location = 0; // 커서를 맨 앞 열로 설정
             wmove(main_win,row_location, cols_location); // 새로운 줄로 커서 이동
             is_changed = 1;
