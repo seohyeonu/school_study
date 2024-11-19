@@ -16,6 +16,62 @@ struct row{
 };
 typedef struct row Pad;
 
+// KMP 알고리즘: 실패 함수 생성
+void computeLPSArray(const char* pattern, int M, int* lps) {
+    int length = 0;
+    int i = 1;
+    lps[0] = 0;
+
+    while (i < M) {
+        if (pattern[i] == pattern[length]) {
+            length++;
+            lps[i] = length;
+            i++;
+        } else {
+            if (length != 0) {
+                length = lps[length - 1];
+            } else {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
+}
+
+// KMP 알고리즘: 문자열 검색
+int KMPSearch(const char* pattern, const char* text, int* results, int max_results) {
+    int M = strlen(pattern);
+    int N = strlen(text);
+    int lps[M];
+    int j = 0; // 패턴의 인덱스
+    int k = 0; // 결과 배열 인덱스
+
+    computeLPSArray(pattern, M, lps);
+
+    int i = 0; // 텍스트의 인덱스
+    while (i < N) {
+        if (pattern[j] == text[i]) {
+            j++;
+            i++;
+        }
+        if (j == M) {
+            if (k < max_results) {
+                results[k++] = i - j; // 일치하는 시작 인덱스를 저장
+            }
+            j = lps[j - 1];
+        } else if (i < N && pattern[j] != text[i]) {
+            if (j != 0) {
+                j = lps[j - 1];
+            } else {
+                i++;
+            }
+        }
+    }
+
+    return k; // 찾은 패턴의 개수 반환
+}
+
+
 void log_message(FILE *log_file, const char* level, const int message) {
     time_t now;
     time(&now);
@@ -162,9 +218,9 @@ void print_win(WINDOW* win, Pad* head, int start, int end) {
 
 
 
-//void save_file(FILE *, Pad* head){
-//    fprintf(log_file, "%s\n", head->arr);
-//}
+void save_file(FILE *save_file, Pad* head){
+    fprintf(save_file, "%s\n", head->arr);
+}
 
 
 
@@ -191,7 +247,6 @@ Pad* load_file(Pad* head, const char* filename, int size_of_cols) {
 
 int main(int argc, char* argv[]) {
     FILE *log_file = fopen("log.txt", "a");
-    FILE *save_file_path = fopen("save.txt", "a");
 
 
     // 변수 테이블
@@ -285,15 +340,82 @@ int main(int argc, char* argv[]) {
 
         }
         else if(c == 19){
-            // ctrl+S 새로운 파일을 저장하려고 하는 경우에는 파일 이름을 입력해야한다.
-            continue;
+            if(argc >=2){
+                const char *file_name = argv[1];
+                FILE *save_file_path = fopen(file_name, "w");
+                save_file(save_file_path, head);
+                is_changed = 0;
+            } else{
+                wclear(messenger_bar);
+                char file_name[256]; // 파일 이름을 저장할 버퍼
+                // 메시지 바에서 파일 이름 입력받기
+                mvwprintw(messenger_bar, 0, 0, "Enter file name to save: ");
+                wrefresh(messenger_bar);
+
+                echo(); // 입력된 문자를 화면에 표시
+                wgetnstr(messenger_bar, file_name, sizeof(file_name) - 1); // 파일 이름 입력 받기
+                noecho(); // 입력된 문자 표시 중단
+                wclear(messenger_bar);
+                wrefresh(messenger_bar);
+
+                FILE *save_file_path = fopen(file_name, "w");
+                save_file(save_file_path, head);
+                fclose(save_file_path);
+                mvwprintw(messenger_bar, 0, 0, "File saved to: %s", file_name);
+                wrefresh(messenger_bar);
+                is_changed = 0;
+            }
         }
 
-        else if(c == 6){
-            //ctrl+F
+        else if (c == 6) { // Ctrl+F
+            wclear(messenger_bar);
+            char search_pattern[256];
+            mvwprintw(messenger_bar, 0, 0, "Enter search pattern: ");
+            wrefresh(messenger_bar);
 
-            continue;
+            echo();
+            wgetnstr(messenger_bar, search_pattern, 255);
+            noecho();
+            wclear(messenger_bar);
+            mvwprintw(messenger_bar, 0, 0, "Searching...");
+            wrefresh(messenger_bar);
+
+            int max_results = 100;
+            int results[max_results];
+            int found_count = KMPSearch(search_pattern, head->arr, results, max_results);
+
+            if (found_count > 0) {
+                mvwprintw(messenger_bar, 0, 0, "Found %d matches.", found_count);
+                wrefresh(messenger_bar);
+
+                // 검색 결과 강조 표시
+                for (int i = 0; i < found_count; i++) {
+                    int match_row = 0, match_col = 0;
+                    int match_idx = results[i];
+
+                    // match_idx에서 행과 열 계산
+                    for (int j = 0; j < match_idx; j++) {
+                        if (head->arr[j] == '\n') {
+                            match_row++;
+                            match_col = 0;
+                        } else {
+                            match_col++;
+                        }
+                    }
+
+                    if (match_row >= start && match_row < start + size_of_row - 2) {
+                        wattron(main_win, A_REVERSE);
+                        mvwprintw(main_win, match_row - start, match_col, "%.*s", (int)strlen(search_pattern), search_pattern);
+                        wattroff(main_win, A_REVERSE);
+                    }
+                }
+                wrefresh(main_win);
+            } else {
+                mvwprintw(messenger_bar, 0, 0, "No matches found.");
+                wrefresh(messenger_bar);
+            }
         }
+
 
         else if(c == KEY_UP){
 //            getsyx(row_location, cols_location);
@@ -380,11 +502,11 @@ int main(int argc, char* argv[]) {
         }
 
         else if(c == KEY_NPAGE){
-            continue;
+            start = start + size_of_row;
         }
 
         else if(c == KEY_PPAGE){
-            continue;
+            start = start - size_of_row;
         }
 
         else if ((c >= 'a' && c <= 'z') || (c <= 'Z' && c >= 'A') || (c >= '0' && c <= '9') || c == ' ' || c == '.' || c == ',' ||
