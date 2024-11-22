@@ -249,11 +249,12 @@ int main(int argc, char* argv[]) {
     FILE *log_file = fopen("log.txt", "a");
 
 
-    // 변수 테이블
+// 변수 테이블
     Pad* head = (Pad*)malloc(sizeof(Pad)); //모든 row의 최상의 row
     head->arr = (char*)malloc(sizeof(char)*BUFFER_SIZE);
     head->buffer_up = 1;
     head->count_for_cols = 0;
+    head->new_line = 0;
 
 
     int row_location, cols_location; //현재 커서의 row, cols 위치를 확인하는 변수
@@ -317,20 +318,25 @@ int main(int argc, char* argv[]) {
         int end_idx = find_idx(head, start+size_of_row-2, 0);
         int c = wgetch(main_win);
         int* row_array = get_row_array(head, start_idx, end_idx, size_of_cols);
+        const char *file_name = argv[1];
+
+
 
         if(c == 17){
             // ctrl+Q : 나가기 ctrl+Q를 두번 누르면 저장되지 않은 상태로 나가기
             // 2024.11.2 맥에서 동작하지 않은 윈도우는 확인 못함   ->  raw(); keypad(stdscr, TRUE); 이 두 친구들을 추가해줬어야 함.
             if(is_changed) {
-                mvprintw(size_of_row -1, 0, "Press Ctrl+q without saving changes                                                            ");
-                refresh();
+                wclear(messenger_bar);
+                mvwprintw(messenger_bar, 0, 0, "Press Ctrl+q without saving changes");
+                wrefresh(messenger_bar);
                 int temp_c = getch();
                 if(temp_c == 17) {
                     break;
                 }
                 else {
-                    mvprintw(size_of_row-1, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
-                    refresh();
+                    wclear(messenger_bar);
+                    mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
+                    wrefresh(messenger_bar);
                     continue;
                 }
             }
@@ -339,11 +345,14 @@ int main(int argc, char* argv[]) {
             }
 
         }
+        // save_file
         else if(c == 19){
             if(argc >=2){
-                const char *file_name = argv[1];
                 FILE *save_file_path = fopen(file_name, "w");
                 save_file(save_file_path, head);
+                wclear(messenger_bar);
+                mvwprintw(messenger_bar, 0, 0, "File_is_saved");
+                wrefresh(messenger_bar);
                 is_changed = 0;
             } else{
                 wclear(messenger_bar);
