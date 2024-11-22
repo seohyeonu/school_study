@@ -64993,3 +64993,711 @@
 ] KEY_RIGHT: 11
 [Fri Nov 22 21:21:11 2024
 ] KEY_RIGHT: 12
+[Fri Nov 22 21:26:37 2024
+] KEY_RIGHT: 1
+[Fri Nov 22 21:26:37 2024
+] KEY_RIGHT: 2
+[Fri Nov 22 21:26:37 2024
+] KEY_RIGHT: 3
+[Fri Nov 22 21:26:37 2024
+] KEY_RIGHT: 4
+[Fri Nov 22 21:26:37 2024
+] KEY_RIGHT: 5
+[Fri Nov 22 21:26:38 2024
+] KEY_RIGHT: 6
+[Fri Nov 22 21:27:34 2024
+] KEY_RIGHT: 1
+[Fri Nov 22 21:27:35 2024
+] KEY_RIGHT: 2
+[Fri Nov 22 21:27:35 2024
+] KEY_RIGHT: 3
+[Fri Nov 22 21:27:35 2024
+] KEY_RIGHT: 4
+[Fri Nov 22 21:27:35 2024
+] KEY_RIGHT: 5
+[Fri Nov 22 21:27:35 2024
+] KEY_RIGHT: 6
+[Fri Nov 22 21:27:35 2024
+] KEY_RIGHT: 7
+[Fri Nov 22 21:27:35 2024
+] KEY_RIGHT: 8
+[Fri Nov 22 21:27:35 2024
+] KEY_RIGHT: 9
+[Fri Nov 22 21:27:41 2024
+] get_new_char idx 위치임: 0
+[Fri Nov 22 21:27:41 2024
+] row 와 cols 위치:  row : 0 ,  cols : 1
+[Fri Nov 22 21:27:41 2024
+] get_new_char idx 위치임: 0
+[Fri Nov 22 21:27:41 2024
+] row 와 cols 위치:  row : 0 ,  cols : 2
+[Fri Nov 22 21:27:41 2024
+] get_new_char idx 위치임: 1
+[Fri Nov 22 21:27:41 2024
+] row 와 cols 위치:  row : 0 ,  cols : 3
+[Fri Nov 22 21:27:41 2024
+] get_new_char idx 위치임: 2
+[Fri Nov 22 21:27:41 2024
+] row 와 cols 위치:  row : 0 ,  cols : 4
+[Fri Nov 22 21:27:41 2024
+] get_new_char idx 위치임: 3
+[Fri Nov 22 21:27:41 2024
+] row 와 cols 위치:  row : 0 ,  cols : 5
+[Fri Nov 22 21:27:41 2024
+] get_new_char idx 위치임: 4
+[Fri Nov 22 21:27:41 2024
+] row 와 cols 위치:  row : 0 ,  cols : 6
+[Fri Nov 22 21:27:41 2024
+] get_new_char idx 위치임: 5
+[Fri Nov 22 21:27:41 2024
+] row 와 cols 위치:  row : 0 ,  cols : 7
+[Fri Nov 22 21:27:41 2024
+] get_new_char idx 위치임: 6
+[Fri Nov 22 21:27:41 2024
+] row 와 cols 위치:  row : 0 ,  cols : 8
+[Fri Nov 22 21:27:42 2024
+] get_new_char idx 위치임: 7
+[Fri Nov 22 21:27:42 2024
+] row 와 cols 위치:  row : 0 ,  cols : 9
+[Fri Nov 22 21:27:42 2024
+] get_new_char idx 위치임: 8
+[Fri Nov 22 21:27:42 2024
+] row 와 cols 위치:  row : 0 ,  cols : 10
+[Fri Nov 22 21:27:42 2024
+] get_new_char idx 위치임: 9
+[Fri Nov 22 21:27:42 2024
+] row 와 cols 위치:  row : 0 ,  cols : 11
+[Fri Nov 22 21:27:42 2024
+] get_new_char idx 위치임: 10
+[Fri Nov 22 21:27:42 2024
+] row 와 cols 위치:  row : 0 ,  cols : 12
+[Fri Nov 22 21:27:44 2024
+] get_new_char idx 위치임: 1
+[Fri Nov 22 21:27:44 2024
+] row 와 cols 위치:  row : 0 ,  cols : 1
+[Fri Nov 22 21:27:45 2024
+] get_new_char idx 위치임: 2
+[Fri Nov 22 21:27:45 2024
+] row 와 cols 위치:  row : 0 ,  cols : 2
+[Fri Nov 22 21:27:45 2024
+] get_new_char idx 위치임: 3
+[Fri Nov 22 21:27:45 2024
+] row 와 cols 위치:  row : 0 ,  cols : 3
+[Fri Nov 22 21:27:45 2024
+] get_new_char idx 위치임: 4
+[Fri Nov 22 21:27:45 2024
+] row 와 cols 위치:  row : 0 ,  cols : 4
+[Fri Nov 22 21:27:45 2024
+] get_new_char idx 위치임: 5
+[Fri Nov 22 21:27:45 2024
+] row 와 cols 위치:  row : 0 ,  cols : 5
+[Fri Nov 22 21:27:45 2024
+] get_new_char idx 위치임: 6
+[Fri Nov 22 21:27:45 2024
+] row 와 cols 위치:  row : 0 ,  cols : 6
+[Fri Nov 22 21:27:45 2024
+] get_new_char idx 위치임: 7
+[Fri Nov 22 21:27:45 2024
+] row 와 cols 위치:  row : 0 ,  cols : 7
+[Fri Nov 22 21:27:45 2024
+] get_new_char idx 위치임: 8
+[Fri Nov 22 21:27:45 2024
+] row 와 cols 위치:  row : 0 ,  cols : 8
+[Fri Nov 22 21:27:45 2024
+] KEY_RIGHT: 9
+[Fri Nov 22 21:27:46 2024
+] get_new_char idx 위치임: 9
+[Fri Nov 22 21:27:47 2024
+] KEY_RIGHT: 1
+[Fri Nov 22 21:27:47 2024
+] KEY_RIGHT: 2
+[Fri Nov 22 21:27:47 2024
+] KEY_RIGHT: 3
+[Fri Nov 22 21:27:48 2024
+] KEY_RIGHT: 4
+[Fri Nov 22 21:27:48 2024
+] KEY_RIGHT: 5
+[Fri Nov 22 21:27:48 2024
+] KEY_RIGHT: 6
+[Fri Nov 22 21:27:48 2024
+] KEY_RIGHT: 7
+[Fri Nov 22 21:27:48 2024
+] get_new_char idx 위치임: 16
+[Fri Nov 22 21:27:49 2024
+] KEY_RIGHT: 1
+[Fri Nov 22 21:27:50 2024
+] KEY_RIGHT: 2
+[Fri Nov 22 21:29:32 2024
+] KEY_RIGHT: 1
+[Fri Nov 22 21:29:32 2024
+] KEY_RIGHT: 2
+[Fri Nov 22 21:29:32 2024
+] KEY_RIGHT: 3
+[Fri Nov 22 21:29:32 2024
+] KEY_RIGHT: 4
+[Fri Nov 22 21:29:33 2024
+] get_new_char idx 위치임: 110
+[Fri Nov 22 21:29:33 2024
+] get_new_char idx 위치임: 110
+[Fri Nov 22 21:29:34 2024
+] get_new_char idx 위치임: 111
+[Fri Nov 22 21:29:34 2024
+] get_new_char idx 위치임: 112
+[Fri Nov 22 21:29:34 2024
+] get_new_char idx 위치임: 113
+[Fri Nov 22 21:30:00 2024
+] get_new_char idx 위치임: 52
+[Fri Nov 22 21:30:00 2024
+] get_new_char idx 위치임: 53
+[Fri Nov 22 21:30:01 2024
+] get_new_char idx 위치임: 54
+[Fri Nov 22 21:30:02 2024
+] get_new_char idx 위치임: 109
+[Fri Nov 22 21:30:02 2024
+] get_new_char idx 위치임: 110
+[Fri Nov 22 21:30:02 2024
+] get_new_char idx 위치임: 168
+[Fri Nov 22 21:30:03 2024
+] get_new_char idx 위치임: 169
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 0
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 1
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 0
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 2
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 1
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 3
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 2
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 4
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 3
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 5
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 4
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 6
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 5
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 7
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 6
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 8
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 7
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 9
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 8
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 10
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 9
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 11
+[Fri Nov 22 21:30:08 2024
+] get_new_char idx 위치임: 10
+[Fri Nov 22 21:30:08 2024
+] row 와 cols 위치:  row : 0 ,  cols : 12
+[Fri Nov 22 21:30:09 2024
+] get_new_char idx 위치임: 11
+[Fri Nov 22 21:30:09 2024
+] get_new_char idx 위치임: 12
+[Fri Nov 22 21:30:09 2024
+] row 와 cols 위치:  row : 1 ,  cols : 1
+[Fri Nov 22 21:30:09 2024
+] get_new_char idx 위치임: 13
+[Fri Nov 22 21:30:09 2024
+] row 와 cols 위치:  row : 1 ,  cols : 2
+[Fri Nov 22 21:30:09 2024
+] get_new_char idx 위치임: 14
+[Fri Nov 22 21:30:09 2024
+] row 와 cols 위치:  row : 1 ,  cols : 3
+[Fri Nov 22 21:30:09 2024
+] get_new_char idx 위치임: 15
+[Fri Nov 22 21:30:09 2024
+] row 와 cols 위치:  row : 1 ,  cols : 4
+[Fri Nov 22 21:30:10 2024
+] get_new_char idx 위치임: 16
+[Fri Nov 22 21:30:10 2024
+] row 와 cols 위치:  row : 1 ,  cols : 5
+[Fri Nov 22 21:30:10 2024
+] get_new_char idx 위치임: 17
+[Fri Nov 22 21:30:10 2024
+] row 와 cols 위치:  row : 1 ,  cols : 6
+[Fri Nov 22 21:30:10 2024
+] get_new_char idx 위치임: 18
+[Fri Nov 22 21:30:10 2024
+] row 와 cols 위치:  row : 1 ,  cols : 7
+[Fri Nov 22 21:30:10 2024
+] get_new_char idx 위치임: 19
+[Fri Nov 22 21:30:10 2024
+] row 와 cols 위치:  row : 1 ,  cols : 8
+[Fri Nov 22 21:30:10 2024
+] get_new_char idx 위치임: 19
+[Fri Nov 22 21:30:10 2024
+] get_new_char idx 위치임: 19
+[Fri Nov 22 21:30:10 2024
+] get_new_char idx 위치임: 20
+[Fri Nov 22 21:30:10 2024
+] get_new_char idx 위치임: 21
+[Fri Nov 22 21:30:11 2024
+] get_new_char idx 위치임: 22
+[Fri Nov 22 21:30:11 2024
+] get_new_char idx 위치임: 23
+[Fri Nov 22 21:30:11 2024
+] get_new_char idx 위치임: 24
+[Fri Nov 22 21:30:11 2024
+] get_new_char idx 위치임: 26
+[Fri Nov 22 21:30:11 2024
+] row 와 cols 위치:  row : 8 ,  cols : 1
+[Fri Nov 22 21:30:11 2024
+] get_new_char idx 위치임: 27
+[Fri Nov 22 21:30:11 2024
+] row 와 cols 위치:  row : 8 ,  cols : 2
+[Fri Nov 22 21:30:11 2024
+] get_new_char idx 위치임: 28
+[Fri Nov 22 21:30:11 2024
+] row 와 cols 위치:  row : 8 ,  cols : 3
+[Fri Nov 22 21:30:11 2024
+] get_new_char idx 위치임: 29
+[Fri Nov 22 21:30:11 2024
+] row 와 cols 위치:  row : 8 ,  cols : 4
+[Fri Nov 22 21:30:11 2024
+] get_new_char idx 위치임: 30
+[Fri Nov 22 21:30:11 2024
+] row 와 cols 위치:  row : 8 ,  cols : 5
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 31
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 6
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 32
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 7
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 33
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 8
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 34
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 9
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 35
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 10
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 36
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 11
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 37
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 12
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 38
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 13
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 39
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 14
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 40
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 15
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 41
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 16
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 42
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 17
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 43
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 18
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 44
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 19
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 45
+[Fri Nov 22 21:30:12 2024
+] row 와 cols 위치:  row : 8 ,  cols : 20
+[Fri Nov 22 21:30:12 2024
+] get_new_char idx 위치임: 45
+[Fri Nov 22 21:30:13 2024
+] get_new_char idx 위치임: 45
+[Fri Nov 22 21:30:13 2024
+] get_new_char idx 위치임: 46
+[Fri Nov 22 21:30:13 2024
+] get_new_char idx 위치임: 48
+[Fri Nov 22 21:30:13 2024
+] row 와 cols 위치:  row : 11 ,  cols : 1
+[Fri Nov 22 21:30:13 2024
+] get_new_char idx 위치임: 49
+[Fri Nov 22 21:30:13 2024
+] row 와 cols 위치:  row : 11 ,  cols : 2
+[Fri Nov 22 21:30:13 2024
+] get_new_char idx 위치임: 50
+[Fri Nov 22 21:30:13 2024
+] row 와 cols 위치:  row : 11 ,  cols : 3
+[Fri Nov 22 21:30:13 2024
+] get_new_char idx 위치임: 51
+[Fri Nov 22 21:30:13 2024
+] row 와 cols 위치:  row : 11 ,  cols : 4
+[Fri Nov 22 21:30:13 2024
+] get_new_char idx 위치임: 51
+[Fri Nov 22 21:30:13 2024
+] get_new_char idx 위치임: 51
+[Fri Nov 22 21:30:14 2024
+] get_new_char idx 위치임: 52
+[Fri Nov 22 21:30:14 2024
+] get_new_char idx 위치임: 54
+[Fri Nov 22 21:30:14 2024
+] row 와 cols 위치:  row : 14 ,  cols : 1
+[Fri Nov 22 21:30:14 2024
+] get_new_char idx 위치임: 55
+[Fri Nov 22 21:30:14 2024
+] row 와 cols 위치:  row : 14 ,  cols : 2
+[Fri Nov 22 21:30:14 2024
+] get_new_char idx 위치임: 56
+[Fri Nov 22 21:30:14 2024
+] row 와 cols 위치:  row : 14 ,  cols : 3
+[Fri Nov 22 21:30:14 2024
+] get_new_char idx 위치임: 57
+[Fri Nov 22 21:30:14 2024
+] row 와 cols 위치:  row : 14 ,  cols : 4
+[Fri Nov 22 21:30:14 2024
+] get_new_char idx 위치임: 57
+[Fri Nov 22 21:30:14 2024
+] get_new_char idx 위치임: 57
+[Fri Nov 22 21:30:14 2024
+] get_new_char idx 위치임: 59
+[Fri Nov 22 21:30:14 2024
+] row 와 cols 위치:  row : 16 ,  cols : 1
+[Fri Nov 22 21:30:14 2024
+] get_new_char idx 위치임: 60
+[Fri Nov 22 21:30:14 2024
+] row 와 cols 위치:  row : 16 ,  cols : 2
+[Fri Nov 22 21:30:14 2024
+] get_new_char idx 위치임: 61
+[Fri Nov 22 21:30:14 2024
+] row 와 cols 위치:  row : 16 ,  cols : 3
+[Fri Nov 22 21:30:14 2024
+] get_new_char idx 위치임: 62
+[Fri Nov 22 21:30:14 2024
+] row 와 cols 위치:  row : 16 ,  cols : 4
+[Fri Nov 22 21:30:15 2024
+] get_new_char idx 위치임: 62
+[Fri Nov 22 21:30:15 2024
+] get_new_char idx 위치임: 62
+[Fri Nov 22 21:30:15 2024
+] get_new_char idx 위치임: 63
+[Fri Nov 22 21:30:15 2024
+] get_new_char idx 위치임: 65
+[Fri Nov 22 21:30:15 2024
+] row 와 cols 위치:  row : 19 ,  cols : 1
+[Fri Nov 22 21:30:15 2024
+] get_new_char idx 위치임: 66
+[Fri Nov 22 21:30:15 2024
+] row 와 cols 위치:  row : 19 ,  cols : 2
+[Fri Nov 22 21:30:15 2024
+] get_new_char idx 위치임: 67
+[Fri Nov 22 21:30:15 2024
+] row 와 cols 위치:  row : 19 ,  cols : 3
+[Fri Nov 22 21:30:15 2024
+] get_new_char idx 위치임: 68
+[Fri Nov 22 21:30:15 2024
+] row 와 cols 위치:  row : 19 ,  cols : 4
+[Fri Nov 22 21:34:57 2024
+] KEY_RIGHT: 1
+[Fri Nov 22 21:34:57 2024
+] KEY_RIGHT: 2
+[Fri Nov 22 21:34:57 2024
+] KEY_RIGHT: 3
+[Fri Nov 22 21:34:57 2024
+] KEY_RIGHT: 4
+[Fri Nov 22 21:34:58 2024
+] get_new_char idx 위치임: 57
+[Fri Nov 22 21:34:58 2024
+] row 와 cols 위치:  row : 2 ,  cols : 5
+[Fri Nov 22 21:34:58 2024
+] get_new_char idx 위치임: 58
+[Fri Nov 22 21:34:58 2024
+] row 와 cols 위치:  row : 2 ,  cols : 6
+[Fri Nov 22 21:34:58 2024
+] get_new_char idx 위치임: 59
+[Fri Nov 22 21:34:58 2024
+] row 와 cols 위치:  row : 2 ,  cols : 7
+[Fri Nov 22 21:34:58 2024
+] get_new_char idx 위치임: 60
+[Fri Nov 22 21:34:58 2024
+] row 와 cols 위치:  row : 2 ,  cols : 8
+[Fri Nov 22 21:34:58 2024
+] get_new_char idx 위치임: 61
+[Fri Nov 22 21:34:58 2024
+] row 와 cols 위치:  row : 2 ,  cols : 9
+[Fri Nov 22 21:34:58 2024
+] get_new_char idx 위치임: 62
+[Fri Nov 22 21:34:58 2024
+] row 와 cols 위치:  row : 2 ,  cols : 10
+[Fri Nov 22 21:34:58 2024
+] get_new_char idx 위치임: 63
+[Fri Nov 22 21:34:58 2024
+] row 와 cols 위치:  row : 2 ,  cols : 11
+[Fri Nov 22 21:34:58 2024
+] get_new_char idx 위치임: 64
+[Fri Nov 22 21:34:58 2024
+] row 와 cols 위치:  row : 2 ,  cols : 12
+[Fri Nov 22 21:35:18 2024
+] KEY_RIGHT: 1
+[Fri Nov 22 21:35:19 2024
+] KEY_RIGHT: 2
+[Fri Nov 22 21:35:19 2024
+] get_new_char idx 위치임: 30
+[Fri Nov 22 21:35:19 2024
+] row 와 cols 위치:  row : 1 ,  cols : 3
+[Fri Nov 22 21:35:19 2024
+] get_new_char idx 위치임: 31
+[Fri Nov 22 21:35:19 2024
+] row 와 cols 위치:  row : 1 ,  cols : 4
+[Fri Nov 22 21:35:19 2024
+] get_new_char idx 위치임: 32
+[Fri Nov 22 21:35:19 2024
+] row 와 cols 위치:  row : 1 ,  cols : 5
+[Fri Nov 22 21:35:19 2024
+] get_new_char idx 위치임: 33
+[Fri Nov 22 21:35:19 2024
+] row 와 cols 위치:  row : 1 ,  cols : 6
+[Fri Nov 22 21:35:19 2024
+] get_new_char idx 위치임: 34
+[Fri Nov 22 21:35:19 2024
+] row 와 cols 위치:  row : 1 ,  cols : 7
+[Fri Nov 22 21:35:19 2024
+] get_new_char idx 위치임: 35
+[Fri Nov 22 21:35:19 2024
+] row 와 cols 위치:  row : 1 ,  cols : 8
+[Fri Nov 22 21:35:19 2024
+] get_new_char idx 위치임: 36
+[Fri Nov 22 21:35:19 2024
+] row 와 cols 위치:  row : 1 ,  cols : 9
+[Fri Nov 22 21:35:20 2024
+] get_new_char idx 위치임: 100
+[Fri Nov 22 21:35:20 2024
+] row 와 cols 위치:  row : 3 ,  cols : 10
+[Fri Nov 22 21:35:20 2024
+] get_new_char idx 위치임: 101
+[Fri Nov 22 21:35:20 2024
+] row 와 cols 위치:  row : 3 ,  cols : 11
+[Fri Nov 22 21:35:20 2024
+] get_new_char idx 위치임: 102
+[Fri Nov 22 21:35:20 2024
+] row 와 cols 위치:  row : 3 ,  cols : 12
+[Fri Nov 22 21:35:20 2024
+] get_new_char idx 위치임: 103
+[Fri Nov 22 21:35:20 2024
+] row 와 cols 위치:  row : 3 ,  cols : 13
+[Fri Nov 22 21:35:20 2024
+] get_new_char idx 위치임: 104
+[Fri Nov 22 21:35:20 2024
+] row 와 cols 위치:  row : 3 ,  cols : 14
+[Fri Nov 22 21:35:20 2024
+] get_new_char idx 위치임: 105
+[Fri Nov 22 21:35:20 2024
+] row 와 cols 위치:  row : 3 ,  cols : 15
+[Fri Nov 22 21:35:20 2024
+] get_new_char idx 위치임: 106
+[Fri Nov 22 21:35:20 2024
+] row 와 cols 위치:  row : 3 ,  cols : 16
+[Fri Nov 22 21:35:20 2024
+] get_new_char idx 위치임: 107
+[Fri Nov 22 21:35:20 2024
+] row 와 cols 위치:  row : 3 ,  cols : 17
+[Fri Nov 22 21:35:50 2024
+] get_new_char idx 위치임: 0
+[Fri Nov 22 21:35:50 2024
+] row 와 cols 위치:  row : 0 ,  cols : 1
+[Fri Nov 22 21:35:50 2024
+] get_new_char idx 위치임: 0
+[Fri Nov 22 21:35:50 2024
+] row 와 cols 위치:  row : 0 ,  cols : 2
+[Fri Nov 22 21:35:51 2024
+] get_new_char idx 위치임: 1
+[Fri Nov 22 21:35:51 2024
+] row 와 cols 위치:  row : 0 ,  cols : 3
+[Fri Nov 22 21:35:51 2024
+] get_new_char idx 위치임: 2
+[Fri Nov 22 21:35:51 2024
+] row 와 cols 위치:  row : 0 ,  cols : 4
+[Fri Nov 22 21:35:51 2024
+] get_new_char idx 위치임: 3
+[Fri Nov 22 21:35:51 2024
+] row 와 cols 위치:  row : 0 ,  cols : 5
+[Fri Nov 22 21:35:51 2024
+] get_new_char idx 위치임: 4
+[Fri Nov 22 21:35:51 2024
+] row 와 cols 위치:  row : 0 ,  cols : 6
+[Fri Nov 22 21:35:51 2024
+] get_new_char idx 위치임: 5
+[Fri Nov 22 21:35:51 2024
+] row 와 cols 위치:  row : 0 ,  cols : 7
+[Fri Nov 22 21:35:51 2024
+] get_new_char idx 위치임: 6
+[Fri Nov 22 21:35:51 2024
+] row 와 cols 위치:  row : 0 ,  cols : 8
+[Fri Nov 22 21:35:52 2024
+] get_new_char idx 위치임: 7
+[Fri Nov 22 21:35:52 2024
+] row 와 cols 위치:  row : 0 ,  cols : 9
+[Fri Nov 22 21:35:52 2024
+] get_new_char idx 위치임: 8
+[Fri Nov 22 21:35:52 2024
+] row 와 cols 위치:  row : 0 ,  cols : 10
+[Fri Nov 22 21:35:52 2024
+] get_new_char idx 위치임: 9
+[Fri Nov 22 21:35:52 2024
+] row 와 cols 위치:  row : 0 ,  cols : 11
+[Fri Nov 22 21:35:52 2024
+] get_new_char idx 위치임: 10
+[Fri Nov 22 21:35:52 2024
+] row 와 cols 위치:  row : 0 ,  cols : 12
+[Fri Nov 22 21:35:52 2024
+] get_new_char idx 위치임: 11
+[Fri Nov 22 21:35:52 2024
+] row 와 cols 위치:  row : 0 ,  cols : 13
+[Fri Nov 22 21:35:52 2024
+] get_new_char idx 위치임: 12
+[Fri Nov 22 21:35:52 2024
+] row 와 cols 위치:  row : 0 ,  cols : 14
+[Fri Nov 22 21:35:52 2024
+] get_new_char idx 위치임: 13
+[Fri Nov 22 21:35:52 2024
+] row 와 cols 위치:  row : 0 ,  cols : 15
+[Fri Nov 22 21:35:52 2024
+] get_new_char idx 위치임: 14
+[Fri Nov 22 21:35:52 2024
+] row 와 cols 위치:  row : 0 ,  cols : 16
+[Fri Nov 22 21:36:11 2024
+] get_new_char idx 위치임: 0
+[Fri Nov 22 21:36:11 2024
+] row 와 cols 위치:  row : 0 ,  cols : 1
+[Fri Nov 22 21:36:11 2024
+] get_new_char idx 위치임: 0
+[Fri Nov 22 21:36:11 2024
+] row 와 cols 위치:  row : 0 ,  cols : 2
+[Fri Nov 22 21:36:11 2024
+] get_new_char idx 위치임: 1
+[Fri Nov 22 21:36:11 2024
+] row 와 cols 위치:  row : 0 ,  cols : 3
+[Fri Nov 22 21:36:11 2024
+] get_new_char idx 위치임: 2
+[Fri Nov 22 21:36:11 2024
+] row 와 cols 위치:  row : 0 ,  cols : 4
+[Fri Nov 22 21:36:11 2024
+] get_new_char idx 위치임: 3
+[Fri Nov 22 21:36:11 2024
+] row 와 cols 위치:  row : 0 ,  cols : 5
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 4
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 6
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 5
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 7
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 6
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 8
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 7
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 9
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 8
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 10
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 9
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 11
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 10
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 12
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 11
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 13
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 12
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 14
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 13
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 15
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 14
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 16
+[Fri Nov 22 21:36:12 2024
+] get_new_char idx 위치임: 15
+[Fri Nov 22 21:36:12 2024
+] row 와 cols 위치:  row : 0 ,  cols : 17
+[Fri Nov 22 21:38:00 2024
+] get_new_char idx 위치임: 0
+[Fri Nov 22 21:38:00 2024
+] row 와 cols 위치:  row : 0 ,  cols : 1
+[Fri Nov 22 21:38:00 2024
+] get_new_char idx 위치임: 0
+[Fri Nov 22 21:38:00 2024
+] row 와 cols 위치:  row : 0 ,  cols : 2
+[Fri Nov 22 21:38:00 2024
+] get_new_char idx 위치임: 1
+[Fri Nov 22 21:38:00 2024
+] row 와 cols 위치:  row : 0 ,  cols : 3
+[Fri Nov 22 21:38:00 2024
+] get_new_char idx 위치임: 2
+[Fri Nov 22 21:38:00 2024
+] row 와 cols 위치:  row : 0 ,  cols : 4
+[Fri Nov 22 21:38:00 2024
+] get_new_char idx 위치임: 3
+[Fri Nov 22 21:38:00 2024
+] row 와 cols 위치:  row : 0 ,  cols : 5
+[Fri Nov 22 21:38:00 2024
+] get_new_char idx 위치임: 4
+[Fri Nov 22 21:38:00 2024
+] row 와 cols 위치:  row : 0 ,  cols : 6
+[Fri Nov 22 21:38:00 2024
+] get_new_char idx 위치임: 5
+[Fri Nov 22 21:38:00 2024
+] row 와 cols 위치:  row : 0 ,  cols : 7
+[Fri Nov 22 21:38:00 2024
+] get_new_char idx 위치임: 6
+[Fri Nov 22 21:38:00 2024
+] row 와 cols 위치:  row : 0 ,  cols : 8
+[Fri Nov 22 21:38:01 2024
+] get_new_char idx 위치임: 7
+[Fri Nov 22 21:38:01 2024
+] row 와 cols 위치:  row : 0 ,  cols : 9
+[Fri Nov 22 21:38:01 2024
+] get_new_char idx 위치임: 8
+[Fri Nov 22 21:38:01 2024
+] row 와 cols 위치:  row : 0 ,  cols : 10
+[Fri Nov 22 21:38:01 2024
+] get_new_char idx 위치임: 9
+[Fri Nov 22 21:38:01 2024
+] row 와 cols 위치:  row : 0 ,  cols : 11

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 #define BUFFER_SIZE 1000
 #define True 1
 #define False 0
@@ -261,6 +262,7 @@ int main(int argc, char* argv[]) {
     int is_changed = 0; //문서의 내용이 바뀌었는지 안 바뀌었는지 확인하는 변수
     int start=0, end=0; // win에 뿌릴 시작과 끝점
     int size_of_row, size_of_cols; // window 사이즈 받아오기
+    const char *file_name = NULL;
 
 
 
@@ -272,6 +274,7 @@ int main(int argc, char* argv[]) {
     getmaxyx(stdscr, size_of_row, size_of_cols);
     if (argc >= 2) {
         head = load_file(head, argv[1], size_of_cols);
+        file_name = argv[1];
     }
     refresh();
 
@@ -316,7 +319,13 @@ int main(int argc, char* argv[]) {
         wrefresh(main_win);
         int start_idx = find_idx(head,start,0);
         int end_idx = find_idx(head, start+size_of_row-2, 0);
-        mvwprintw(status_bar, 0, 0, "[No Name] - %d lines", head->new_line);
+
+        if(file_name == NULL){
+            mvwprintw(status_bar, 0, 0, "[No Name] - %d lines", head->new_line);
+        } else{
+            mvwprintw(status_bar, 0, 0, "[%s] - %d lines", file_name, head->new_line);
+        }
+
         mvwprintw(status_bar, 0, size_of_cols - 20, "no ft | %d/%d", find_idx(head, row_location+start, cols_location), head->count_for_cols); // size_of_cols에 맞게 수정
         wrefresh(status_bar);
         wrefresh(main_win);
@@ -354,22 +363,26 @@ int main(int argc, char* argv[]) {
         // save_file
         else if(c == 19){
             if(argc >=2){
-                const char *file_name = argv[1];
                 FILE *save_file_path = fopen(file_name, "w");
                 save_file(save_file_path, head);
                 wclear(messenger_bar);
                 mvwprintw(messenger_bar, 0, 0, "File_is_saved");
                 wrefresh(messenger_bar);
+                sleep(1);
+                wclear(messenger_bar);
+                mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
+                wrefresh(messenger_bar);
                 is_changed = 0;
             } else{
                 wclear(messenger_bar);
-                char file_name[256]; // 파일 이름을 저장할 버퍼
+                char file_name_save[256]; // 파일 이름을 저장할 버퍼
+                file_name = file_name_save;
                 // 메시지 바에서 파일 이름 입력받기
                 mvwprintw(messenger_bar, 0, 0, "Enter file name to save: ");
                 wrefresh(messenger_bar);
 
                 echo(); // 입력된 문자를 화면에 표시
-                wgetnstr(messenger_bar, file_name, sizeof(file_name) - 1); // 파일 이름 입력 받기
+                wgetnstr(messenger_bar, file_name_save, sizeof(file_name) - 1); // 파일 이름 입력 받기
                 noecho(); // 입력된 문자 표시 중단
                 wclear(messenger_bar);
                 wrefresh(messenger_bar);
@@ -378,6 +391,10 @@ int main(int argc, char* argv[]) {
                 save_file(save_file_path, head);
                 fclose(save_file_path);
                 mvwprintw(messenger_bar, 0, 0, "File saved to: %s", file_name);
+                wrefresh(messenger_bar);
+                sleep(1);
+                wclear(messenger_bar);
+                mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
                 wrefresh(messenger_bar);
                 is_changed = 0;
             }
@@ -558,6 +575,7 @@ int main(int argc, char* argv[]) {
             cols_location = 0; // 커서를 맨 앞 열로 설정
             wmove(main_win,row_location, cols_location); // 새로운 줄로 커서 이동
             is_changed = 1;
+            head->new_line++;
         }
         wmove(main_win, row_location, cols_location);
         wrefresh(main_win);

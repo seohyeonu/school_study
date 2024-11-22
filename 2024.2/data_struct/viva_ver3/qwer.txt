@@ -1,7 +1,7 @@
 The sun rises in the east.
-She loves to read books.
-He is good at cooking.
-They play soccer every Sunday.
+Shasdfasde loves to read books.
+He iasdfasdfs good at cooking.
+They playasdfasdf soccer every Sunday.
 She works in a big company.
 I enjoy walking in the rain.
 The movie was very exciting.
@@ -29,7 +29,7 @@ He is good at cooking.
 They play soccer every Sunday.
 She works in a big company.
 I enjoy walking in the rain.
-The movie was very exciting.He likes to swim in the sea.The dog baÿÿÿÿrked all night.
+The movie was very exciting.He likes to swim in the sea.The dog ÿÿÿÿbaÿÿÿÿrkÿÿÿÿed all night.
 They went on a long trip.
 She sings beautifully.
 We often go hiking together.
@@ -67,7 +67,7 @@ She has a new car.
 They moved to a new house.
 He loves spicy food.
 The coffee is too hot.
-I need a vacation soonÿÿÿÿ.
+I need a vacÿÿÿÿation soonÿÿÿÿÿÿÿÿ.
 The weather is nice today.
 They celebrated his birthday.
 She enjoys painting landscapes.
@@ -104,8 +104,8 @@ He is learning to play the guitar.
 The book is on the table.
 I drink coffee every morning.
 She dances with grace.
-He found his lost keys.
-Thÿÿÿÿe cake tastes delicious.
+He foundÿÿÿÿ his lost keys.
+ÿÿÿÿThÿÿÿÿe cake tastes delicious.
 I like listening to music.
 The baby smiled at me.
 They left early for work.The sun rises in the east.
@@ -140,8 +140,8 @@ The baby smiled at me.
 They left early for work.The sun rises in the east.
 She loves to read books.
 He is good at cooking.
-They play soccer every Sunday.
-She works in a big companÿÿÿÿy.
+They play soccer every Sunday.ÿÿÿÿ
+She works in a big ÿÿÿÿcompanÿÿÿÿy.
 I enjoy walking in the rain.
 The movie was very exciting.
 He likes to swim in the sea.
@@ -178,8 +178,8 @@ The dog barked all night.
 They went on a long trip.
 She sings beautifully.
 We often go hiking together.
-He reads the news daily.
-She has a neÿÿÿÿw car.
+He ÿÿÿÿreads the news daily.
+Shÿÿÿÿe has a neÿÿÿÿw car.
 They moved to a new house.
 He loves spicy food.
 The coffee is too hot.
@@ -196,3 +196,5 @@ The cake tastes delicious.
 I like listening to music.
 The baby smiled at me.
 They left early for work.......
+
+
