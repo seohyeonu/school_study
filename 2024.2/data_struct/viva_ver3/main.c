@@ -318,7 +318,6 @@ int main(int argc, char* argv[]) {
         int end_idx = find_idx(head, start+size_of_row-2, 0);
         int c = wgetch(main_win);
         int* row_array = get_row_array(head, start_idx, end_idx, size_of_cols);
-        const char *file_name = argv[1];
 
 
 
@@ -348,6 +347,7 @@ int main(int argc, char* argv[]) {
         // save_file
         else if(c == 19){
             if(argc >=2){
+                const char *file_name = argv[1];
                 FILE *save_file_path = fopen(file_name, "w");
                 save_file(save_file_path, head);
                 wclear(messenger_bar);
