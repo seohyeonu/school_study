@@ -292,8 +292,7 @@ int main(int argc, char* argv[]) {
 
     // 반전 색상 켜기
     wbkgd(status_bar, COLOR_PAIR(1) | A_REVERSE);
-    mvwprintw(status_bar, 0, 0, "[No Name] - 0 lines");
-    mvwprintw(status_bar, 0, size_of_cols - 11, "no ft | 1/0"); // size_of_cols에 맞게 수정
+
 
     // 윈도우에 도움말 출력
     mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
@@ -310,14 +309,22 @@ int main(int argc, char* argv[]) {
     {
 
         wclear(main_win);
+        wclear(status_bar);
 
         print_win(main_win, head, start, start + size_of_row - 2);
         wmove(main_win, row_location, cols_location);
         wrefresh(main_win);
         int start_idx = find_idx(head,start,0);
         int end_idx = find_idx(head, start+size_of_row-2, 0);
+        mvwprintw(status_bar, 0, 0, "[No Name] - %d lines", head->new_line);
+        mvwprintw(status_bar, 0, size_of_cols - 20, "no ft | %d/%d", find_idx(head, row_location+start, cols_location), head->count_for_cols); // size_of_cols에 맞게 수정
+        wrefresh(status_bar);
+        wrefresh(main_win);
         int c = wgetch(main_win);
         int* row_array = get_row_array(head, start_idx, end_idx, size_of_cols);
+
+
+
 
 
 
