@@ -39,43 +39,45 @@ void computeLPSArray(const char* pattern, int M, int* lps) {
     }
 }
 
-// KMP 알고리즘: 문자열 검색
 int* KMPSearch(const char* pattern, const char* text, int* found_count) {
-    int M = strlen(pattern);
-    int N = strlen(text);
-    int lps[M];
-    int j = 0; // 패턴의 인덱스
-    int* results = NULL;
-    *found_count = 0;
+    int M = strlen(pattern); // 패턴의 길이
+    int N = strlen(text);    // 텍스트의 길이
+    int* lps = (int*)malloc(M * sizeof(int)); // LPS 배열 생성
+    int* results = NULL;     // 결과 배열 초기화
+    *found_count = 0;        // 찾은 결과 개수 초기화
 
-    computeLPSArray(pattern, M, lps);
+    computeLPSArray(pattern, M, lps); // LPS 배열 계산
 
-    int i = 0; // 텍스트의 인덱스
+    int i = 0; // 텍스트의 현재 인덱스
+    int j = 0; // 패턴의 현재 인덱스
     while (i < N) {
         if (pattern[j] == text[i]) {
             j++;
             i++;
         }
         if (j == M) {
-            results = realloc(results, sizeof(int) * (*found_count + 1));
+            // 패턴이 일치하는 시작 인덱스 저장
+            results = (int*)realloc(results, (*found_count + 1) * sizeof(int));
             if (!results) {
                 fprintf(stderr, "메모리 재할당 오류!\n");
                 exit(1);
             }
-            results[*found_count] = i - j; // 일치하는 시작 인덱스를 저장
+            results[*found_count] = i - j; // 일치하는 시작 인덱스
             (*found_count)++;
-            j = lps[j - 1];
+            j = lps[j - 1]; // 패턴의 다음 비교 위치 설정
         } else if (i < N && pattern[j] != text[i]) {
             if (j != 0) {
-                j = lps[j - 1];
+                j = lps[j - 1]; // LPS를 사용해 패턴 인덱스 재조정
             } else {
                 i++;
             }
         }
     }
 
-    return results; // 동적으로 할당된 결과 배열 반환
+    free(lps); // LPS 배열 해제
+    return results; // 결과 배열 반환
 }
+
 
 
 
@@ -183,6 +185,9 @@ Pad* load_file_new_char(Pad* cur_row, char x) {
 void del_char(Pad* cur_row,  int row_position, int cols_position) {
     Pad *cur = cur_row;
     int idx = find_idx(cur, row_position, cols_position);
+    if(idx == 0){
+        return;
+    }
 
     memmove(cur->arr + idx-1, cur->arr + idx, sizeof(char) * (cur->count_for_cols - idx));
     cur->count_for_cols--;
@@ -261,6 +266,7 @@ int main(int argc, char* argv[]) {
 // 변수 테이블
     Pad* head = (Pad*)malloc(sizeof(Pad)); //모든 row의 최상의 row
     head->arr = (char*)malloc(sizeof(char)*BUFFER_SIZE);
+    head->arr[0] ='\0';
     head->buffer_up = 1;
     head->count_for_cols = 0;
     head->new_line = 0;
@@ -329,7 +335,7 @@ int main(int argc, char* argv[]) {
         int end_idx = find_idx(head, start+size_of_row-2, 0);
 
         if(file_name == NULL){
-            mvwprintw(status_bar, 0, 0, "[No Name] - %d lines", head->new_line);
+            mvwprintw(status_bar, 0, 0, "[No Name] - %d lines", head->new_line+1);
         } else{
             mvwprintw(status_bar, 0, 0, "[%s] - %d lines", file_name, head->new_line);
         }
@@ -420,25 +426,25 @@ int main(int argc, char* argv[]) {
             int found_count = 0;
             int* results = KMPSearch(search_pattern, head->arr, &found_count);
 
-            wclear(messenger_bar);
-
             if (found_count > 0) {
-                mvwprintw(messenger_bar, 0, 0, "Found %d matches.", found_count);
+                mvwprintw(messenger_bar, 0, 0, "Found %d matches. Use arrow keys to navigate.", found_count);
                 wrefresh(messenger_bar);
 
-                // 검색 결과 강조 표시
-                for (int i = 0; i < found_count; i++) {
-                    int match_start = results[i];
-                    int match_end = match_start + strlen(search_pattern);
+                int current_match = 0;
+                bool in_search_mode = True;
 
-                    // 강조 표시할 범위가 현재 화면에 있는지 확인
-                    if (match_start >= start_idx && match_start < end_idx) {
-                        int rel_start = match_start - start_idx;
+                while (in_search_mode) {
+                    wclear(main_win);
+                    print_win(main_win, head, start, start + size_of_row - 2);
+
+                    // 모든 검색 결과를 하이라이팅
+                    for (int i = 0; i < found_count; i++) {
+                        int match_idx = results[i];
                         int rel_row = 0, rel_col = 0;
 
-                        // 화면 내 상대 위치 계산
-                        for (int j = 0; j < rel_start; j++) {
-                            if (head->arr[start_idx + j] == '\n') {
+                        // 현재 인덱스에서 행과 열 계산
+                        for (int j = 0; j < match_idx; j++) {
+                            if (head->arr[j] == '\n') {
                                 rel_row++;
                                 rel_col = 0;
                             } else {
@@ -446,22 +452,74 @@ int main(int argc, char* argv[]) {
                             }
                         }
 
-                        // 강조 표시
-                        wattron(main_win, A_REVERSE);
-                        mvwprintw(main_win, rel_row, rel_col, "%.*s", (int)strlen(search_pattern), search_pattern);
-                        wattroff(main_win, A_REVERSE);
+                        // 화면 내에 있는 결과만 하이라이팅
+                        if (rel_row >= start && rel_row < start + size_of_row - 2) {
+                            wattron(main_win, A_REVERSE);
+                            mvwprintw(main_win, rel_row - start, rel_col, "%.*s", (int)strlen(search_pattern), search_pattern);
+                            wattroff(main_win, A_REVERSE);
+                        }
+                    }
+
+                    // 현재 선택된 검색 결과를 강조 표시
+                    int selected_idx = results[current_match];
+                    int selected_row = 0, selected_col = 0;
+
+                    // 선택된 인덱스의 행과 열 계산
+                    for (int j = 0; j < selected_idx; j++) {
+                        if (head->arr[j] == '\n') {
+                            selected_row++;
+                            selected_col = 0;
+                        } else {
+                            selected_col++;
+                        }
+                    }
+
+                    // 선택된 검색 결과가 화면 밖이면 이동
+                    if (selected_row < start) {
+                        start = selected_row; // 위로 스크롤
+                    } else if (selected_row >= start + size_of_row - 2) {
+                        start = selected_row - (size_of_row - 3); // 아래로 스크롤
+                    }
+
+                    // 선택된 검색 결과 강조
+                    wattron(main_win, A_BOLD | A_UNDERLINE);
+                    mvwprintw(main_win, selected_row - start, selected_col, "%.*s", (int)strlen(search_pattern), search_pattern);
+                    wattroff(main_win, A_BOLD | A_UNDERLINE);
+                    wrefresh(main_win);
+
+                    // 사용자 입력 대기
+                    int nav_key = wgetch(main_win);
+
+                    if (nav_key == KEY_DOWN) { // 다음 검색 결과
+                        current_match = (current_match + 1) % found_count;
+                    } else if (nav_key == KEY_UP) { // 이전 검색 결과
+                        current_match = (current_match - 1 + found_count) % found_count;
+                    } else if (nav_key == 27) { // Esc로 검색 취소
+                        in_search_mode = False;
+                        wclear(messenger_bar);
+                        mvwprintw(messenger_bar, 0, 0, "Search cancelled.");
+                        wrefresh(messenger_bar);
+                        break;
+                    } else if (nav_key == '\n') { // Enter로 탐색 종료
+                        row_location = selected_row - start;
+                        cols_location = selected_col;
+                        in_search_mode = False;
+                        wclear(messenger_bar);
+                        mvwprintw(messenger_bar, 0, 0, "Search ended. You can now edit.");
+                        wrefresh(messenger_bar);
+                        break;
                     }
                 }
-
-                wrefresh(main_win);
             } else {
                 mvwprintw(messenger_bar, 0, 0, "No matches found.");
                 wrefresh(messenger_bar);
+                sleep(1);
+                wclear(messenger_bar);
+                mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
+                wrefresh(messenger_bar);
             }
-
-            free(results); // 동적으로 할당된 메모리 해제
+            free(results); // 메모리 해제
         }
-
 
 
 
@@ -536,6 +594,9 @@ int main(int argc, char* argv[]) {
             //getsyx(row_location, cols_location);
 
             if(cols_location == 0){
+                if(row_location + start == 0){
+                    continue;
+                }
                 del_char(head, row_location, cols_location);
                 cols_location = row_array[row_location-1];
                 row_location--;
