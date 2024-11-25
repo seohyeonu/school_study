@@ -3,6 +3,8 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from PIL import Image
 
 
@@ -28,8 +30,10 @@ def download_image(image_url, save_directory, filename):
         return None
 
 
-# 특정 컨테이너 내 이미지 src 찾기 및 다운로드
-def fetch_and_download_images_from_contents(url, container_id="contents", save_directory="images"):
+# 특정 iframe 내 컨테이너의 이미지 src 찾기 및 다운로드
+def fetch_and_download_images_from_iframe_container(
+    url, iframe_id="docFrame", container_id="container", save_directory="images"
+):
     # Chrome 옵션 설정
     chrome_options = Options()
     chrome_options.add_argument("--headless")
@@ -45,15 +49,20 @@ def fetch_and_download_images_from_contents(url, container_id="contents", save_d
         driver.get(url)
         driver.implicitly_wait(10)
 
-        # 특정 컨테이너 요소 찾기
-        container = driver.find_element(By.ID, container_id)
-        if not container:
-            print(f"Container with ID '{container_id}' not found.")
-            return []
+        # iframe 전환
+        iframe = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.ID, iframe_id))
+        )
+        driver.switch_to.frame(iframe)
+
+        # 컨테이너 요소 찾기
+        container = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.ID, container_id))
+        )
 
         # 컨테이너 내의 모든 이미지 태그 찾기
         image_elements = container.find_elements(By.TAG_NAME, "img")
-        print(f"Found {len(image_elements)} images in the container with ID '{container_id}'.")
+        print(f"Found {len(image_elements)} images in the container with ID '{container_id}' inside iframe '{iframe_id}'.")
 
         # 이미지 다운로드
         for index, img in enumerate(image_elements):
@@ -93,12 +102,13 @@ def merge_images_to_pdf(image_paths, output_pdf):
 
 # 실행 코드
 url = input("Enter the URL to fetch and download images: ")
-container_id = "contents"  # id="contents"로 설정
+iframe_id = "docFrame"  # iframe ID
+container_id = "container"  # 컨테이너 ID
 save_directory = "images"
 output_pdf = "output.pdf"
 
-# 특정 컨테이너 내 이미지 다운로드
-image_paths = fetch_and_download_images_from_contents(url, container_id, save_directory)
+# 특정 iframe 내 컨테이너의 이미지 다운로드
+image_paths = fetch_and_download_images_from_iframe_container(url, iframe_id, container_id, save_directory)
 
 # 이미지 병합 및 PDF 생성
 if image_paths:
