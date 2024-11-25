@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 #define BUFFER_SIZE 1000
 #define True 1
 #define False 0
@@ -39,12 +40,13 @@ void computeLPSArray(const char* pattern, int M, int* lps) {
 }
 
 // KMP 알고리즘: 문자열 검색
-int KMPSearch(const char* pattern, const char* text, int* results, int max_results) {
+int* KMPSearch(const char* pattern, const char* text, int* found_count) {
     int M = strlen(pattern);
     int N = strlen(text);
     int lps[M];
     int j = 0; // 패턴의 인덱스
-    int k = 0; // 결과 배열 인덱스
+    int* results = NULL;
+    *found_count = 0;
 
     computeLPSArray(pattern, M, lps);
 
@@ -55,9 +57,13 @@ int KMPSearch(const char* pattern, const char* text, int* results, int max_resul
             i++;
         }
         if (j == M) {
-            if (k < max_results) {
-                results[k++] = i - j; // 일치하는 시작 인덱스를 저장
+            results = realloc(results, sizeof(int) * (*found_count + 1));
+            if (!results) {
+                fprintf(stderr, "메모리 재할당 오류!\n");
+                exit(1);
             }
+            results[*found_count] = i - j; // 일치하는 시작 인덱스를 저장
+            (*found_count)++;
             j = lps[j - 1];
         } else if (i < N && pattern[j] != text[i]) {
             if (j != 0) {
@@ -68,8 +74,9 @@ int KMPSearch(const char* pattern, const char* text, int* results, int max_resul
         }
     }
 
-    return k; // 찾은 패턴의 개수 반환
+    return results; // 동적으로 할당된 결과 배열 반환
 }
+
 
 
 void log_message(FILE *log_file, const char* level, const int message) {
@@ -88,6 +95,7 @@ int find_idx(Pad* cur_row, int row_position, int cols_position) {
     Pad* cur = cur_row;
     int new_line_count = 0;
     int idx = 0;
+
 
     for (int i = 0; i < cur->count_for_cols; i++) {
         // 현재 위치가 목표하는 행(row_position)에 도달하면
@@ -116,7 +124,8 @@ int find_idx(Pad* cur_row, int row_position, int cols_position) {
 
 Pad* get_new_char(Pad* cur_row, int row_position, int cols_position, char x, FILE *log_file){
     Pad* cur = cur_row;
-    int idx = find_idx(cur_row, row_position, cols_position);
+    int  idx = find_idx(cur_row, row_position, cols_position);
+
     log_message(log_file, "get_new_char idx 위치임", idx);
 
     // 배열이 다 찼을 경우 배열의 크기를 2배로 증가
@@ -249,17 +258,19 @@ int main(int argc, char* argv[]) {
     FILE *log_file = fopen("log.txt", "a");
 
 
-    // 변수 테이블
+// 변수 테이블
     Pad* head = (Pad*)malloc(sizeof(Pad)); //모든 row의 최상의 row
     head->arr = (char*)malloc(sizeof(char)*BUFFER_SIZE);
     head->buffer_up = 1;
     head->count_for_cols = 0;
+    head->new_line = 0;
 
 
     int row_location, cols_location; //현재 커서의 row, cols 위치를 확인하는 변수
     int is_changed = 0; //문서의 내용이 바뀌었는지 안 바뀌었는지 확인하는 변수
     int start=0, end=0; // win에 뿌릴 시작과 끝점
     int size_of_row, size_of_cols; // window 사이즈 받아오기
+    const char *file_name = NULL;
 
 
 
@@ -271,6 +282,7 @@ int main(int argc, char* argv[]) {
     getmaxyx(stdscr, size_of_row, size_of_cols);
     if (argc >= 2) {
         head = load_file(head, argv[1], size_of_cols);
+        file_name = argv[1];
     }
     refresh();
 
@@ -291,8 +303,7 @@ int main(int argc, char* argv[]) {
 
     // 반전 색상 켜기
     wbkgd(status_bar, COLOR_PAIR(1) | A_REVERSE);
-    mvwprintw(status_bar, 0, 0, "[No Name] - 0 lines");
-    mvwprintw(status_bar, 0, size_of_cols - 11, "no ft | 1/0"); // size_of_cols에 맞게 수정
+
 
     // 윈도우에 도움말 출력
     mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
@@ -309,28 +320,42 @@ int main(int argc, char* argv[]) {
     {
 
         wclear(main_win);
+        wclear(status_bar);
 
         print_win(main_win, head, start, start + size_of_row - 2);
         wmove(main_win, row_location, cols_location);
         wrefresh(main_win);
         int start_idx = find_idx(head,start,0);
         int end_idx = find_idx(head, start+size_of_row-2, 0);
+
+        if(file_name == NULL){
+            mvwprintw(status_bar, 0, 0, "[No Name] - %d lines", head->new_line);
+        } else{
+            mvwprintw(status_bar, 0, 0, "[%s] - %d lines", file_name, head->new_line);
+        }
+
+        mvwprintw(status_bar, 0, size_of_cols - 20, "no ft | %d/%d", find_idx(head, row_location+start, cols_location), head->count_for_cols); // size_of_cols에 맞게 수정
+        wrefresh(status_bar);
+        wrefresh(main_win);
         int c = wgetch(main_win);
         int* row_array = get_row_array(head, start_idx, end_idx, size_of_cols);
+
 
         if(c == 17){
             // ctrl+Q : 나가기 ctrl+Q를 두번 누르면 저장되지 않은 상태로 나가기
             // 2024.11.2 맥에서 동작하지 않은 윈도우는 확인 못함   ->  raw(); keypad(stdscr, TRUE); 이 두 친구들을 추가해줬어야 함.
             if(is_changed) {
-                mvprintw(size_of_row -1, 0, "Press Ctrl+q without saving changes                                                            ");
-                refresh();
+                wclear(messenger_bar);
+                mvwprintw(messenger_bar, 0, 0, "Press Ctrl+q without saving changes");
+                wrefresh(messenger_bar);
                 int temp_c = getch();
                 if(temp_c == 17) {
                     break;
                 }
                 else {
-                    mvprintw(size_of_row-1, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
-                    refresh();
+                    wclear(messenger_bar);
+                    mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
+                    wrefresh(messenger_bar);
                     continue;
                 }
             }
@@ -339,21 +364,29 @@ int main(int argc, char* argv[]) {
             }
 
         }
+        // save_file
         else if(c == 19){
             if(argc >=2){
-                const char *file_name = argv[1];
                 FILE *save_file_path = fopen(file_name, "w");
                 save_file(save_file_path, head);
+                wclear(messenger_bar);
+                mvwprintw(messenger_bar, 0, 0, "File_is_saved");
+                wrefresh(messenger_bar);
+                sleep(1);
+                wclear(messenger_bar);
+                mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
+                wrefresh(messenger_bar);
                 is_changed = 0;
             } else{
                 wclear(messenger_bar);
-                char file_name[256]; // 파일 이름을 저장할 버퍼
+                char file_name_save[256]; // 파일 이름을 저장할 버퍼
+                file_name = file_name_save;
                 // 메시지 바에서 파일 이름 입력받기
                 mvwprintw(messenger_bar, 0, 0, "Enter file name to save: ");
                 wrefresh(messenger_bar);
 
                 echo(); // 입력된 문자를 화면에 표시
-                wgetnstr(messenger_bar, file_name, sizeof(file_name) - 1); // 파일 이름 입력 받기
+                wgetnstr(messenger_bar, file_name_save, sizeof(file_name) - 1); // 파일 이름 입력 받기
                 noecho(); // 입력된 문자 표시 중단
                 wclear(messenger_bar);
                 wrefresh(messenger_bar);
@@ -362,6 +395,10 @@ int main(int argc, char* argv[]) {
                 save_file(save_file_path, head);
                 fclose(save_file_path);
                 mvwprintw(messenger_bar, 0, 0, "File saved to: %s", file_name);
+                wrefresh(messenger_bar);
+                sleep(1);
+                wclear(messenger_bar);
+                mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
                 wrefresh(messenger_bar);
                 is_changed = 0;
             }
@@ -380,9 +417,10 @@ int main(int argc, char* argv[]) {
             mvwprintw(messenger_bar, 0, 0, "Searching...");
             wrefresh(messenger_bar);
 
-            int max_results = 100;
-            int results[max_results];
-            int found_count = KMPSearch(search_pattern, head->arr, results, max_results);
+            int found_count = 0;
+            int* results = KMPSearch(search_pattern, head->arr, &found_count);
+
+            wclear(messenger_bar);
 
             if (found_count > 0) {
                 mvwprintw(messenger_bar, 0, 0, "Found %d matches.", found_count);
@@ -390,31 +428,41 @@ int main(int argc, char* argv[]) {
 
                 // 검색 결과 강조 표시
                 for (int i = 0; i < found_count; i++) {
-                    int match_row = 0, match_col = 0;
-                    int match_idx = results[i];
+                    int match_start = results[i];
+                    int match_end = match_start + strlen(search_pattern);
 
-                    // match_idx에서 행과 열 계산
-                    for (int j = 0; j < match_idx; j++) {
-                        if (head->arr[j] == '\n') {
-                            match_row++;
-                            match_col = 0;
-                        } else {
-                            match_col++;
+                    // 강조 표시할 범위가 현재 화면에 있는지 확인
+                    if (match_start >= start_idx && match_start < end_idx) {
+                        int rel_start = match_start - start_idx;
+                        int rel_row = 0, rel_col = 0;
+
+                        // 화면 내 상대 위치 계산
+                        for (int j = 0; j < rel_start; j++) {
+                            if (head->arr[start_idx + j] == '\n') {
+                                rel_row++;
+                                rel_col = 0;
+                            } else {
+                                rel_col++;
+                            }
                         }
-                    }
 
-                    if (match_row >= start && match_row < start + size_of_row - 2) {
+                        // 강조 표시
                         wattron(main_win, A_REVERSE);
-                        mvwprintw(main_win, match_row - start, match_col, "%.*s", (int)strlen(search_pattern), search_pattern);
+                        mvwprintw(main_win, rel_row, rel_col, "%.*s", (int)strlen(search_pattern), search_pattern);
                         wattroff(main_win, A_REVERSE);
                     }
                 }
+
                 wrefresh(main_win);
             } else {
                 mvwprintw(messenger_bar, 0, 0, "No matches found.");
                 wrefresh(messenger_bar);
             }
+
+            free(results); // 동적으로 할당된 메모리 해제
         }
+
+
 
 
         else if(c == KEY_UP){
@@ -428,11 +476,16 @@ int main(int argc, char* argv[]) {
                 wmove(main_win, row_location, cols_location);
                 wrefresh(main_win);
             } else {
-                start--;
-                row_array = get_row_array(head, start_idx, end_idx, size_of_cols);
-                if (cols_location > row_array[0]) {
-                    cols_location = row_array[0];
+                if(start == 0){
+                    continue;
+                } else{
+                    start--;
+                    row_array = get_row_array(head, start_idx, end_idx, size_of_cols);
+                    if (cols_location > row_array[0]) {
+                        cols_location = row_array[0];
+                    }
                 }
+
             }
 
         }
@@ -506,6 +559,9 @@ int main(int argc, char* argv[]) {
         }
 
         else if(c == KEY_PPAGE){
+            if(start - size_of_row < 0){
+                continue;
+            }
             start = start - size_of_row;
         }
 
@@ -542,6 +598,7 @@ int main(int argc, char* argv[]) {
             cols_location = 0; // 커서를 맨 앞 열로 설정
             wmove(main_win,row_location, cols_location); // 새로운 줄로 커서 이동
             is_changed = 1;
+            head->new_line++;
         }
         wmove(main_win, row_location, cols_location);
         wrefresh(main_win);
