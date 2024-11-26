@@ -39,7 +39,7 @@ def fetch_and_merge_images_to_pdf(
             file_name_element = WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, fnm_class))
             )
-            file_name = file_name_element.text.strip() + ".pdf"
+            file_name = file_name_element.text.strip()
             print(f"File name set to: {file_name}")
         except Exception as e:
             print(f"Failed to fetch file name from class '{fnm_class}': {e}")
