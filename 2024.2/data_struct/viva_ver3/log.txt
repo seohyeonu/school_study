@@ -1358,3 +1358,361 @@
 ] get_new_char idx 위치임: 48
 [Mon Nov 25 18:28:39 2024
 ] get_new_char idx 위치임: 48
+[Tue Nov 26 10:41:15 2024
+] KEY_RIGHT: 1
+[Tue Nov 26 10:41:15 2024
+] KEY_RIGHT: 2
+[Tue Nov 26 10:41:15 2024
+] KEY_RIGHT: 3
+[Tue Nov 26 10:41:16 2024
+] KEY_RIGHT: 4
+[Tue Nov 26 10:41:16 2024
+] KEY_RIGHT: 5
+[Tue Nov 26 10:41:16 2024
+] KEY_RIGHT: 6
+[Tue Nov 26 10:41:16 2024
+] KEY_RIGHT: 7
+[Tue Nov 26 10:42:16 2024
+] KEY_RIGHT: 34
+[Tue Nov 26 10:42:16 2024
+] KEY_RIGHT: 35
+[Tue Nov 26 10:42:16 2024
+] KEY_RIGHT: 36
+[Tue Nov 26 10:42:16 2024
+] KEY_RIGHT: 37
+[Tue Nov 26 10:42:16 2024
+] KEY_RIGHT: 38
+[Tue Nov 26 10:42:17 2024
+] KEY_RIGHT: 39
+[Tue Nov 26 10:42:17 2024
+] KEY_RIGHT: 40
+[Tue Nov 26 10:42:17 2024
+] KEY_RIGHT: 41
+[Tue Nov 26 10:42:17 2024
+] KEY_RIGHT: 42
+[Tue Nov 26 10:42:17 2024
+] KEY_RIGHT: 43
+[Tue Nov 26 10:42:17 2024
+] KEY_RIGHT: 44
+[Tue Nov 26 10:42:17 2024
+] KEY_RIGHT: 45
+[Tue Nov 26 10:42:17 2024
+] KEY_RIGHT: 46
+[Tue Nov 26 10:42:17 2024
+] KEY_RIGHT: 47
+[Tue Nov 26 10:42:17 2024
+] KEY_RIGHT: 48
+[Tue Nov 26 10:42:18 2024
+] KEY_RIGHT: 49
+[Tue Nov 26 10:42:18 2024
+] KEY_RIGHT: 50
+[Tue Nov 26 10:42:18 2024
+] KEY_RIGHT: 51
+[Tue Nov 26 10:42:18 2024
+] KEY_RIGHT: 52
+[Tue Nov 26 10:42:18 2024
+] KEY_RIGHT: 53
+[Tue Nov 26 10:42:19 2024
+] KEY_RIGHT: 54
+[Tue Nov 26 10:42:19 2024
+] KEY_RIGHT: 55
+[Tue Nov 26 10:42:19 2024
+] KEY_RIGHT: 56
+[Tue Nov 26 10:42:19 2024
+] KEY_RIGHT: 57
+[Tue Nov 26 10:42:19 2024
+] KEY_RIGHT: 58
+[Tue Nov 26 10:42:19 2024
+] KEY_RIGHT: 59
+[Tue Nov 26 10:42:19 2024
+] KEY_RIGHT: 60
+[Tue Nov 26 10:42:19 2024
+] KEY_RIGHT: 61
+[Tue Nov 26 10:42:19 2024
+] KEY_RIGHT: 62
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 63
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 64
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 65
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 66
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 67
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 68
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 69
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 70
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 71
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 72
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 73
+[Tue Nov 26 10:42:20 2024
+] KEY_RIGHT: 74
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 75
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 76
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 77
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 78
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 79
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 80
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 81
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 82
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 83
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 84
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 85
+[Tue Nov 26 10:42:21 2024
+] KEY_RIGHT: 86
+[Tue Nov 26 10:42:22 2024
+] KEY_RIGHT: 87
+[Tue Nov 26 10:42:22 2024
+] KEY_LEFT: 86
+[Tue Nov 26 10:42:22 2024
+] KEY_LEFT: 85
+[Tue Nov 26 10:42:22 2024
+] KEY_LEFT: 84
+[Tue Nov 26 10:42:23 2024
+] KEY_LEFT: 83
+[Tue Nov 26 10:42:23 2024
+] KEY_LEFT: 82
+[Tue Nov 26 10:42:23 2024
+] KEY_LEFT: 81
+[Tue Nov 26 10:42:23 2024
+] KEY_LEFT: 80
+[Tue Nov 26 10:42:23 2024
+] KEY_LEFT: 79
+[Tue Nov 26 10:42:23 2024
+] KEY_LEFT: 78
+[Tue Nov 26 10:42:23 2024
+] KEY_LEFT: 77
+[Tue Nov 26 10:42:24 2024
+] KEY_LEFT: 76
+[Tue Nov 26 10:42:24 2024
+] KEY_LEFT: 75
+[Tue Nov 26 10:42:24 2024
+] KEY_LEFT: 74
+[Tue Nov 26 10:42:24 2024
+] KEY_LEFT: 73
+[Tue Nov 26 10:42:25 2024
+] KEY_LEFT: 72
+[Tue Nov 26 10:42:27 2024
+] KEY_RIGHT: 23
+[Tue Nov 26 10:42:28 2024
+] KEY_RIGHT: 24
+[Tue Nov 26 10:42:28 2024
+] KEY_RIGHT: 25
+[Tue Nov 26 10:42:28 2024
+] KEY_RIGHT: 26
+[Tue Nov 26 10:42:28 2024
+] KEY_LEFT: 25
+[Tue Nov 26 10:42:29 2024
+] KEY_LEFT: 24
+[Tue Nov 26 10:42:29 2024
+] KEY_LEFT: 23
+[Tue Nov 26 10:42:29 2024
+] KEY_LEFT: 22
+[Tue Nov 26 10:42:29 2024
+] KEY_LEFT: 21
+[Tue Nov 26 10:42:29 2024
+] KEY_LEFT: 20
+[Tue Nov 26 10:42:29 2024
+] KEY_LEFT: 19
+[Tue Nov 26 10:42:29 2024
+] KEY_RIGHT: 20
+[Tue Nov 26 10:42:30 2024
+] KEY_RIGHT: 21
+[Tue Nov 26 10:42:30 2024
+] KEY_RIGHT: 22
+[Tue Nov 26 10:42:30 2024
+] KEY_RIGHT: 23
+[Tue Nov 26 10:42:30 2024
+] KEY_RIGHT: 24
+[Tue Nov 26 10:42:30 2024
+] KEY_RIGHT: 25
+[Tue Nov 26 10:42:30 2024
+] KEY_RIGHT: 26
+[Tue Nov 26 10:42:34 2024
+] KEY_RIGHT: 1
+[Tue Nov 26 10:42:35 2024
+] KEY_RIGHT: 2
+[Tue Nov 26 10:42:35 2024
+] KEY_RIGHT: 3
+[Tue Nov 26 10:42:35 2024
+] KEY_RIGHT: 4
+[Tue Nov 26 10:42:35 2024
+] KEY_RIGHT: 5
+[Tue Nov 26 10:42:35 2024
+] KEY_RIGHT: 6
+[Tue Nov 26 10:42:35 2024
+] KEY_RIGHT: 7
+[Tue Nov 26 10:42:35 2024
+] KEY_RIGHT: 8
+[Tue Nov 26 10:42:35 2024
+] KEY_RIGHT: 9
+[Tue Nov 26 10:42:35 2024
+] KEY_RIGHT: 10
+[Tue Nov 26 10:42:35 2024
+] KEY_RIGHT: 11
+[Tue Nov 26 10:42:35 2024
+] KEY_RIGHT: 12
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 13
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 14
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 15
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 16
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 17
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 18
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 19
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 20
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 21
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 22
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 23
+[Tue Nov 26 10:42:36 2024
+] KEY_RIGHT: 24
+[Tue Nov 26 10:42:37 2024
+] KEY_RIGHT: 25
+[Tue Nov 26 10:42:37 2024
+] KEY_RIGHT: 26
+[Tue Nov 26 10:42:37 2024
+] KEY_RIGHT: 27
+[Tue Nov 26 10:42:38 2024
+] KEY_RIGHT: 28
+[Tue Nov 26 10:42:38 2024
+] KEY_RIGHT: 29
+[Tue Nov 26 10:42:38 2024
+] KEY_RIGHT: 30
+[Tue Nov 26 10:42:38 2024
+] KEY_RIGHT: 31
+[Tue Nov 26 10:42:40 2024
+] KEY_LEFT: 29
+[Tue Nov 26 10:42:41 2024
+] KEY_RIGHT: 30
+[Tue Nov 26 10:42:41 2024
+] KEY_RIGHT: 31
+[Tue Nov 26 10:42:41 2024
+] KEY_RIGHT: 32
+[Tue Nov 26 10:42:41 2024
+] KEY_RIGHT: 33
+[Tue Nov 26 10:42:41 2024
+] KEY_RIGHT: 34
+[Tue Nov 26 10:42:41 2024
+] KEY_RIGHT: 35
+[Tue Nov 26 10:42:42 2024
+] KEY_RIGHT: 36
+[Tue Nov 26 10:42:42 2024
+] KEY_RIGHT: 37
+[Tue Nov 26 10:42:42 2024
+] KEY_RIGHT: 38
+[Tue Nov 26 10:42:43 2024
+] KEY_RIGHT: 31
+[Tue Nov 26 10:43:04 2024
+] get_new_char idx 위치임: 2596
+[Tue Nov 26 10:43:04 2024
+] row 와 cols 위치:  row : 23 ,  cols : 1
+[Tue Nov 26 10:57:06 2024
+] KEY_RIGHT: 1
+[Tue Nov 26 10:57:07 2024
+] KEY_RIGHT: 2
+[Tue Nov 26 10:57:07 2024
+] KEY_RIGHT: 3
+[Tue Nov 26 10:57:07 2024
+] KEY_RIGHT: 4
+[Tue Nov 26 10:57:07 2024
+] KEY_RIGHT: 5
+[Tue Nov 26 10:57:07 2024
+] KEY_RIGHT: 6
+[Tue Nov 26 10:57:07 2024
+] KEY_RIGHT: 7
+[Tue Nov 26 10:57:07 2024
+] KEY_RIGHT: 8
+[Tue Nov 26 10:57:09 2024
+] KEY_RIGHT: 9
+[Tue Nov 26 10:57:10 2024
+] KEY_RIGHT: 10
+[Tue Nov 26 10:57:10 2024
+] KEY_RIGHT: 11
+[Tue Nov 26 10:57:10 2024
+] KEY_RIGHT: 12
+[Tue Nov 26 10:57:10 2024
+] KEY_RIGHT: 13
+[Tue Nov 26 10:57:10 2024
+] KEY_RIGHT: 14
+[Tue Nov 26 10:57:26 2024
+] KEY_RIGHT: 15
+[Tue Nov 26 10:57:27 2024
+] KEY_RIGHT: 16
+[Tue Nov 26 10:57:27 2024
+] KEY_RIGHT: 17
+[Tue Nov 26 10:57:27 2024
+] get_new_char idx 위치임: 389
+[Tue Nov 26 10:57:27 2024
+] row 와 cols 위치:  row : 0 ,  cols : 18
+[Tue Nov 26 10:57:27 2024
+] get_new_char idx 위치임: 390
+[Tue Nov 26 10:57:27 2024
+] row 와 cols 위치:  row : 0 ,  cols : 19
+[Tue Nov 26 10:57:27 2024
+] get_new_char idx 위치임: 391
+[Tue Nov 26 10:57:27 2024
+] row 와 cols 위치:  row : 0 ,  cols : 20
+[Tue Nov 26 10:57:28 2024
+] get_new_char idx 위치임: 392
+[Tue Nov 26 10:57:28 2024
+] row 와 cols 위치:  row : 0 ,  cols : 21
+[Tue Nov 26 10:57:28 2024
+] get_new_char idx 위치임: 393
+[Tue Nov 26 10:57:28 2024
+] row 와 cols 위치:  row : 0 ,  cols : 22
+[Tue Nov 26 10:57:28 2024
+] get_new_char idx 위치임: 394
+[Tue Nov 26 10:57:28 2024
+] row 와 cols 위치:  row : 0 ,  cols : 23
+[Tue Nov 26 10:57:28 2024
+] get_new_char idx 위치임: 395
+[Tue Nov 26 10:57:28 2024
+] row 와 cols 위치:  row : 0 ,  cols : 24
+[Tue Nov 26 10:57:28 2024
+] get_new_char idx 위치임: 396
+[Tue Nov 26 10:57:28 2024
+] row 와 cols 위치:  row : 0 ,  cols : 25
+[Tue Nov 26 10:57:28 2024
+] get_new_char idx 위치임: 397
+[Tue Nov 26 10:57:28 2024
+] row 와 cols 위치:  row : 0 ,  cols : 26
+[Tue Nov 26 10:57:28 2024
+] get_new_char idx 위치임: 398
+[Tue Nov 26 10:57:28 2024
+] row 와 cols 위치:  row : 0 ,  cols : 27
+[Tue Nov 26 10:57:28 2024
+] get_new_char idx 위치임: 399
+[Tue Nov 26 10:57:28 2024
+] row 와 cols 위치:  row : 0 ,  cols : 28
+[Tue Nov 26 10:57:28 2024
+] get_new_char idx 위치임: 400
+[Tue Nov 26 10:57:28 2024
+] row 와 cols 위치:  row : 0 ,  cols : 29

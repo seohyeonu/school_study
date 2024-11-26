@@ -50,7 +50,7 @@ def fetch_and_download_images_from_iframe_container(
         driver.implicitly_wait(10)
 
         # iframe 전환
-        iframe = WebDriverWait(driver, 10).until(
+        iframe = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.ID, iframe_id))
         )
         driver.switch_to.frame(iframe)
