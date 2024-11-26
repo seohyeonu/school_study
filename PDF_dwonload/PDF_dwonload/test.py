@@ -32,7 +32,7 @@ def download_image(image_url, save_directory, filename):
 
 # 특정 iframe 내 컨테이너의 이미지 src 찾기 및 다운로드
 def fetch_and_download_images_from_iframe_container(
-    url, iframe_id="docFrame", container_id="container", save_directory="images"
+    url, iframe_id="docFrame", container_id="container", fnm_class="fnm", save_directory="images"
 ):
     # Chrome 옵션 설정
     chrome_options = Options()
@@ -43,7 +43,7 @@ def fetch_and_download_images_from_iframe_container(
     driver = webdriver.Chrome(options=chrome_options)
 
     image_paths = []
-    file_name = []
+    file_name = "output.pdf"  # 기본 파일 이름
 
     try:
         # URL 열기
@@ -56,6 +56,16 @@ def fetch_and_download_images_from_iframe_container(
         )
         driver.switch_to.frame(iframe)
 
+        # 파일 이름 설정 (class="fnm"에서 텍스트 가져오기)
+        try:
+            file_name_element = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CLASS_NAME, fnm_class))
+            )
+            file_name = file_name_element.text.strip() + ".pdf"  # 확장자 추가
+            print(f"File name set to: {file_name}")
+        except Exception as e:
+            print(f"Failed to fetch file name from class '{fnm_class}': {e}")
+
         # 컨테이너 요소 찾기
         container = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, container_id))
@@ -63,7 +73,6 @@ def fetch_and_download_images_from_iframe_container(
 
         # 컨테이너 내의 모든 이미지 태그 찾기
         image_elements = container.find_elements(By.TAG_NAME, "img")
-        file_name = container.find_elements(By.CLASS_NAME, "fnm")[0]
         print(f"Found {len(image_elements)} images in the container with ID '{container_id}' inside iframe '{iframe_id}'.")
 
         # 이미지 다운로드
@@ -106,11 +115,13 @@ def merge_images_to_pdf(image_paths, output_pdf):
 url = input("Enter the URL to fetch and download images: ")
 iframe_id = "docFrame"  # iframe ID
 container_id = "container"  # 컨테이너 ID
+fnm_class = "fnm"  # 파일 이름을 가져올 클래스
 save_directory = "images"
 
-
 # 특정 iframe 내 컨테이너의 이미지 다운로드
-image_paths, file_name = fetch_and_download_images_from_iframe_container(url, iframe_id, container_id, save_directory)
+image_paths, file_name = fetch_and_download_images_from_iframe_container(
+    url, iframe_id, container_id, fnm_class, save_directory
+)
 
 # 이미지 병합 및 PDF 생성
 if image_paths:
