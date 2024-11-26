@@ -43,6 +43,7 @@ def fetch_and_download_images_from_iframe_container(
     driver = webdriver.Chrome(options=chrome_options)
 
     image_paths = []
+    file_name = []
 
     try:
         # URL 열기
@@ -62,6 +63,7 @@ def fetch_and_download_images_from_iframe_container(
 
         # 컨테이너 내의 모든 이미지 태그 찾기
         image_elements = container.find_elements(By.TAG_NAME, "img")
+        file_name = container.find_elements(By.CLASS_NAME, "fnm")[0]
         print(f"Found {len(image_elements)} images in the container with ID '{container_id}' inside iframe '{iframe_id}'.")
 
         # 이미지 다운로드
@@ -83,7 +85,7 @@ def fetch_and_download_images_from_iframe_container(
         # WebDriver 종료
         driver.quit()
 
-    return image_paths
+    return image_paths, file_name
 
 
 # 이미지 파일들을 PDF로 병합
@@ -105,13 +107,13 @@ url = input("Enter the URL to fetch and download images: ")
 iframe_id = "docFrame"  # iframe ID
 container_id = "container"  # 컨테이너 ID
 save_directory = "images"
-output_pdf = "output.pdf"
+
 
 # 특정 iframe 내 컨테이너의 이미지 다운로드
-image_paths = fetch_and_download_images_from_iframe_container(url, iframe_id, container_id, save_directory)
+image_paths, file_name = fetch_and_download_images_from_iframe_container(url, iframe_id, container_id, save_directory)
 
 # 이미지 병합 및 PDF 생성
 if image_paths:
-    merge_images_to_pdf(image_paths, output_pdf)
+    merge_images_to_pdf(image_paths, file_name)
 else:
     print("No images were downloaded.")
