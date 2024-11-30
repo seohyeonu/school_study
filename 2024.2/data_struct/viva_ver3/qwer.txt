@@ -1,4 +1,4 @@
-The sun rises in the east.
+asdfasdfasdfasdfsdaThe sun rises in the east.
 Shasdfasde loves to read books.
 He iasdfasdfs good at cooking.
 They playasdfasdf soccer every Sunday.
@@ -29,7 +29,7 @@ He is good at cooking.
 They play soccer every Sunday.
 She works in a big company.
 I enjoy walking in the rain.
-The movie was very exciting.He likes to swim in tÿÿÿÿhe sea.The dog ÿÿÿÿbaÿÿÿÿrkÿÿÿÿed all night.
+The movie was very exciting.He likes to swim in tÿÿÿÿÿÿÿÿhe sea.The dog ÿÿÿÿbaÿÿÿÿrkÿÿÿÿed all night.
 They went on a long trip.
 She sings beautifully.
 We often go hiking together.
@@ -66,7 +66,7 @@ He reads the news daily.
 She has a new car.
 They moved to a new house.
 He loves spicy food.
-The coffee is tÿÿÿÿoo hot.
+The coffee ÿÿÿÿis tÿÿÿÿoo hot.
 I need a vacÿÿÿÿation soonÿÿÿÿÿÿÿÿ.
 The weather is nice today.
 They celebrated his birthday.
@@ -102,7 +102,7 @@ They celebrated his birthday.
 She enjoys painting landscapes.
 He is learning to play the guitar.
 The book is on the table.
-I drink coffee every morning.
+I drink coffee every morningÿÿÿÿ.
 She daÿÿÿÿnces with grace.
 He foundÿÿÿÿ his lost keys.
 ÿÿÿÿThÿÿÿÿe cake tastes delicious.
@@ -139,7 +139,7 @@ I like listening to music.
 The baby smiled at me.
 They left early for work.The sun rises in the east.
 She loves to read books.
-He is good at cooking.
+He is good ÿÿÿÿat cooking.
 ÿÿÿÿThey play soccer every Sunday.ÿÿÿÿ
 She works in a big ÿÿÿÿcompanÿÿÿÿy.
 I enjoy walking in the rain.
@@ -176,7 +176,7 @@ The movie was very exciting.
 He likes to swim in the sea.
 The dog barked all night.
 They went on a long trip.
-She sings beautifullÿÿÿÿy.
+She ÿÿÿÿsings beautifullÿÿÿÿy.
 We often go hiking together.
 He ÿÿÿÿreads the news daily.
 Shÿÿÿÿe has a neÿÿÿÿw car.
@@ -196,6 +196,7 @@ The cake tastes delicious.
 I like listening to music.
 The baby smiled at me.
 They left early for work.......
+
 
 
 

@@ -385,14 +385,14 @@ int main(int argc, char* argv[]) {
                 is_changed = 0;
             } else{
                 wclear(messenger_bar);
-                char file_name_save[256]; // 파일 이름을 저장할 버퍼
+                char file_name_save[5000]; // 파일 이름을 저장할 버퍼
                 file_name = file_name_save;
                 // 메시지 바에서 파일 이름 입력받기
                 mvwprintw(messenger_bar, 0, 0, "Enter file name to save: ");
                 wrefresh(messenger_bar);
 
-                echo(); // 입력된 문자를 화면에 표시
-                wgetnstr(messenger_bar, file_name_save, sizeof(file_name) - 1); // 파일 이름 입력 받기
+                echo(); // 입력된 문자를 화면에 표시 sizeof(file_name) - 1
+                wgetnstr(messenger_bar, file_name_save, 100); // 파일 이름 입력 받기
                 noecho(); // 입력된 문자 표시 중단
                 wclear(messenger_bar);
                 wrefresh(messenger_bar);
@@ -550,10 +550,13 @@ int main(int argc, char* argv[]) {
 
         else if(c == KEY_DOWN){
 //            getsyx(row_location, cols_location);
-            if(row_location<size_of_row-2) {
+            if(row_location+start > head->new_line -2){
+                continue;
+            }
+            if(row_location + start <size_of_row-2) {
 
-                if(cols_location > row_array[row_location + 1]) {
-                    cols_location = row_array[row_location + 1];
+                if(cols_location > row_array[row_location +start+ 1]) {
+                    cols_location = row_array[row_location + start + 1];
                 }
                 row_location++;
                 wmove(main_win, row_location, cols_location);
@@ -597,11 +600,11 @@ int main(int argc, char* argv[]) {
                 if(row_location + start == 0){
                     continue;
                 }
-                del_char(head, row_location, cols_location);
-                cols_location = row_array[row_location-1];
+                del_char(head, row_location + start, cols_location);
+                cols_location = row_array[5]; //row_location + start -1
                 row_location--;
             } else{
-                del_char(head, row_location, cols_location);
+                del_char(head, row_location + start, cols_location);
                 cols_location--;
             }
         }
@@ -616,6 +619,9 @@ int main(int argc, char* argv[]) {
         }
 
         else if(c == KEY_NPAGE){
+            if(start + size_of_row > head->new_line){
+                continue;
+            }
             start = start + size_of_row;
         }
 
