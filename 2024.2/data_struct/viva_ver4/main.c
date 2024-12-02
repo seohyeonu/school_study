@@ -1220,10 +1220,7 @@ int main(int argc, char* argv[]) {
         }
 
         else if(c == KEY_BACKSPACE || c == 127 || c == '\b'){
-            is_changed = 1;
-            //getsyx(row_location, cols_location);
-
-            if(cols_location == 0){
+            is_changed = 1;123 0){
                 if(row_location + start == 0){
                     continue;
                 }
