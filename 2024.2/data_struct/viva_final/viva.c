@@ -1,5 +1,5 @@
 #ifdef _WIN32
-    #include <pdcurses/curses.h>
+    #include "curses.h"
     #include <stdio.h>
     #include <string.h>
     #include <stdlib.h>
@@ -17,7 +17,7 @@
     };
     typedef struct row Pad;
 
-    // KMP 알고리즘: 실패 함수 생성
+
     void computeLPSArray(const char* pattern, int M, int* lps) {
         int length = 0;
         int i = 1;
@@ -98,7 +98,6 @@
         int new_line_count = 0;
         int idx = 0;
 
-        // 첫 번째 문자 입력 시의 특별 처리
         if (cur->count_for_cols == 0) {
             return cols_position;
         }
@@ -289,7 +288,7 @@
         WINDOW* status_bar = newwin(1, size_of_cols, size_of_row - 2, 0);
 
         noecho();
-        cbreak();  // raw() 대신 사용
+        cbreak();
         keypad(main_win, TRUE);
 
         mvwprintw(main_win, size_of_row / 2, size_of_cols / 2 - 22, "Visual Text editor -- version 0.0.1");
@@ -352,7 +351,7 @@
                     wclear(messenger_bar);
                     mvwprintw(messenger_bar, 0, 0, "File_is_saved");
                     wrefresh(messenger_bar);
-                    Sleep(1000);  // Windows sleep function
+                    Sleep(1000);
                     wclear(messenger_bar);
                     mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
                     wrefresh(messenger_bar);
@@ -375,7 +374,7 @@
                     fclose(save_file_path);
                     mvwprintw(messenger_bar, 0, 0, "File saved to: %s", file_name);
                     wrefresh(messenger_bar);
-                    Sleep(1000);  // Windows sleep
+                    Sleep(1000);
                     wclear(messenger_bar);
                     mvwprintw(messenger_bar, 0, 0, "HELP: Ctrl - S = save | Ctrl-Q = quit | Ctrl-F = find");
                     wrefresh(messenger_bar);
@@ -408,7 +407,6 @@
                         wclear(main_win);
                         print_win(main_win, head, start, start + size_of_row - 2);
 
-                        // 모든 검색 결과 하이라이팅
                         for (int i = 0; i < found_count; i++) {
                             int match_idx = results[i];
                             int rel_row = 0, rel_col = 0;
@@ -557,17 +555,17 @@
                 cols_location = 0;
             } else if (c == KEY_END) {
                 cols_location = row_array[row_location];
-            } else if (c == KEY_NPAGE) {  // Page Down
+            } else if (c == KEY_NPAGE) {
                 if (start + size_of_row > head->new_line) {
                     continue;
                 }
                 start = start + size_of_row;
-            } else if (c == KEY_PPAGE) {  // Page Up
+            } else if (c == KEY_PPAGE) {
                 if (start - size_of_row < 0) {
                     continue;
                 }
                 start = start - size_of_row;
-            } else if ((c >= 32 && c <= 126)) {  // Printable ASCII characters
+            } else if ((c >= 32 && c <= 126)) {
                 head = get_new_char(head, row_location + start, cols_location, c, log_file);
                 cols_location++;
                 wmove(main_win, row_location, cols_location);
@@ -587,7 +585,7 @@
                 head->new_line++;
             }
 
-            free(row_array);  // 메모리 해제
+            free(row_array);
             wmove(main_win, row_location, cols_location);
             wrefresh(main_win);
         }
@@ -623,7 +621,6 @@
         };
         typedef struct row Pad;
 
-        // KMP 알고리즘: 실패 함수 생성
         void computeLPSArray(const char* pattern, int M, int* lps) {
             int length = 0;
             int i = 1;
@@ -646,42 +643,41 @@
         }
 
         int* KMPSearch(const char* pattern, const char* text, int* found_count) {
-            int M = strlen(pattern); // 패턴의 길이
-            int N = strlen(text);    // 텍스트의 길이
-            int* lps = (int*)malloc(M * sizeof(int)); // LPS 배열 생성
-            int* results = NULL;     // 결과 배열 초기화
-            *found_count = 0;        // 찾은 결과 개수 초기화
+            int M = strlen(pattern);
+            int N = strlen(text);
+            int* lps = (int*)malloc(M * sizeof(int));
+            int* results = NULL;
+            *found_count = 0;
 
-            computeLPSArray(pattern, M, lps); // LPS 배열 계산
+            computeLPSArray(pattern, M, lps);
 
-            int i = 0; // 텍스트의 현재 인덱스
-            int j = 0; // 패턴의 현재 인덱스
+            int i = 0;
+            int j = 0;
             while (i < N) {
                 if (pattern[j] == text[i]) {
                     j++;
                     i++;
                 }
                 if (j == M) {
-                    // 패턴이 일치하는 시작 인덱스 저장
                     results = (int*)realloc(results, (*found_count + 1) * sizeof(int));
                     if (!results) {
                         fprintf(stderr, "메모리 재할당 오류!\n");
                         exit(1);
                     }
-                    results[*found_count] = i - j; // 일치하는 시작 인덱스
+                    results[*found_count] = i - j;
                     (*found_count)++;
-                    j = lps[j - 1]; // 패턴의 다음 비교 위치 설정
+                    j = lps[j - 1];
                 } else if (i < N && pattern[j] != text[i]) {
                     if (j != 0) {
-                        j = lps[j - 1]; // LPS를 사용해 패턴 인덱스 재조정
+                        j = lps[j - 1];
                     } else {
                         i++;
                     }
                 }
             }
 
-            free(lps); // LPS 배열 해제
-            return results; // 결과 배열 반환
+            free(lps);
+            return results;
         }
 
 
@@ -706,26 +702,23 @@
 
 
             for (int i = 0; i < cur->count_for_cols; i++) {
-            // 현재 위치가 목표하는 행(row_position)에 도달하면
+
             if (new_line_count == row_position) {
-                // 현재 위치에서 cols_position만큼 이동한 인덱스를 반환
                 if (i + cols_position < cur->count_for_cols) {
                     idx = i + cols_position;
                 } else {
-                    // 열이 범위를 벗어나면 가능한 최대 인덱스로 설정
+
                     idx = cur->count_for_cols - 1;
                 }
                 return idx;
             }
 
-            // '\n'을 만나면 새로운 행 시작을 의미하므로 new_line_count 증가
             if (cur->arr[i] == '\n') {
                 new_line_count++;
             }
         }
 
-        // 만약 row_position에 해당하는 행이 존재하지 않는다면
-        // 배열의 끝을 반환 (이후 처리가 가능하도록 -1을 반환할 수도 있음)
+
         return cur->count_for_cols;
     }
 
@@ -779,7 +772,6 @@
             cur->arr = temp;
         }
 
-        // `x` 문자 삽입
         cur->arr[cur->count_for_cols++] = x;
         if(x == '\n'){
             cur->new_line++;
@@ -1043,7 +1035,6 @@
                         wclear(main_win);
                         print_win(main_win, head, start, start + size_of_row - 2);
 
-                        // 모든 검색 결과를 하이라이팅
                         for (int i = 0; i < found_count; i++) {
                             int match_idx = results[i];
                             int rel_row = 0, rel_col = 0;
@@ -1058,7 +1049,6 @@
                                 }
                             }
 
-                            // 화면 내에 있는 결과만 하이라이팅
                             if (rel_row >= start && rel_row < start + size_of_row - 2) {
                                 wattron(main_win, A_REVERSE);
                                 mvwprintw(main_win, rel_row - start, rel_col, "%.*s", (int)strlen(search_pattern), search_pattern);
@@ -1066,11 +1056,10 @@
                             }
                         }
 
-                        // 현재 선택된 검색 결과를 강조 표시
                         int selected_idx = results[current_match];
                         int selected_row = 0, selected_col = 0;
 
-                        // 선택된 인덱스의 행과 열 계산
+
                         for (int j = 0; j < selected_idx; j++) {
                             if (head->arr[j] == '\n') {
                                 selected_row++;
@@ -1080,14 +1069,14 @@
                             }
                         }
 
-                        // 선택된 검색 결과가 화면 밖이면 이동
+
                         if (selected_row < start) {
-                            start = selected_row; // 위로 스크롤
+                            start = selected_row;
                         } else if (selected_row >= start + size_of_row - 2) {
-                            start = selected_row - (size_of_row - 3); // 아래로 스크롤
+                            start = selected_row - (size_of_row - 3);
                         }
 
-                        // 선택된 검색 결과 강조
+
                         wattron(main_win, A_BOLD | A_UNDERLINE);
                         mvwprintw(main_win, selected_row - start, selected_col, "%.*s", (int)strlen(search_pattern), search_pattern);
                         wattroff(main_win, A_BOLD | A_UNDERLINE);
@@ -1249,18 +1238,9 @@
                      c == '?' || c == '!' || c == '@' || c == '#' || c == '$' || c == '%' || c == '^' || c == '&' || c == '*' || c == '('
                      || c == ')' || c == '-' || c == '_' || c == '+' || c == '=' || c == '<' || c == '>' || c == '/' || c == '|' || c == '\\'
                      || c == '[' || c == ']' || c == '{' || c == '}' || c == ':' || c == ';' || c == '"' || c == '\'' ) {
-                // 문자 입력 일 때
-                //getsyx(row_location, cols_location);
-    //            if (cols_location == size_of_cols - 1) { // 커서가 오른쪽 끝에 있는 경우
-    //                head = get_new_char(head, row_location, cols_location, '\n', log_file);
-    //                row_location++; // 줄을 한 줄 내림
-    //                cols_location = 0; // 커서를 맨 앞 열로 설정
-    //                wmove(main_win,row_location, cols_location);
-    //            } else {
                 cols_location++;
                 head = get_new_char(head, row_location + start, cols_location, c, log_file);
                 wmove(main_win,row_location, cols_location); // 오른쪽으로 한 칸 이동
-    //            }
                 is_changed = 1;
                 log_row_cols_message(log_file,"row 와 cols 위치", row_location, cols_location);
             }
