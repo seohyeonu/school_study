@@ -39,7 +39,7 @@ def fetch_and_merge_images_to_pdf(
             file_name_element = WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, fnm_class))
             )
-            file_name = file_name_element.text.strip()
+            file_name = file_name_element.text.strip() + ".pdf"
             print(f"File name set to: {file_name}")
         except Exception as e:
             print(f"Failed to fetch file name from class '{fnm_class}': {e}")
@@ -63,10 +63,14 @@ def fetch_and_merge_images_to_pdf(
                     response.raise_for_status()
                     image = Image.open(BytesIO(response.content)).convert("RGB")
                     images.append(image)
+                    # 메모리 절약을 위해 이미지를 즉시 저장 및 닫기
+                    if len(images) > 50:  # 50개 이상 이미지 처리 시 메모리 정리
+                        images[0].save(file_name, save_all=True, append_images=images[1:])
+                        images = []  # 이미지 리스트 초기화
             except Exception as e:
                 print(f"Error processing image {index + 1}: {e}")
 
-        # PDF 생성
+        # 남아있는 이미지를 최종적으로 PDF로 저장
         if images:
             images[0].save(file_name, save_all=True, append_images=images[1:])
             print(f"PDF saved successfully at: {file_name}")

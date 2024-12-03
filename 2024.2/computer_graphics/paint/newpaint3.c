@@ -1,17 +1,3 @@
-/* This program illustrates the use of the glut library for
-interfacing with a window system */
-
-//이것들은 걍 enum관련된게 없어서 해놓은듯. 원 그리기나 추가 기능들 넣으려면 여기서 설정 해주고 밑에서 추가적으로 적으면 됨
-/*
-#define NULL 0
-#define LINE 1
-#define RECTANGLE 2
-#define TRIANGLE  3
-#define POINTS 4
-#define TEXT 5
-#define CIRCLE 6
-*/
-
 enum MODE { NULL, LINE, RECTANGLE, TRIANGLE, POINTS, STAR, CIRCLE, DRAW, ERASE, PENTAGON, HEXAGON, HEART };
 typedef enum { false1, true1 } boolean;
 
@@ -82,7 +68,7 @@ struct object
 	struct object* next;
 }*head, * tail, * lineObj, * draw, * redo;
 
-//오브젝트 리스트 초기값 설정
+
 void initObj(struct object* obj)
 {
 	obj->vertex = '\0';
