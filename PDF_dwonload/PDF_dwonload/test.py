@@ -20,9 +20,8 @@ def fetch_and_merge_images_to_pdf(
     # WebDriver 초기화
     driver = webdriver.Chrome(options=chrome_options)
 
-    file_name = output_pdf  # 기본 파일 이름
-    temp_images = []  # 병합 중 임시로 사용할 이미지 리스트
     final_images = []  # 최종 병합 대상 이미지 리스트
+    file_name = output_pdf  # 기본 파일 이름
 
     try:
         # URL 열기
@@ -63,24 +62,9 @@ def fetch_and_merge_images_to_pdf(
                     response = requests.get(src, stream=True)
                     response.raise_for_status()
                     image = Image.open(BytesIO(response.content)).convert("RGB")
-                    temp_images.append(image)
-
-                    # 임시 저장 후 메모리 초기화
-                    if len(temp_images) >= 10:  # 임시 이미지 리스트 크기 제한
-                        if not final_images:
-                            final_images = temp_images.copy()
-                        else:
-                            final_images.extend(temp_images)
-                        temp_images.clear()  # 임시 리스트 초기화
+                    final_images.append(image)  # 최종 병합 리스트에 추가
             except Exception as e:
                 print(f"Error processing image {index + 1}: {e}")
-
-        # 마지막 남은 이미지를 병합 리스트에 추가
-        if temp_images:
-            if not final_images:
-                final_images = temp_images.copy()
-            else:
-                final_images.extend(temp_images)
 
         # PDF 생성
         if final_images:
