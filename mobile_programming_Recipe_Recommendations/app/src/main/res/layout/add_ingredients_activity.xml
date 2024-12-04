@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_ingredients"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafaf2"
+    tools:context=".AddIngredients">
+
+    <ImageView
+        android:id="@+id/title"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/add_title"/>
+
+    <ImageButton
+        android:id="@+id/returnMy_refrigerator"
+        android:layout_marginTop="18dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#00000000"
+        android:scaleType="centerCrop"
+        android:src="@drawable/button_back"/>
+
+    <ImageView
+        android:id="@+id/searchBar"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/search_bar"/>
+    <EditText
+        android:id="@+id/searchName"
+        android:layout_marginLeft="90dp"
+        android:layout_marginBottom="16dp"
+        android:layout_alignBottom="@+id/searchBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:textSize="15sp"
+        android:background="@null"
+        android:hint="식재료, 레시피 등을 입력해주세요"/>
+
+    <ListView
+        android:id="@+id/listItem"
+        android:layout_below="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

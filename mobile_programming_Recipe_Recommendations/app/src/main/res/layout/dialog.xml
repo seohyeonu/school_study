@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafaf2"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/titleText"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/expiration_date_input"/>
+
+    <DatePicker
+        android:id="@+id/expiration_date_input"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"/>
+
+    <ImageButton
+        android:id="@+id/expiration_date_input_commit"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="right"
+        android:layout_width="110dp"
+        android:layout_height="60dp"
+        android:scaleType="centerCrop"
+        android:backgroundTint="#00000000"
+        android:src="@drawable/expiration_date_input_commit"/>
+
+</LinearLayout>

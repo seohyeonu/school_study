@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/pic3" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="99dp"
+                android:layout_height="90dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/pic4" />
+
+            <ImageButton
+                android:id="@+id/button1"
+                android:layout_width="98dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/mybtn1" />
+            <ImageButton
+                android:id="@+id/button2"
+                android:layout_width="98dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/mybtn2" />
+            <ImageButton
+                android:id="@+id/button3"
+                android:layout_width="98dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/mybtn3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="95dp"
+                android:layout_height="40dp"
+                android:src="@drawable/search1"
+                android:background="@null" />
+
+            <EditText
+                android:id="@+id/editTextWithBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/search2"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="116dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/rcmd" />
+
+            <ImageButton
+                android:id="@+id/button5"
+                android:layout_width="match_parent"
+                android:layout_height="295dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:padding="5dp"
+                android:src="@drawable/pic5" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/horizontalRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="220dp" />
+
+    </LinearLayout>
+
+</ScrollView>
