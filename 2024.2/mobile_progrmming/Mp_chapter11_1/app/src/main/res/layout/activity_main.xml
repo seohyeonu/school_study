@@ -6,45 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="이름 입력"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextId"
-        android:hint="학번 입력"
-        android:inputType="number"/>
-
+    <!-- 추가하기 버튼 -->
     <Button
+        android:id="@+id/buttonAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonRegister"
-        android:text="등록"/>
+        android:text="추가하기"
+        android:layout_marginBottom="8dp" />
 
+    <!-- 검색하기 버튼 -->
     <Button
+        android:id="@+id/buttonSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonUpdate"
-        android:text="수정"
-        android:enabled="false"/>
+        android:text="검색하기"
+        android:layout_marginBottom="16dp" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonDelete"
-        android:text="삭제"
-        android:enabled="false"/>
-
+    <!-- 리스트뷰 -->
     <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id = "@+id/listView"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
 </LinearLayout>
