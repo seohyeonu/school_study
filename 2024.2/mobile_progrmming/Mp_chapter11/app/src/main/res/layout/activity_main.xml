@@ -8,23 +8,43 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
+<EditText
+    android:id="@+id/editTextName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="이름 입력"/>
+
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="연락처 추가"
-        android:textSize="20sp"
-        android:id="@+id/add"/>
+        android:id="@+id/editTextId"
+        android:hint="학번 입력"
+        android:inputType="number"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="연락처 검색"
-        android:textSize="20sp"
-        android:id="@+id/search"/>
+        android:id="@+id/buttonRegister"
+        android:text="등록"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonUpdate"
+        android:text="수정"
+        android:enabled="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonDelete"
+        android:text="삭제"
+        android:enabled="false"/>
 
     <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/list_item"/>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id = "@+id/listView"
+        android:layout_weight="1"/>
 
 </LinearLayout>

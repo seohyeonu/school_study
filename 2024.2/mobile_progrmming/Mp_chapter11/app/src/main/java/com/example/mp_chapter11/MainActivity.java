@@ -1,7 +1,6 @@
 package com.example.mp_chapter11;
 
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,7 +9,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button search = findViewById(R.id.search);
-        Button buttonRegister = findViewById(R.id.add);
-        listView = findViewById(R.id.list_item);
+        editTextName = findViewById(R.id.editTextName);
+        editTextId = findViewById(R.id.editTextId);
+        Button buttonRegister = findViewById(R.id.buttonRegister);
+        buttonDelete = findViewById(R.id.buttonDelete);
+        buttonUpdate = findViewById(R.id.buttonUpdate);
+        listView = findViewById(R.id.listView);
 
         dbHelper = new DatabaseHelper(this);
 
@@ -91,4 +92,5 @@ public class MainActivity extends AppCompatActivity {
         buttonDelete.setEnabled(false);
         buttonUpdate.setEnabled(false);
     }
+
 }
