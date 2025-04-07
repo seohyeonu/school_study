@@ -1,0 +1,3 @@
+/Users/hyeonu/school_study/2025.1/system_programming/week5/cmake-build-debug/CMakeFiles/week5.dir
+/Users/hyeonu/school_study/2025.1/system_programming/week5/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/hyeonu/school_study/2025.1/system_programming/week5/cmake-build-debug/CMakeFiles/rebuild_cache.dir
