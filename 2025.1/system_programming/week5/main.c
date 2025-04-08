@@ -5,8 +5,24 @@
 #include "string.h"
 
 void Insert(){
+    FILE *rfp = NULL;
+    FILE *wfp = NULL;
+    char buf[BUFSIZ];
     char st_no[200] = {"\0", };
-    int ko, en, math, so, sc;
+    char ko[3], en[3], math[3], so[3], sc[3];
+
+    if((rfp = fopen("Score.bat", "wrb")) == NULL){
+        perror("Open Fail!\n");
+        exit(1);
+    }
+    if((wfp = fopen("Score.bak", "wrb")) == NULL){
+        perror("Open Fail!\n");
+        exit(1);
+    }
+    while (fgets(buf, BUFSIZ, rfp) != NULL){
+        fputs(buf, wfp);
+    }
+
     printf("입력 모드로 진입합니다.\n");
 
     while (1){
@@ -29,6 +45,7 @@ void Insert(){
             else printf("학번에 숫자외 다른 문자가 포함되었습니다. 다시 입력해 주세요.\n");
         }
     }
+
 }
 
 void Modify(){
@@ -43,6 +60,7 @@ void Print(){
 
 int main(void) {
     int menu=0;
+
     while (1){
         printf("입력 모드: 1, 수정 모드: 2, 출력 모드: 3, 종료: 4\n");
         scanf("%d", &menu);

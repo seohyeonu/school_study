@@ -1,0 +1,1 @@
+/usr/bin/gcc -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/week5.dir/main.c.o -o week5 
