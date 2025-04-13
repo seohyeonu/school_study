@@ -76,7 +76,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/hyeonu/school_study/2025.1/system_programming/week5/gpt.c">
+			<Option target="week5"/>
+		</Unit>
 		<Unit filename="/Users/hyeonu/school_study/2025.1/system_programming/week5/main.c">
+			<Option target="week5"/>
+		</Unit>
+		<Unit filename="/Users/hyeonu/school_study/2025.1/system_programming/week5/scoreAnalyze.c">
 			<Option target="week5"/>
 		</Unit>
 		<Unit filename="/Users/hyeonu/school_study/2025.1/system_programming/week5/CMakeLists.txt">

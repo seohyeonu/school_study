@@ -129,6 +129,30 @@ week5/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/week5.dir/build.make CMakeFiles/week5.dir/build
 .PHONY : week5/fast
 
+gpt.o: gpt.c.o
+.PHONY : gpt.o
+
+# target to build an object file
+gpt.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week5.dir/build.make CMakeFiles/week5.dir/gpt.c.o
+.PHONY : gpt.c.o
+
+gpt.i: gpt.c.i
+.PHONY : gpt.i
+
+# target to preprocess a source file
+gpt.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week5.dir/build.make CMakeFiles/week5.dir/gpt.c.i
+.PHONY : gpt.c.i
+
+gpt.s: gpt.c.s
+.PHONY : gpt.s
+
+# target to generate assembly for a file
+gpt.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week5.dir/build.make CMakeFiles/week5.dir/gpt.c.s
+.PHONY : gpt.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -153,6 +177,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/week5.dir/build.make CMakeFiles/week5.dir/main.c.s
 .PHONY : main.c.s
 
+scoreAnalyze.o: scoreAnalyze.c.o
+.PHONY : scoreAnalyze.o
+
+# target to build an object file
+scoreAnalyze.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week5.dir/build.make CMakeFiles/week5.dir/scoreAnalyze.c.o
+.PHONY : scoreAnalyze.c.o
+
+scoreAnalyze.i: scoreAnalyze.c.i
+.PHONY : scoreAnalyze.i
+
+# target to preprocess a source file
+scoreAnalyze.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week5.dir/build.make CMakeFiles/week5.dir/scoreAnalyze.c.i
+.PHONY : scoreAnalyze.c.i
+
+scoreAnalyze.s: scoreAnalyze.c.s
+.PHONY : scoreAnalyze.s
+
+# target to generate assembly for a file
+scoreAnalyze.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/week5.dir/build.make CMakeFiles/week5.dir/scoreAnalyze.c.s
+.PHONY : scoreAnalyze.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,9 +210,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... week5"
+	@echo "... gpt.o"
+	@echo "... gpt.i"
+	@echo "... gpt.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... scoreAnalyze.o"
+	@echo "... scoreAnalyze.i"
+	@echo "... scoreAnalyze.s"
 .PHONY : help
 
 
