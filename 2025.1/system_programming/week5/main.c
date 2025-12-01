@@ -7,7 +7,6 @@
 #define BUFSIZ_CUSTOM 1024
 #define RECORD_SIZE 23
 
-/* 쉼표 제거: "49," -> "49" */
 static void removeComma(char *scoreField) {
     for (int i = 0; i < 3; i++) {
         if (scoreField[i] == ',') {
@@ -17,7 +16,6 @@ static void removeComma(char *scoreField) {
     }
 }
 
-/* 정수를 문자열로 변환 후, 길이가 3보다 작으면 부족한 자리를 ','로 채우고 마지막에 '\0' */
 void int2String(char *head) {
     int len = strlen(head);
     for (int i = len; i < 3; i++) {
@@ -26,7 +24,6 @@ void int2String(char *head) {
     head[3] = '\0';
 }
 
-/* 성적이 0~100 범위 안에 있는지 검사 */
 int scoreInputCheck(int score) {
     if (score < 0 || score > 100) {
         printf("잘못된 입력입니다. (0~100 사이의 정수이어야 합니다.)\n");
@@ -35,7 +32,6 @@ int scoreInputCheck(int score) {
     return 0;
 }
 
-/* record(23바이트)에서 주어진 과목("국어", "영어", "수학", "사회", "과학")의 점수를 scoreBuf에 저장 */
 void getSubjectScore(const char *record, const char *subject, char *scoreBuf)
 {
     int offset = 0;
@@ -53,14 +49,8 @@ void getSubjectScore(const char *record, const char *subject, char *scoreBuf)
     removeComma(scoreBuf);
 }
 
-/* Insert 함수
-   - 사용자로부터 학번과 5과목 성적을 입력받아 23바이트 레코드를 만듭니다.
-   - Score.bak(바이너리 파일)에서 동일 학번을 검색하여 있으면 해당 위치에 덮어쓰고,
-     없으면 파일 끝에 새 레코드를 추가합니다.
-*/
 void Insert(FILE *fpBak) {
-    char student[100];
-    char st_no[100];
+    char student[100], st_no[100];
     int score[5];
     char ko_st[4], en_st[4], math_st[4], so_st[4], sc_st[4];
     char temp;
@@ -68,212 +58,61 @@ void Insert(FILE *fpBak) {
     printf("입력 모드로 진입합니다.\n");
 
     while (1) {
-        printf("학번을 입력하세요 (8자리, 종료하려면 '0' 입력):\n");
+        // 1) 학번 입력
+        printf("학번을 입력하세요 (8자리, 종료하려면 '0' 입력): ");
         scanf("%s", st_no);
-        if (strlen(st_no) != 8) {
-            if (strlen(st_no) == 1 && st_no[0] == '0') {
-                printf("입력모드를 종료합니다.\n");
-                return;
-            }
-            printf("잘못된 학번입니다. 다시 입력하세요.\n");
-            continue;
-        }
-        int validStudent = 1;
-        for (int i = 0; i < 8; i++) {
-            if (st_no[i] < '0' || st_no[i] > '9') {
-                printf("학번에 숫자 외 다른 문자가 포함되었습니다. 다시 입력해 주세요.\n");
-                validStudent = 0;
-                break;
-            }
-        }
-        if (!validStudent)
-            continue;
-
-        input_score:
-        while (1) {
-            int result;
-            printf("성적을 입력하세요.\n");
-            printf("국어, 영어, 수학, 사회, 과학 순으로 정수(0~100)를 입력하세요:\n");
-            result = scanf("%d %d %d %d %d",
-                           &score[0], &score[1], &score[2], &score[3], &score[4]);
-            if (result != 5) {
-                printf("잘못된 입력입니다. 정수만 입력하세요.\n");
-                while(getchar() != '\n');
-                continue;
-            }
-            int validScore = 1;
-            for (int i = 0; i < 5; i++) {
-                if (scoreInputCheck(score[i]) == -1) {
-                    validScore = 0;
-                    break;
-                }
-            }
-            if (!validScore) {
-                printf("입력한 성적 중 범위를 벗어난 값이 있습니다. 다시 입력해주세요.\n");
-                continue;
-            }
-            break;
-        }
-
-        printf("입력하신 성적은 아래와 같습니다.\n");
-        printf("%d %d %d %d %d\n", score[0], score[1], score[2], score[3], score[4]);
-        printf("맞다면 y, 다시 입력하시려면 n: ");
-        scanf(" %c", &temp);
-
-        if (temp != 'y' && temp != 'Y') {
-            printf("다시 성적을 입력합니다.\n");
-            goto input_score;
-        }
-
-        /* 점수를 3자리 문자열로 변환 */
-        sprintf(ko_st, "%d", score[0]);
-        sprintf(en_st, "%d", score[1]);
-        sprintf(math_st, "%d", score[2]);
-        sprintf(so_st, "%d", score[3]);
-        sprintf(sc_st, "%d", score[4]);
-        int2String(ko_st);
-        int2String(en_st);
-        int2String(math_st);
-        int2String(so_st);
-        int2String(sc_st);
-
-        /* 학번과 과목 문자열을 결합하여 23바이트 레코드 생성 */
-        memset(student, 0, sizeof(student));
-        strcat(student, st_no);
-        strcat(student, ko_st);
-        strcat(student, en_st);
-        strcat(student, math_st);
-        strcat(student, so_st);
-        strcat(student, sc_st);
-
-        /* 동일 학번이 이미 있는지 검사 */
-        fseek(fpBak, 0, SEEK_SET);
-        char recordBuf[24];
-        int found = 0;
-        long pos = 0;
-        while (fread(recordBuf, 1, RECORD_SIZE, fpBak) == RECORD_SIZE) {
-            recordBuf[RECORD_SIZE] = '\0';
-            if (strncmp(recordBuf, st_no, 8) == 0) {
-                found = 1;
-                pos = ftell(fpBak) - RECORD_SIZE;
-                break;
-            }
-        }
-        if (found) {
-            fseek(fpBak, pos, SEEK_SET);
-            fwrite(student, 1, RECORD_SIZE, fpBak);
-            printf("이미 존재하는 학번이므로 기존 레코드가 갱신되었습니다.\n");
-        } else {
-            fseek(fpBak, 0, SEEK_END);
-            fwrite(student, 1, RECORD_SIZE, fpBak);
-            printf("새 레코드가 추가되었습니다.\n");
-        }
-    }
-}
-
-/* Modify 함수
-   - 사용자로부터 수정할 학번을 입력받고, 파일에서 해당 레코드를 검색하여
-     새 성적 입력 후 같은 형식의 23바이트 레코드를 덮어씁니다.
-*/
-void Modify(FILE *fpBak)
-{
-    char st_no[100];
-    char recordBuf[24];
-    int score[5];
-    char temp;
-
-    printf("수정 모드로 진입합니다.\n");
-
-    while (1) {
-        printf("\n수정할 학번을 입력하세요 (8자리, 종료하려면 '0' 입력): ");
-        scanf("%s", st_no);
-
         if (strlen(st_no) == 1 && st_no[0] == '0') {
-            printf("수정 모드를 종료합니다.\n");
+            printf("입력모드를 종료합니다.\n");
             return;
         }
         if (strlen(st_no) != 8) {
             printf("잘못된 학번입니다. 다시 입력하세요.\n");
             continue;
         }
-        int validStudent = 1;
+        int valid = 1;
         for (int i = 0; i < 8; i++) {
             if (st_no[i] < '0' || st_no[i] > '9') {
-                printf("학번에 숫자 외 다른 문자가 포함되었습니다. 다시 입력해 주세요.\n");
-                validStudent = 0;
-                break;
+                printf("학번에 숫자가 아닌 문자가 포함되었습니다.\n");
+                valid = 0; break;
             }
         }
-        if (!validStudent) continue;
+        if (!valid) continue;
 
-        fflush(fpBak);
-        fseek(fpBak, 0, SEEK_SET);
-
-        int found = 0;
-        long pos = 0;
-        while (fread(recordBuf, 1, RECORD_SIZE, fpBak) == RECORD_SIZE) {
-            recordBuf[RECORD_SIZE] = '\0';
-            if (strncmp(recordBuf, st_no, 8) == 0) {
-                found = 1;
-                pos = ftell(fpBak) - RECORD_SIZE;
-                break;
-            }
-        }
-        if (!found) {
-            printf("해당 학번 [%s] 은(는) 파일에 존재하지 않습니다.\n", st_no);
-            continue;
-        }
-
-        input_score:
+        // 2) 성적 입력
         while (1) {
-            printf("수정할 성적을 입력하세요.\n");
-            printf("국어, 영어, 수학, 사회, 과학 순으로 정수(0~100)를 입력: ");
-            int result = scanf("%d %d %d %d %d",
-                               &score[0], &score[1], &score[2], &score[3], &score[4]);
-            if (result != 5) {
-                printf("잘못된 입력입니다. 정수만 입력하세요.\n");
-                while(getchar() != '\n');
+            printf("성적을 입력하세요 (국어 영어 수학 사회 과학, 0~100): ");
+            if (scanf("%d %d %d %d %d",
+                      &score[0], &score[1], &score[2],
+                      &score[3], &score[4]) != 5) {
+                printf("잘못된 입력입니다. 정수 5개를 입력하세요.\n");
+                while(getchar()!='\n');
                 continue;
             }
-            int validScore = 1;
-            for (int i = 0; i < 5; i++) {
-                if (scoreInputCheck(score[i]) == -1) {
-                    validScore = 0;
-                    break;
-                }
-            }
-            if (!validScore) {
-                printf("입력한 성적 중 범위를 벗어난 값이 있습니다. 다시 입력해주세요.\n");
-                continue;
-            }
+            int ok = 1;
+            for (int i = 0; i < 5; i++)
+                if (scoreInputCheck(score[i]) < 0) ok = 0;
+            if (!ok) continue;
             break;
         }
 
-        printf("수정할 성적은 다음과 같습니다.\n");
-        printf("%d %d %d %d %d\n", score[0], score[1], score[2], score[3], score[4]);
-        printf("맞다면 y, 다시 입력하시려면 n: ");
+        // 3) 확인
+        printf("입력하신 점수: %d %d %d %d %d\n",
+               score[0], score[1], score[2], score[3], score[4]);
+        printf("계속 입력하려면 Y, 재입력하려면 N을 입력: ");
         scanf(" %c", &temp);
-
-        if (temp != 'y' && temp != 'Y') {
-            printf("다시 성적 입력으로 돌아갑니다.\n");
-            goto input_score;
+        if (temp!='Y' && temp!='y') {
+            printf("다시 처음부터 입력합니다.\n");
+            continue;
         }
 
-        char student[100];
+        // 4) 레코드 문자열 생성
+        sprintf(ko_st, "%d", score[0]); int2String(ko_st);
+        sprintf(en_st, "%d", score[1]); int2String(en_st);
+        sprintf(math_st, "%d", score[2]); int2String(math_st);
+        sprintf(so_st, "%d", score[3]); int2String(so_st);
+        sprintf(sc_st, "%d", score[4]); int2String(sc_st);
+
         memset(student, 0, sizeof(student));
-
-        char ko_st[4], en_st[4], math_st[4], so_st[4], sc_st[4];
-        sprintf(ko_st, "%d", score[0]);
-        sprintf(en_st, "%d", score[1]);
-        sprintf(math_st, "%d", score[2]);
-        sprintf(so_st, "%d", score[3]);
-        sprintf(sc_st, "%d", score[4]);
-        int2String(ko_st);
-        int2String(en_st);
-        int2String(math_st);
-        int2String(so_st);
-        int2String(sc_st);
-
         strcat(student, st_no);
         strcat(student, ko_st);
         strcat(student, en_st);
@@ -281,17 +120,187 @@ void Modify(FILE *fpBak)
         strcat(student, so_st);
         strcat(student, sc_st);
 
-        fseek(fpBak, pos, SEEK_SET);
-        fwrite(student, 1, RECORD_SIZE, fpBak);
+        // 5) 중복 학번 검사
+        fseek(fpBak, 0, SEEK_SET);
+        char recordBuf[RECORD_SIZE+1];
+        int found = 0;
+        long pos = 0;
+        while (fread(recordBuf, 1, RECORD_SIZE, fpBak) == RECORD_SIZE) {
+            if (strncmp(recordBuf, st_no, 8) == 0) {
+                found = 1;
+                pos = ftell(fpBak) - RECORD_SIZE;
+                break;
+            }
+        }
 
-        printf("학번 [%s] 의 레코드가 수정되었습니다.\n", st_no);
+        if (found) {
+            // 6) 사용자 선택: 취소 vs 덮어쓰기
+            printf("이미 학번[%s]이(가) 존재합니다. 취소하려면 C, 덮어쓰기하려면 O를 입력: ", st_no);
+            scanf(" %c", &temp);
+            if (temp=='C' || temp=='c') {
+                printf("입력을 취소하고 다음 항목으로 넘어갑니다.\n");
+                continue;  // while(1) 의 다음 loop
+            }
+            // temp=='O'인 경우만 덮어쓰기
+            fseek(fpBak, pos, SEEK_SET);
+            fwrite(student, 1, RECORD_SIZE, fpBak);
+            printf("기존 레코드를 덮어썼습니다.\n");
+        } else {
+            // 7) 신규 레코드 추가
+            fseek(fpBak, 0, SEEK_END);
+            fwrite(student, 1, RECORD_SIZE, fpBak);
+            printf("새 레코드를 추가했습니다.\n");
+        }
     }
 }
 
-/* Print 함수
-   - 바이너리 파일 Score.bak에서 23바이트 단위로 레코드를 읽어 화면에 출력합니다.
-   - 소메뉴를 통해 전체 출력, 특정 학번 검색, 학번+과목 검색 기능을 제공합니다.
-*/
+void Modify(FILE *fpBak)
+{
+    char st_no[100];
+    char recordBuf[RECORD_SIZE+1];
+    printf("수정/삭제 모드로 진입합니다.\n");
+
+    while (1) {
+        printf("\n수정/삭제할 학번을 입력하세요 (8자리, 종료하려면 '0' 입력): ");
+        scanf("%s", st_no);
+
+        if (strlen(st_no) == 1 && st_no[0] == '0') {
+            printf("수정/삭제 모드를 종료합니다.\n");
+            return;
+        }
+        if (strlen(st_no) != 8) {
+            printf("학번은 8자리여야 합니다. 다시 입력하세요.\n");
+            continue;
+        }
+
+        // 파일 전체 레코드를 메모리로 로드
+        fseek(fpBak, 0, SEEK_END);
+        long fileSize = ftell(fpBak);
+        int totalRecs = fileSize / RECORD_SIZE;
+        if (totalRecs == 0) {
+            printf("저장된 레코드가 없습니다.\n");
+            return;
+        }
+        rewind(fpBak);
+
+        char (*allRecs)[RECORD_SIZE] = malloc(totalRecs * RECORD_SIZE);
+        fread(allRecs, RECORD_SIZE, totalRecs, fpBak);
+
+        // 대상 레코드 찾기
+        int idx = -1;
+        for (int i = 0; i < totalRecs; i++) {
+            if (strncmp(allRecs[i], st_no, 8) == 0) {
+                idx = i;
+                break;
+            }
+        }
+        if (idx < 0) {
+            printf("해당 학번 [%s]이(가) 없습니다.\n", st_no);
+            free(allRecs);
+            continue;
+        }
+
+        // 메뉴
+        printf("\n1) 전체 성적 재입력\n");
+        printf("2) 특정 과목만 수정\n");
+        printf("3) 레코드 삭제\n");
+        printf("4) 취소 (메뉴로 돌아가기)\n");
+        printf("선택: ");
+        int choice;
+        scanf("%d", &choice);
+
+        if (choice == 4) {
+            free(allRecs);
+            continue;
+        }
+        if (choice == 3) {
+            // 삭제: 배열에서 idx 항목 빼고 다시 파일 덮어쓰기
+            fpBak = freopen(NULL, "wb+", fpBak);
+            for (int i = 0; i < totalRecs; i++) {
+                if (i == idx) continue;
+                fwrite(allRecs[i], 1, RECORD_SIZE, fpBak);
+            }
+            printf("학번 [%s] 레코드를 삭제했습니다.\n", st_no);
+            free(allRecs);
+            return;
+        }
+
+        // 수정: 전체 or 부분
+        int score[5];
+        // 파싱된 기존 점수
+        char tmp[4];
+        for (int subj = 0; subj < 5; subj++) {
+            strncpy(tmp, allRecs[idx] + 8 + subj*3, 3);
+            tmp[3] = '\0'; removeComma(tmp);
+            score[subj] = atoi(tmp);
+        }
+
+        if (choice == 1) {
+            // 전체 재입력
+            while (1) {
+                printf("새 성적 입력 (국어 영어 수학 사회 과학, 0~100):\n");
+                if (scanf("%d %d %d %d %d",
+                          &score[0], &score[1], &score[2],
+                          &score[3], &score[4]) != 5) {
+                    printf("잘못된 입력, 정수 5개를 입력하세요.\n");
+                    while(getchar()!='\n');
+                    continue;
+                }
+                int ok = 1;
+                for (int i = 0; i < 5; i++)
+                    if (scoreInputCheck(score[i])<0) ok = 0;
+                if (!ok) continue;
+                break;
+            }
+        } else if (choice == 2) {
+            // 특정 과목만
+            static const char *names[5] = {"국어","영어","수학","사회","과학"};
+            printf("수정할 과목 선택:\n");
+            for (int i = 0; i < 5; i++)
+                printf("%d) %s\n", i+1, names[i]);
+            int sub;
+            scanf("%d", &sub);
+            if (sub < 1 || sub > 5) {
+                printf("잘못된 과목 번호입니다.\n");
+                free(allRecs);
+                continue;
+            }
+            while (1) {
+                printf("%s 점수 새로 입력 (0~100): ", names[sub-1]);
+                int v; scanf("%d",&v);
+                if (scoreInputCheck(v)==0) {
+                    score[sub-1] = v;
+                    break;
+                }
+            }
+        } else {
+            printf("잘못된 선택입니다.\n");
+            free(allRecs);
+            continue;
+        }
+
+        // 새 레코드 생성
+        char newRec[RECORD_SIZE];
+        char tmpStr[4];
+        memcpy(newRec, st_no, 8);
+        for (int i = 0; i < 5; i++) {
+            sprintf(tmpStr, "%d", score[i]);
+            int2String(tmpStr);
+            memcpy(newRec+8+i*3, tmpStr, 3);
+        }
+
+        // 메모리 배열에 덮어쓰기, 파일 전체 덮어쓰기
+        memcpy(allRecs[idx], newRec, RECORD_SIZE);
+        fpBak = freopen(NULL, "wb+", fpBak);
+        for (int i = 0; i < totalRecs; i++) {
+            fwrite(allRecs[i], 1, RECORD_SIZE, fpBak);
+        }
+        printf("학번 [%s] 레코드를 수정했습니다.\n", st_no);
+        free(allRecs);
+        return;
+    }
+}
+
 void Print(FILE *fpBak) {
     int choice = 0;
     char record[RECORD_SIZE + 1];
@@ -428,7 +437,7 @@ int main(void) {
         }
     }
 
-    /* Score.bat -> Score.bak 복사 (바이너리 모드, wb+ : 읽기/쓰기 모두 가능) */
+    /* Score.bat -> Score.bak 복사 */
     FILE *fpBak = fopen("Score.bak", "wb+");
     if (fpBak == NULL) {
         perror("Score.bak 파일 열기 실패");
@@ -471,7 +480,7 @@ int main(void) {
                 fclose(fpBat);
                 fclose(fpBak);
 
-                /* 종료 전, Score.bak의 내용을 Score.bat에 덮어쓰기 (바이너리 모드) */
+                /* 종료 전, Score.bak의 내용을 Score.bat에 덮어쓰기*/
                 fpBak = fopen("Score.bak", "rb");
                 if (fpBak == NULL) {
                     perror("Score.bak 재열기 실패");

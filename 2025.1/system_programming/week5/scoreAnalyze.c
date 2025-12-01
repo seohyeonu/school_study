@@ -3,9 +3,8 @@
 #include <string.h>
 
 #define RECORD_SIZE 23  // 학번(8) + 과목 5개×3(15) = 23바이트
-#define MAX_STUDENTS 1000  // 최대 학생 수 가정
+#define MAX_STUDENTS 1000
 
-/* 과목 인덱스: 0=국어, 1=영어, 2=수학, 3=사회, 4=과학 */
 enum { KOR, ENG, MAT, SOC, SCI, SUBJECT_COUNT };
 
 typedef struct {
@@ -13,13 +12,10 @@ typedef struct {
     int scores[SUBJECT_COUNT];  // 5과목 점수
 } Student;
 
-/* 등급을 저장하기 위한 예시 구조체
-   각 학생별, 과목별 등급(A/B/C/D/F) 보관 */
 typedef struct {
     char grade[SUBJECT_COUNT][2];
 } GradeBook;
 
-/* 쉼표(',') 제거 함수 (예: "49," -> "49") */
 static void removeComma(char *scoreField) {
     for (int i = 0; i < 3; i++) {
         if (scoreField[i] == ',') {
@@ -29,9 +25,7 @@ static void removeComma(char *scoreField) {
     }
 }
 
-/* 점수 분포(0~9, 10~19, …, 90~100)에 대해 몇 명이 있는지 계산 */
 void printScoreDistribution(const Student *students, int count, int subjectIndex) {
-    // 11개의 구간 (0~9, 10~19, ..., 90~99, 그리고 100점)
     int distribution[11];
     memset(distribution, 0, sizeof(distribution));
 
@@ -53,26 +47,19 @@ void printScoreDistribution(const Student *students, int count, int subjectIndex
     printf("   100 : %d명\n", distribution[10]);
 }
 
-/* 등급 부여:
-   - 상위 30% A, 70% B, 90% C, 95% D, 나머지 F
-   - 과목별로 별도 정렬(내림차순) 후 순위 계산 */
+
 void assignGrades(const Student *students, int count, GradeBook *gradeBook) {
-    // 각 과목마다 학생들을 점수 기준으로 내림차순 정렬해야 함.
-    // 정렬을 위해 (점수, 원래 인덱스) 쌍을 담아두고 정렬.
     typedef struct {
         int score;
         int index; // 원본 students 배열에서의 위치
     } ScoreIndex;
 
     for (int subj = 0; subj < SUBJECT_COUNT; subj++) {
-        // 1) ScoreIndex 배열 만들기
         ScoreIndex *arr = (ScoreIndex *)malloc(sizeof(ScoreIndex)*count);
         for (int i = 0; i < count; i++) {
             arr[i].score = students[i].scores[subj];
             arr[i].index = i;
         }
-        // 2) 내림차순 정렬
-        //    점수가 동일하면 index가 작은 순으로 둔다고 가정(별도의 조건 필요 시 추가)
         for (int i = 0; i < count - 1; i++) {
             for (int j = i+1; j < count; j++) {
                 if (arr[i].score < arr[j].score) {
@@ -82,9 +69,8 @@ void assignGrades(const Student *students, int count, GradeBook *gradeBook) {
                 }
             }
         }
-        // 3) 등급 매기기 (상위 30% A, 70% B, 90% C, 95% D, 나머지 F)
         for (int rank = 0; rank < count; rank++) {
-            double percentile = (double)rank / count; // 0.0 ~ (count-1)/count
+            double percentile = (double)rank / count;
             char grade;
             if (percentile < 0.3) grade = 'A';
             else if (percentile < 0.7) grade = 'B';
@@ -138,8 +124,7 @@ int main(void){
         strncpy(students[studentCount].studentId, record, 8);
         students[studentCount].studentId[8] = '\0';
 
-        // 각 과목 점수 파싱
-        // record[8..10]=국어, [11..13]=영어, [14..16]=수학, [17..19]=사회, [20..22]=과학
+
         char tmp[4];
         // 국어
         strncpy(tmp, record+8, 3); tmp[3] = '\0';
@@ -172,9 +157,6 @@ int main(void){
         return 0;
     }
 
-    // --------------------------
-    // (1) 전체 학생 평균 점수
-    // --------------------------
     double totalSumAll = 0.0;
     int totalCountAll = studentCount * SUBJECT_COUNT;
     for (int i = 0; i < studentCount; i++){
@@ -185,9 +167,6 @@ int main(void){
     double avgAll = totalSumAll / totalCountAll;
     printf("[전체 학생의 평균 점수] = %.2f\n", avgAll);
 
-    // --------------------------
-    // (2) 과목별 평균 점수
-    // --------------------------
     const char *subjName[SUBJECT_COUNT] = {"국어", "영어", "수학", "사회", "과학"};
     for (int subj = 0; subj < SUBJECT_COUNT; subj++){
         double sum = 0.0;
@@ -198,11 +177,6 @@ int main(void){
         printf("[%s 평균] = %.2f\n", subjName[subj], avg);
     }
 
-    // --------------------------
-    // (3) 최고점, 최저점
-    //     (여기서는 전체 과목 통합으로 예시.
-    //      필요 시 과목별 최고/최저도 비슷하게 계산)
-    // --------------------------
     int minScore = 101, maxScore = -1;
     for (int i = 0; i < studentCount; i++){
         for (int subj = 0; subj < SUBJECT_COUNT; subj++){
@@ -214,21 +188,11 @@ int main(void){
     printf("[전체 과목 통합 최고점] = %d\n", maxScore);
     printf("[전체 과목 통합 최저점] = %d\n", minScore);
 
-    // --------------------------
-    // (4) 성적 분포 출력
-    //     과목별 분포를 출력하는 예시
-    // --------------------------
     for (int subj = 0; subj < SUBJECT_COUNT; subj++) {
         printf("\n[%s] 과목 점수 분포\n", subjName[subj]);
         printScoreDistribution(students, studentCount, subj);
     }
 
-    // --------------------------
-    // (5) 등급 부여
-    //     각 과목별로 상위 30% A, 70% B, 90% C, 95% D, 나머지 F
-    //     GradeBook 구조체를 이용해 등급을 저장한 뒤,
-    //     결과를 학생별로 출력
-    // --------------------------
     GradeBook *gradeBook = (GradeBook *)calloc(studentCount, sizeof(GradeBook));
     assignGrades(students, studentCount, gradeBook);
 
@@ -241,9 +205,5 @@ int main(void){
         printf("\n");
     }
     free(gradeBook);
-
-    // 프로그램 종료 시, Score.bak 등 임시파일은 삭제하거나 남기는 정책은
-    // 과제 요구사항에 따라 정하면 됩니다.
-    // 여기서는 임시파일을 그대로 놔둔다고 가정.
     return 0;
 }

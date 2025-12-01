@@ -1,0 +1,183 @@
+circle "c0"(500,114) radius 20 color red filled
+circle "c1"(333,228) radius 20 filled
+circle "c2"(666,228) radius 20 filled
+circle "c3"(200,342) radius 20 filled
+circle "c4"(400,342) radius 20 color red filled
+circle "c5"(600,342) radius 20 filled
+circle "c6"(800,342) radius 20 filled
+circle "c7"(111,457) radius 20 filled
+circle "c8"(222,457) radius 20 color red filled
+circle "c9"(333,457) radius 20 filled
+circle "c10"(444,457) radius 20 filled
+circle "c11"(555,457) radius 20 filled
+circle "c12"(666,457) radius 20 filled
+circle "c13"(777,457) radius 20 filled
+circle "c14"(888,457) radius 20 filled
+circle "c15"(58,571) radius 20 filled
+circle "c16"(117,571) radius 20 filled
+circle "c17"(176,571) radius 20 filled
+circle "c18"(235,571) radius 20 filled
+circle "c19"(294,571) radius 20 filled
+circle "c20"(352,571) radius 20 filled
+circle "c21"(411,571) radius 20 filled
+circle "c22"(470,571) radius 20 filled
+circle "c23"(529,571) radius 20 filled
+circle "c24"(588,571) radius 20 color red filled
+circle "c25"(647,571) radius 20 filled
+circle "c26"(705,571) radius 20 filled
+circle "c27"(764,571) radius 20 filled
+circle "c28"(823,571) radius 20 filled
+circle "c29"(882,571) radius 20 filled
+circle "c30"(941,571) radius 20 filled
+circle "c31"(30,685) radius 20 filled
+circle "c32"(60,685) radius 20 filled
+circle "c33"(90,685) radius 20 filled
+circle "c34"(121,685) radius 20 filled
+circle "c35"(151,685) radius 20 filled
+circle "c36"(181,685) radius 20 filled
+circle "c37"(212,685) radius 20 filled
+circle "c38"(242,685) radius 20 filled
+circle "c39"(272,685) radius 20 filled
+circle "c40"(303,685) radius 20 filled
+circle "c41"(333,685) radius 20 filled
+circle "c42"(363,685) radius 20 filled
+circle "c43"(393,685) radius 20 filled
+circle "c44"(424,685) radius 20 filled
+circle "c45"(454,685) radius 20 filled
+circle "c46"(484,685) radius 20 filled
+circle "c47"(515,685) radius 20 filled
+circle "c48"(545,685) radius 20 filled
+circle "c49"(575,685) radius 20 filled
+circle "c50"(606,685) radius 20 filled
+circle "c51"(636,685) radius 20 filled
+circle "c52"(666,685) radius 20 filled
+circle "c53"(696,685) radius 20 filled
+circle "c54"(727,685) radius 20 filled
+circle "c55"(757,685) radius 20 filled
+circle "c56"(787,685) radius 20 filled
+circle "c57"(818,685) radius 20 filled
+circle "c58"(848,685) radius 20 filled
+circle "c59"(878,685) radius 20 filled
+
+text "96" 500 114
+text "89" 333 228
+text "98" 666 228
+text "85" 200 342
+text "86" 400 342
+text "87" 600 342
+text "81" 800 342
+text "78" 111 457
+text "84" 222 457
+text "91" 333 457
+text "83" 444 457
+text "80" 555 457
+text "82" 666 457
+text "79" 777 457
+text "77" 888 457
+text "72" 58 571
+text "61" 117 571
+text "88" 176 571
+text "70" 235 571
+text "71" 294 571
+text "62" 352 571
+text "67" 411 571
+text "76" 470 571
+text "68" 529 571
+text "63" 588 571
+text "66" 647 571
+text "75" 705 571
+text "64" 764 571
+text "73" 823 571
+text "65" 882 571
+text "74" 941 571
+text "32" 30 685
+text "33" 60 685
+text "34" 90 685
+text "35" 121 685
+text "36" 151 685
+text "37" 181 685
+text "38" 212 685
+text "39" 242 685
+text "40" 272 685
+text "41" 303 685
+text "42" 333 685
+text "43" 363 685
+text "44" 393 685
+text "45" 424 685
+text "46" 454 685
+text "47" 484 685
+text "48" 515 685
+text "49" 545 685
+text "50" 575 685
+text "69" 606 685
+text "52" 636 685
+text "53" 666 685
+text "54" 696 685
+text "55" 727 685
+text "56" 757 685
+text "57" 787 685
+text "58" 818 685
+text "59" 848 685
+text "60" 878 685
+
+line "l0_1"(500,114,333,228)
+line "l0_2"(500,114,666,228)
+line "l1_3"(333,228,200,342)
+line "l1_4"(333,228,400,342)
+line "l2_5"(666,228,600,342)
+line "l2_6"(666,228,800,342)
+line "l3_7"(200,342,111,457)
+line "l3_8"(200,342,222,457)
+line "l4_9"(400,342,333,457)
+line "l4_10"(400,342,444,457)
+line "l5_11"(600,342,555,457)
+line "l5_12"(600,342,666,457)
+line "l6_13"(800,342,777,457)
+line "l6_14"(800,342,888,457)
+line "l7_15"(111,457,58,571)
+line "l7_16"(111,457,117,571)
+line "l8_17"(222,457,176,571)
+line "l8_18"(222,457,235,571)
+line "l9_19"(333,457,294,571)
+line "l9_20"(333,457,352,571)
+line "l10_21"(444,457,411,571)
+line "l10_22"(444,457,470,571)
+line "l11_23"(555,457,529,571)
+line "l11_24"(555,457,588,571)
+line "l12_25"(666,457,647,571)
+line "l12_26"(666,457,705,571)
+line "l13_27"(777,457,764,571)
+line "l13_28"(777,457,823,571)
+line "l14_29"(888,457,882,571)
+line "l14_30"(888,457,941,571)
+line "l15_31"(58,571,30,685)
+line "l15_32"(58,571,60,685)
+line "l16_33"(117,571,90,685)
+line "l16_34"(117,571,121,685)
+line "l17_35"(176,571,151,685)
+line "l17_36"(176,571,181,685)
+line "l18_37"(235,571,212,685)
+line "l18_38"(235,571,242,685)
+line "l19_39"(294,571,272,685)
+line "l19_40"(294,571,303,685)
+line "l20_41"(352,571,333,685)
+line "l20_42"(352,571,363,685)
+line "l21_43"(411,571,393,685)
+line "l21_44"(411,571,424,685)
+line "l22_45"(470,571,454,685)
+line "l22_46"(470,571,484,685)
+line "l23_47"(529,571,515,685)
+line "l23_48"(529,571,545,685)
+line "l24_49"(588,571,575,685)
+line "l24_50"(588,571,606,685)
+line "l25_51"(647,571,636,685)
+line "l25_52"(647,571,666,685)
+line "l26_53"(705,571,696,685)
+line "l26_54"(705,571,727,685)
+line "l27_55"(764,571,757,685)
+line "l27_56"(764,571,787,685)
+line "l28_57"(823,571,818,685)
+line "l28_58"(823,571,848,685)
+line "l29_59"(882,571,878,685)
+
+pause 300
