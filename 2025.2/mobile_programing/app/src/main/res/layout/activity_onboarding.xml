@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/tv_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="안녕하세요,\n머니트리에 오신걸\n환영합니다!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Name Input -->
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="이름"
+        android:background="@drawable/bg_input_rounded"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="#4CAF50"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_welcome" />
+
+    <!-- Fixed Expense Input -->
+    <EditText
+        android:id="@+id/et_fixed_expense"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="고정 지출"
+        android:inputType="number"
+        android:background="@drawable/bg_input_rounded"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="#4CAF50"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+    <!-- Monthly Income Input -->
+    <EditText
+        android:id="@+id/et_income"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="고정 수입"
+        android:inputType="number"
+        android:background="@drawable/bg_input_rounded"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="#4CAF50"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/et_fixed_expense" />
+
+    <!-- Saving Goal Input -->
+    <EditText
+        android:id="@+id/et_saving_goal"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="한달 저축 목표"
+        android:inputType="number"
+        android:background="@drawable/bg_input_rounded"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@android:color/black"
+        android:textColorHint="#4CAF50"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/et_income" />
+
+    <!-- Next Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="다 음"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:background="@drawable/bg_button_green"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/et_saving_goal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

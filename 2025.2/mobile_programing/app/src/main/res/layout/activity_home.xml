@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/iv_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Top Bar -->
+    <TextView
+        android:id="@+id/tv_daily_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="{name}님은 {dailyAllowance}원의 행복을 실천중입니다."
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toStartOf="@+id/btn_settings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_settings"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_manage"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_daily_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_daily_message" />
+
+    <!-- Center Circle -->
+    <ImageView
+        android:id="@+id/iv_balance_circle_bg"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:src="@drawable/main1" 
+        app:layout_constraintBottom_toTopOf="@+id/layout_bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_daily_message"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <ImageView
+        android:id="@+id/iv_feel_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/feel1"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_balance_circle_bg"
+        app:layout_constraintEnd_toEndOf="@+id/iv_balance_circle_bg"
+        app:layout_constraintStart_toStartOf="@+id/iv_balance_circle_bg"
+        app:layout_constraintTop_toTopOf="@+id/iv_balance_circle_bg"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/tv_current_allowance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="50,000원"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="@+id/iv_balance_circle_bg"
+        app:layout_constraintStart_toStartOf="@+id/iv_balance_circle_bg"
+        app:layout_constraintTop_toBottomOf="@+id/iv_feel_icon"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/tv_today_spent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="사용한 금액 | 0원"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@+id/iv_balance_circle_bg"
+        app:layout_constraintStart_toStartOf="@+id/iv_balance_circle_bg"
+        app:layout_constraintTop_toBottomOf="@+id/tv_current_allowance"
+        android:layout_marginTop="8dp" />
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/layout_bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:background="#00FFFFFF" 
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_nav_calendar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/bar_search"
+            android:scaleType="centerInside" />
+
+        <ImageButton
+            android:id="@+id/btn_nav_add"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/bar_add"
+            android:scaleType="centerInside" />
+
+        <ImageButton
+            android:id="@+id/btn_nav_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/bar_home"
+            android:scaleType="centerInside" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
